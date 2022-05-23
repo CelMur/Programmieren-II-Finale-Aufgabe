@@ -85,7 +85,7 @@
       <workItem from="1653292011031" duration="1447000" />
       <workItem from="1653293491996" duration="871000" />
       <workItem from="1653294394584" duration="289000" />
-      <workItem from="1653294712281" duration="607000" />
+      <workItem from="1653294712281" duration="792000" />
     </task>
     <task id="LOCAL-00001" summary="remote add origin xavelyn@github.com CelMur/Programmieren-II-Finale-Aufgabe.git">
       <created>1652699303549</created>
@@ -129,7 +129,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653295237263</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="remote add origin xavelyn@github.com CelMur/Programmieren-II-Finale-Aufgabe.git">
+      <created>1653295329406</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1653295329406</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
