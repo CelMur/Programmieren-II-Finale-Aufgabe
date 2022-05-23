@@ -4,7 +4,7 @@ public abstract class BankAccount {
 	
 	String name;
 	long balance;
-	String Type;
+	//String Type; 
 	long maxDebt;
 	
 	public abstract boolean withdraw();
