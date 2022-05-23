@@ -1,4 +1,4 @@
-package de.jproject.models;
+package de.jprojekt.models;
 
 import java.time.LocalDate;
 import java.util.List;

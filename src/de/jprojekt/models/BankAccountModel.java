@@ -1,4 +1,4 @@
-package de.jproject.models;
+package de.jprojekt.models;
 
 public class BankAccountModel {
 	
