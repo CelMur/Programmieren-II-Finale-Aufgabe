@@ -20,6 +20,19 @@
     <option name="BRANCH" value="Programmieren/main" />
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="Programmieren/main" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -72,7 +85,7 @@
       <workItem from="1653292011031" duration="1447000" />
       <workItem from="1653293491996" duration="871000" />
       <workItem from="1653294394584" duration="289000" />
-      <workItem from="1653294712281" duration="256000" />
+      <workItem from="1653294712281" duration="607000" />
     </task>
     <task id="LOCAL-00001" summary="remote add origin xavelyn@github.com CelMur/Programmieren-II-Finale-Aufgabe.git">
       <created>1652699303549</created>
@@ -95,7 +108,28 @@
       <option name="project" value="LOCAL" />
       <updated>1653294747381</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="remote add origin xavelyn@github.com CelMur/Programmieren-II-Finale-Aufgabe.git">
+      <created>1653295020727</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1653295020727</updated>
+    </task>
+    <task id="LOCAL-00005" summary="remote add origin xavelyn@github.com CelMur/Programmieren-II-Finale-Aufgabe.git">
+      <created>1653295170540</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1653295170540</updated>
+    </task>
+    <task id="LOCAL-00006" summary="remote add origin xavelyn@github.com CelMur/Programmieren-II-Finale-Aufgabe.git">
+      <created>1653295237263</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1653295237263</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
