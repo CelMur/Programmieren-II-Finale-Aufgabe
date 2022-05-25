@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 
 import de.jprojekt.view.actions.ActionNewCustomer;
 
-public class CustomerPanel extends JDialog implements ActionListener{
+public class CustomerDataPanel extends JDialog implements ActionListener{
 	protected JTextField fieldFirstName;
 	protected JTextField fieldLastName;
 	protected JTextField fieldAddress;
@@ -27,7 +27,7 @@ public class CustomerPanel extends JDialog implements ActionListener{
 	protected JPanel content;
 	
 	
-	public CustomerPanel(JFrame f, String titel) {
+	public CustomerDataPanel(JFrame f, String titel) {
 		super(f, titel, true);
 		
 		initialize();

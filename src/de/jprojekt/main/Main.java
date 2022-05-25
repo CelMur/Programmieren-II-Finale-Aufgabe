@@ -1,9 +1,12 @@
 package de.jprojekt.main;
 
 import de.jprojekt.utils.Mysql;
+import de.jprojekt.view.frames.LoginFrame;
 import de.jprojekt.view.frames.MainFrame;
 
 import java.sql.SQLException;
+
+import javax.swing.JFrame;
 
 public class Main {
 
@@ -19,7 +22,7 @@ public class Main {
         System.out.println("Test4");
         */
     	
-    	MainFrame frame = new MainFrame();
+    	JFrame frame = new LoginFrame();
     	frame.setVisible(true);
     	
     }
