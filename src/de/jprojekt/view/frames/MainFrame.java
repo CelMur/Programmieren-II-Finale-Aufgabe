@@ -16,6 +16,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import de.jprojekt.main.Gui;
+import de.jprojekt.view.CustomerMenuBar;
 import de.jprojekt.view.EmployeeMenuBar;
 
 public class MainFrame extends JFrameAdapter implements ActionListener{
@@ -33,7 +34,7 @@ public class MainFrame extends JFrameAdapter implements ActionListener{
 	
 	private void initialize() {
 		
-		setJMenuBar(new EmployeeMenuBar(gui, this));
+		setJMenuBar(new CustomerMenuBar(gui, this));
 		
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

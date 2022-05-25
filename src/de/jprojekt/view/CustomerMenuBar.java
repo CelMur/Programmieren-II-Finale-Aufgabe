@@ -43,6 +43,7 @@ public class CustomerMenuBar extends JMenuBar{
 	}
 	
 	private void initialize() {
+		add(createAccoutMenu());
 		add(createBankAccountMenu());
 	}
 	
