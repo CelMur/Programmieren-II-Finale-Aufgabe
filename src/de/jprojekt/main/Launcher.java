@@ -47,6 +47,18 @@ public class Launcher {
 	}
 	
 	public void launchApplication() {
+		
+		
+		/*TODO: Unterscheidung des "User" Typs
+		 * 
+		 * Fall 1:	Typ = Customer -> gui.setupCustomerGui()
+		 * 
+		 * Fall 2:	Typ = Employee -> gui.setupEmployeeGui()
+		 * 
+		 * 
+		 */
+		
+		
 		app.onLaunchApplication();
 		gui.onLaunchApplication();
 	}
