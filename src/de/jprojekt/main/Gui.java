@@ -18,13 +18,19 @@ public class Gui {
 	
 	}
 	
-	 
+	/**
+	 * Wird vom Launcher aufgerufen.
+	 * Zeigt das Login-Fenster an
+	 */
 	public void onLaunchLogin() {
 		cleanupCurrentFrame();
 		showLoginFrame();
 	}
 	
-	
+	/**
+	 * Wird vom Launcher aufgerufen.
+	 * Zeigt das Haupt-Fenster an.
+	 */
 	public void onLaunchApplication() {
 		cleanupCurrentFrame();
 		showMainFrame();

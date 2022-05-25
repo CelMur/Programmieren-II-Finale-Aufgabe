@@ -1,5 +1,18 @@
 package de.jprojekt.main;
-
+/**
+ * 
+ * @author luis.eckert
+ *
+ *
+ *{@summary 
+ *Der Launcher kapselt das Start-Verhalten der Anwendung 
+ *und teilt es in zwei Phasen: Login und Haupt-Anwendung(Application)
+ *
+ *Beide Phasen haben jeweils eine Funktion (launchLogin und launchApplication),
+ *die dafür zuständig sind, dass alle für die Phasen wichtigen initialisierungen
+ *durchgegführt werden.
+ *}
+ */
 public class Launcher {
 	
 	private static Launcher instance;
@@ -40,12 +53,19 @@ public class Launcher {
 	}
 	
 	
+	/**
+	 * Ruft das Login-Fenster
+	 */
 	public void launchLogin() {
 		app.onLaunchLogin();
 		gui.onLaunchLogin();
 		
 	}
 	
+	/**
+	 * Initialisiert die Gui je nach eingeloggtem User (Customer oder Employee)) und 
+	 * zeigt das Haupt-Fenster an.
+	 */
 	public void launchApplication() {
 		
 		

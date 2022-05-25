@@ -8,6 +8,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import de.jprojekt.main.Gui;
 import de.jprojekt.view.actions.*;
 import de.jprojekt.view.frames.JFrameAdapter;
 
@@ -23,7 +24,7 @@ public class EmployeeMenuBar extends JMenuBar{
 	
 	private JFrame frame;
 	
-	public EmployeeMenuBar(JFrameAdapter frame) {
+	public EmployeeMenuBar(Gui gui, JFrameAdapter frame) {
 		this.frame = frame;
 		
 		actNewCustomer = new ActionNewCustomer(frame);
@@ -33,7 +34,7 @@ public class EmployeeMenuBar extends JMenuBar{
 		actResetPassword = new ActionResetPassword(frame);
 		
 		
-		actLogout = new ActionLogout(frame);
+		actLogout = new ActionLogout(gui, frame);
 		
 		
 		initialize();

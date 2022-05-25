@@ -21,19 +21,19 @@ import de.jprojekt.view.EmployeeMenuBar;
 public class MainFrame extends JFrameAdapter implements ActionListener{
 
 	
-	private Gui app;
+	private Gui gui;
 	private JPanel centerPanel;
 	
 	
-	public MainFrame(Gui app) {
-		this.app = app;
+	public MainFrame(Gui gui) {
+		this.gui = gui;
 		
 		initialize();
 	}
 	
 	private void initialize() {
 		
-		setJMenuBar(new EmployeeMenuBar(this));
+		setJMenuBar(new EmployeeMenuBar(gui, this));
 		
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

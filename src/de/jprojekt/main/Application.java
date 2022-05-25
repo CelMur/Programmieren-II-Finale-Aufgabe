@@ -21,12 +21,16 @@ public class Application {
 	}
 	
 	
-	
+	/**
+	 * wird vom Laucher aufgerufen kurz bevor das Login-Fenster angezeigt wird
+	 */
 	public void onLaunchLogin() {
 		throwExeptionIfGuiIsMissing();
 		
 	}
-	
+	/**
+	 * Wird vom Launcher aufgerufen, kurz bevor das Haupt-Fenster angezeigt wird
+	 */
 	public void onLaunchApplication() {
 		throwExeptionIfGuiIsMissing();
 		
