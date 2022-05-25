@@ -1,4 +1,9 @@
 package de.jprojekt.main;
+
+import de.jprojekt.data.models.Customer;
+import de.jprojekt.data.models.Employee;
+import de.jprojekt.data.models.User;
+
 /**
  * 
  * @author luis.eckert
@@ -17,9 +22,9 @@ public class Launcher {
 	
 	private static Launcher instance;
 	
-	public static Launcher create(Gui gui, Application app) {
+	public static Launcher create(ApplicationGui gui, Application app, ApplicationData data) {
 		if(instance == null) {
-			instance = new Launcher(gui, app);
+			instance = new Launcher(gui, app, data);
 			return instance;
 		}
 		return null;
@@ -29,12 +34,18 @@ public class Launcher {
 		return instance; 
 	}
 	
-	private Gui gui;
-	private Application app;
 	
-	private Launcher(Gui gui, Application app) {
+	
+	private ApplicationGui gui;
+	private Application app;
+	private ApplicationData data;
+	
+	
+	
+	private Launcher(ApplicationGui gui, Application app, ApplicationData data) {
 		this.gui = gui;
 		this.app = app;
+		this.data = data;
 		
 		throwExceptionIfGuiIsMissing();
 		throwExceptionIfApplicationIsMissing();
@@ -78,6 +89,11 @@ public class Launcher {
 		 * 
 		 */
 		
+		User u = data.getCurrentUser();
+		
+		if(u instanceof Customer) gui.initializeCustomerGui();
+		if(u instanceof Employee) gui.initializeEmployeeGui();
+			
 		
 		app.onLaunchApplication();
 		gui.onLaunchApplication();

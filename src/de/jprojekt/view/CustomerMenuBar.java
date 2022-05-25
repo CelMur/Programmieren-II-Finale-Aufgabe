@@ -6,7 +6,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import de.jprojekt.main.Gui;
+import de.jprojekt.main.ApplicationGui;
 import de.jprojekt.view.actions.ActionDepositMoney;
 import de.jprojekt.view.actions.ActionEditCustomer;
 import de.jprojekt.view.actions.ActionLogout;
@@ -28,7 +28,7 @@ public class CustomerMenuBar extends JMenuBar{
 	private final AbstractAction actNewBankAccount;
 	private final AbstractAction actEditCustomer;
 	
-	public CustomerMenuBar(Gui gui, JFrameAdapter frame) {
+	public CustomerMenuBar(ApplicationGui gui, JFrameAdapter frame) {
 		this.frame = frame;
 		
 		actLogout = new ActionLogout(gui, frame);

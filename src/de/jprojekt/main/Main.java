@@ -1,5 +1,8 @@
 package de.jprojekt.main;
 
+import de.jprojekt.controller.mockups.MockupSessionControllerLoginAsCustomer;
+import de.jprojekt.controller.mockups.MockupSessionControllerLoginAsEmployee;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -13,12 +16,22 @@ public class Main {
         
         System.out.println("Test4");
         */
-    	
+    	ApplicationData data = new ApplicationData();
     	Application app = new Application();
-    	Gui gui = new Gui();
+    	ApplicationGui gui = new ApplicationGui();
+    	
+    	//Mockup-Login-As-Customer
+    	
+    	//app.setSessionController(new MockupSessionControllerLoginAsCustomer(data));
     	
     	
-    	Launcher l = Launcher.create(gui, app);
+    	
+    	//Mockup-Login-As-Employee
+    	
+    	app.setSessionController(new MockupSessionControllerLoginAsEmployee(data));
+    	
+    	
+    	Launcher l = Launcher.create(gui, app, data);
     	l.launchLogin();
     	
     	

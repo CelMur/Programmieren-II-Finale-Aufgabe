@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 
 import de.jprojekt.controller.interfaces.ISessionController;
 import de.jprojekt.data.models.User;
-import de.jprojekt.main.Gui;
+import de.jprojekt.main.ApplicationGui;
 import de.jprojekt.view.actions.ActionLogin;
 import de.jprojekt.view.models.LoginData;
 
@@ -25,12 +25,12 @@ public class LoginFrame extends JFrameAdapter{
 	private JPasswordField fieldPassword;
 	private JButton btnLogin;
 	
-	private Gui gui;
+	private ApplicationGui gui;
 	private ISessionController session;
 	
 	private final AbstractAction actLogin;
 		
-	public LoginFrame(Gui gui) {
+	public LoginFrame(ApplicationGui gui) {
 		this.gui = gui;
 		
 		session = gui.getApp().getSessionController();

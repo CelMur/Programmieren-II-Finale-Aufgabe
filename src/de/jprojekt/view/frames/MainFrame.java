@@ -15,18 +15,18 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-import de.jprojekt.main.Gui;
+import de.jprojekt.main.ApplicationGui;
 import de.jprojekt.view.CustomerMenuBar;
 import de.jprojekt.view.EmployeeMenuBar;
 
 public class MainFrame extends JFrameAdapter implements ActionListener{
 
 	
-	private Gui gui;
+	private ApplicationGui gui;
 	private JPanel centerPanel;
 	
 	
-	public MainFrame(Gui gui) {
+	public MainFrame(ApplicationGui gui) {
 		this.gui = gui;
 		
 		initialize();

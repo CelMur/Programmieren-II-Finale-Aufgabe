@@ -7,14 +7,15 @@ import de.jprojekt.view.frames.JFrameAdapter;
 import de.jprojekt.view.frames.LoginFrame;
 import de.jprojekt.view.frames.MainFrame;
 
-public class Gui {
+public class ApplicationGui {
 	
 	private Application app;
+	private ApplicationData data;
 	
 	private JFrameAdapter currentFrame;
 	
 	
-	public Gui() {
+	public ApplicationGui() {
 	
 	}
 	
@@ -54,11 +55,11 @@ public class Gui {
 	}
 	
 	
-	public void setupCustomerGui() {
+	public void initializeCustomerGui() {
 		
 	}
 	
-	public void setupEmployeeGui() {
+	public void initializeEmployeeGui() {
 		
 	}
 
@@ -73,6 +74,14 @@ public class Gui {
 	
 	public JFrameAdapter getCurrentFrame() {
 		return this.currentFrame;
+	}
+
+	public ApplicationData getData() {
+		return data;
+	}
+
+	public void setData(ApplicationData data) {
+		this.data = data;
 	}
 	
 	

@@ -7,16 +7,16 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import de.jprojekt.controller.interfaces.ISessionController;
-import de.jprojekt.main.Gui;
+import de.jprojekt.main.ApplicationGui;
 import de.jprojekt.view.GuiMessages;
 import de.jprojekt.view.frames.JFrameAdapter;
 
 public class ActionLogout extends AbstractActionAdapter {
 	
-	private Gui gui;
+	private ApplicationGui gui;
 	private ISessionController session; 
 	
-	public ActionLogout(Gui gui, JFrameAdapter frame) {
+	public ActionLogout(ApplicationGui gui, JFrameAdapter frame) {
 		super(frame);
 		
 		this.gui = gui;

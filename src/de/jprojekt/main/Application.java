@@ -1,11 +1,12 @@
 package de.jprojekt.main;
 
 import de.jprojekt.controller.interfaces.ISessionController;
-import de.jprojekt.controller.mockups.MockupSessionController;
+import de.jprojekt.controller.mockups.MockupSessionControllerLoginAsCustomer;
 
 public class Application {
 	
-	protected Gui gui;
+	protected ApplicationGui gui;
+	protected ApplicationData data;
 	
 	
 	protected ISessionController sessionController;
@@ -14,10 +15,9 @@ public class Application {
 		initializeController();
 	}
 	
-	
 
 	protected void initializeController() {
-		sessionController = new MockupSessionController();
+		//sessionController = new MockupSessionControllerLoginAsCustomer(data);
 	}
 	
 	
@@ -41,9 +41,16 @@ public class Application {
 		if(gui == null) throw new NullPointerException("missing GUI component in Application");
 	}
 	
-
 	
-	public void setGui(Gui gui) {
+	public void setData(ApplicationData data) {
+		this.data = data;
+	}
+	
+	public ApplicationData getData() {
+		return this.data;
+	}
+	
+	public void setGui(ApplicationGui gui) {
 		this.gui = gui;
 	}
 

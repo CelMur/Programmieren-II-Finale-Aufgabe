@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 
 import de.jprojekt.controller.interfaces.ISessionController;
-import de.jprojekt.main.Gui;
+import de.jprojekt.main.ApplicationGui;
 import de.jprojekt.main.Launcher;
 import de.jprojekt.view.frames.JFrameAdapter;
 import de.jprojekt.view.models.LoginData;
@@ -14,9 +14,9 @@ public class ActionLogin extends AbstractActionAdapter{
 	
 	private ISessionController session;
 	
-	private Gui gui;
+	private ApplicationGui gui;
 	
-	public ActionLogin(Gui gui, JFrameAdapter frame) {
+	public ActionLogin(ApplicationGui gui, JFrameAdapter frame) {
 		super(frame);
 		
 		this.gui = gui;

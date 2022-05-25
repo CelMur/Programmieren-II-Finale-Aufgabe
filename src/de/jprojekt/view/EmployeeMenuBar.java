@@ -8,7 +8,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import de.jprojekt.main.Gui;
+import de.jprojekt.main.ApplicationGui;
 import de.jprojekt.view.actions.*;
 import de.jprojekt.view.frames.JFrameAdapter;
 
@@ -24,7 +24,7 @@ public class EmployeeMenuBar extends JMenuBar{
 	
 	private JFrame frame;
 	
-	public EmployeeMenuBar(Gui gui, JFrameAdapter frame) {
+	public EmployeeMenuBar(ApplicationGui gui, JFrameAdapter frame) {
 		this.frame = frame;
 		
 		actNewCustomer = new ActionNewCustomer(frame);
