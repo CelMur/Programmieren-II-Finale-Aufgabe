@@ -6,6 +6,7 @@ import javax.swing.AbstractAction;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import de.jprojekt.view.GuiMessages;
 import de.jprojekt.view.frames.JFrameAdapter;
 
 public class ActionLogout extends AbstractActionAdapter {
@@ -15,5 +16,11 @@ public class ActionLogout extends AbstractActionAdapter {
 		
 		putValue(NAME, "Logout");
 		putValue(SHORT_DESCRIPTION, "guess what happens ;)");
+	}
+	
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		getFrame().dispose();
 	}
 }
