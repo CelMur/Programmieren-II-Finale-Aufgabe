@@ -8,15 +8,15 @@ import javax.swing.JOptionPane;
 
 import de.jprojekt.view.GuiMessages;
 
-public abstract class AbstractGuiAction extends AbstractAction{
+public abstract class AbstractActionAdapter extends AbstractAction{
 	
 	private JFrame frame;
 	
-	public AbstractGuiAction() {
+	public AbstractActionAdapter() {
 		
 	}
 	
-	public AbstractGuiAction(JFrame frame) {
+	public AbstractActionAdapter(JFrame frame) {
 		this.frame = frame;
 	}
 

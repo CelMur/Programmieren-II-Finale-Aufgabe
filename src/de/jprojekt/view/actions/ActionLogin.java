@@ -2,7 +2,7 @@ package de.jprojekt.view.actions;
 
 import javax.swing.JFrame;
 
-public class ActionLogin extends AbstractGuiAction{
+public class ActionLogin extends AbstractActionAdapter{
 	public ActionLogin(JFrame frame) {
 		super(frame);
 		

@@ -1,4 +1,4 @@
-package de.jprojekt.view.frames;
+package de.jprojekt.view.panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 
 import de.jprojekt.view.actions.ActionNewCustomer;
 
-public class DialogCustomer extends JDialog implements ActionListener{
+public class CustomerPanel extends JDialog implements ActionListener{
 	protected JTextField fieldFirstName;
 	protected JTextField fieldLastName;
 	protected JTextField fieldAddress;
@@ -27,7 +27,7 @@ public class DialogCustomer extends JDialog implements ActionListener{
 	protected JPanel content;
 	
 	
-	public DialogCustomer(JFrame f, String titel) {
+	public CustomerPanel(JFrame f, String titel) {
 		super(f, titel, true);
 		
 		initialize();

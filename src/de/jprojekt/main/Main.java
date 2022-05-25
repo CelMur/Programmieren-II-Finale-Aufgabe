@@ -9,7 +9,7 @@ public class Main {
 
     public static void main(String[] args) {
     	
-    	
+    	/*
         try {
             Mysql.createDB();
         } catch (SQLException e) {
@@ -17,11 +17,11 @@ public class Main {
         }
         
         System.out.println("Test4");
-        
-    	/*
+        */
+    	
     	MainFrame frame = new MainFrame();
     	frame.setVisible(true);
-    	*/
+    	
     }
 
 }

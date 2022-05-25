@@ -2,7 +2,7 @@ package de.jprojekt.view.actions;
 
 import javax.swing.JFrame;
 
-public class ActionNewBankAccount extends AbstractGuiAction{
+public class ActionNewBankAccount extends AbstractActionAdapter{
 
 	public ActionNewBankAccount(JFrame frame) {
 		super(frame);

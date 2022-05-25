@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 import de.jprojekt.view.GuiMessages;
 
-public class ActionNewEmployee extends AbstractGuiAction{
+public class ActionNewEmployee extends AbstractActionAdapter{
 
 	public ActionNewEmployee(JFrame frame) {
 		super(frame);

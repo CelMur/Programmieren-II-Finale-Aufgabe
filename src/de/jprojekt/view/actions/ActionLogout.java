@@ -6,7 +6,7 @@ import javax.swing.AbstractAction;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class ActionLogout extends AbstractGuiAction {
+public class ActionLogout extends AbstractActionAdapter {
 	
 	public ActionLogout(JFrame frame) {
 		super(frame);

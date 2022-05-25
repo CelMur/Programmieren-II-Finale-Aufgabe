@@ -6,9 +6,9 @@ import javax.swing.AbstractAction;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
-import de.jprojekt.view.frames.DialogCustomer;
+import de.jprojekt.view.panels.CustomerPanel;
 
-public class ActionNewCustomer extends AbstractGuiAction{
+public class ActionNewCustomer extends AbstractActionAdapter{
 	
 	private JFrame frame;
 	
@@ -22,7 +22,7 @@ public class ActionNewCustomer extends AbstractGuiAction{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		JDialog dialog = new DialogCustomer(this.frame, "Neuer Kunde");
+		JDialog dialog = new CustomerPanel(this.frame, "Neuer Kunde");
 		
 		dialog.setVisible(true);
 		

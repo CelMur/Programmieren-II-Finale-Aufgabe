@@ -2,7 +2,7 @@ package de.jprojekt.view.actions;
 
 import javax.swing.JFrame;
 
-public class ActionEditEmployee extends AbstractGuiAction{
+public class ActionEditEmployee extends AbstractActionAdapter{
 	
 	public ActionEditEmployee(JFrame frame) {
 		super(frame);
