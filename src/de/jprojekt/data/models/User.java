@@ -1,4 +1,4 @@
-package de.jprojekt.controller;
+package de.jprojekt.data.models;
 
 public abstract class User {
 	String username;

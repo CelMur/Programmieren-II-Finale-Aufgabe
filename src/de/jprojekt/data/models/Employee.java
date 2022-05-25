@@ -1,4 +1,4 @@
-package de.jprojekt.controller;
+package de.jprojekt.data.models;
 import java.util.ArrayList; 
 
 public class Employee extends User {

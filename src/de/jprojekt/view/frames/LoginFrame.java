@@ -14,8 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import de.jprojekt.controller.User;
 import de.jprojekt.controller.interfaces.ISessionController;
+import de.jprojekt.data.models.User;
 import de.jprojekt.main.Gui;
 import de.jprojekt.view.actions.ActionLogin;
 import de.jprojekt.view.models.LoginData;

@@ -1,4 +1,4 @@
-package de.jprojekt.controller;
+package de.jprojekt.data.models;
 import java.util.ArrayList;
 import java.util.Date; 
 

@@ -1,4 +1,4 @@
-package de.jprojekt.mockup.controller;
+package de.jprojekt.controller.mockups;
 
 import de.jprojekt.controller.interfaces.ISessionController;
 

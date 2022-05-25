@@ -1,7 +1,7 @@
 package de.jprojekt.main;
 
 import de.jprojekt.controller.interfaces.ISessionController;
-import de.jprojekt.mockup.controller.MockupSessionController;
+import de.jprojekt.controller.mockups.MockupSessionController;
 
 public class Application {
 	
