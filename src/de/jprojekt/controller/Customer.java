@@ -1,7 +1,7 @@
 package de.jprojekt.controller;
-import java.util.ArrayList; 
+import java.util.ArrayList;
+import java.util.Date; 
 
-import java.sql.Date;
 
 public class Customer extends User {
 	

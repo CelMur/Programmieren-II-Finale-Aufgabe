@@ -9,6 +9,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import de.jprojekt.view.actions.*;
+import de.jprojekt.view.frames.JFrameAdapter;
 
 public class EmployeeMenuBar extends JMenuBar{
 	
@@ -22,7 +23,7 @@ public class EmployeeMenuBar extends JMenuBar{
 	
 	private JFrame frame;
 	
-	public EmployeeMenuBar(JFrame frame) {
+	public EmployeeMenuBar(JFrameAdapter frame) {
 		this.frame = frame;
 		
 		actNewCustomer = new ActionNewCustomer(frame);

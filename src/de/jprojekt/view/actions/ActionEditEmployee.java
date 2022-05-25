@@ -2,9 +2,11 @@ package de.jprojekt.view.actions;
 
 import javax.swing.JFrame;
 
+import de.jprojekt.view.frames.JFrameAdapter;
+
 public class ActionEditEmployee extends AbstractActionAdapter{
 	
-	public ActionEditEmployee(JFrame frame) {
+	public ActionEditEmployee(JFrameAdapter frame) {
 		super(frame);
 		
 		putValue(NAME, "Profiel bearbeiten");

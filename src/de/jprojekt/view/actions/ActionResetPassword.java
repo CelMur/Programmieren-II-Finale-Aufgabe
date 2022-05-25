@@ -2,9 +2,11 @@ package de.jprojekt.view.actions;
 
 import javax.swing.JFrame;
 
+import de.jprojekt.view.frames.JFrameAdapter;
+
 public class ActionResetPassword extends AbstractActionAdapter{
 	
-	public ActionResetPassword(JFrame frame) {
+	public ActionResetPassword(JFrameAdapter frame) {
 		super(frame);
 		
 		putValue(NAME, "Password zurücksetzen");

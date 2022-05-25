@@ -7,10 +7,11 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import de.jprojekt.view.GuiMessages;
+import de.jprojekt.view.frames.JFrameAdapter;
 
 public class ActionNewEmployee extends AbstractActionAdapter{
 
-	public ActionNewEmployee(JFrame frame) {
+	public ActionNewEmployee(JFrameAdapter frame) {
 		super(frame);
 		
 		putValue(NAME, "Banker anlegen");

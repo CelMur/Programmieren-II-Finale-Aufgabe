@@ -15,16 +15,19 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import de.jprojekt.main.Gui;
 import de.jprojekt.view.EmployeeMenuBar;
 
-public class MainFrame extends JFrame implements ActionListener{
+public class MainFrame extends JFrameAdapter implements ActionListener{
 
 	
-	private JFrame frame;
+	private Gui app;
 	private JPanel centerPanel;
 	
 	
-	public MainFrame() {
+	public MainFrame(Gui app) {
+		this.app = app;
+		
 		initialize();
 	}
 	
@@ -51,6 +54,12 @@ public class MainFrame extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Object getData() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 		

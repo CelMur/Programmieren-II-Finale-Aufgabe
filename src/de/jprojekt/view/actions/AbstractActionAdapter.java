@@ -7,16 +7,17 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import de.jprojekt.view.GuiMessages;
+import de.jprojekt.view.frames.JFrameAdapter;
 
 public abstract class AbstractActionAdapter extends AbstractAction{
 	
-	private JFrame frame;
+	private JFrameAdapter frame;
 	
 	public AbstractActionAdapter() {
 		
 	}
 	
-	public AbstractActionAdapter(JFrame frame) {
+	public AbstractActionAdapter(JFrameAdapter frame) {
 		this.frame = frame;
 	}
 
@@ -26,6 +27,10 @@ public abstract class AbstractActionAdapter extends AbstractAction{
 		if(frame != null) {
 			JOptionPane.showMessageDialog(frame, GuiMessages.NOT_IMPLEMENTED_MSG);
 		}
+	}
+	
+	public JFrameAdapter getFrame() {
+		return this.frame;
 	}
 
 }

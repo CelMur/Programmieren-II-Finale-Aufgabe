@@ -13,6 +13,7 @@ import de.jprojekt.view.actions.ActionNewBankAccount;
 import de.jprojekt.view.actions.ActionResetPassword;
 import de.jprojekt.view.actions.ActionTransferMoney;
 import de.jprojekt.view.actions.ActionWithdrawMoney;
+import de.jprojekt.view.frames.JFrameAdapter;
 
 public class CustomerMenuBar extends JMenuBar{
 	
@@ -26,7 +27,7 @@ public class CustomerMenuBar extends JMenuBar{
 	private final AbstractAction actNewBankAccount;
 	private final AbstractAction actEditCustomer;
 	
-	public CustomerMenuBar(JFrame frame) {
+	public CustomerMenuBar(JFrameAdapter frame) {
 		this.frame = frame;
 		
 		actLogout = new ActionLogout(frame);

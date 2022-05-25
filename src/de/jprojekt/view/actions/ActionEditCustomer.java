@@ -2,9 +2,11 @@ package de.jprojekt.view.actions;
 
 import javax.swing.JFrame;
 
+import de.jprojekt.view.frames.JFrameAdapter;
+
 public class ActionEditCustomer extends AbstractActionAdapter{
 
-	public ActionEditCustomer(JFrame frame) {
+	public ActionEditCustomer(JFrameAdapter frame) {
 		super(frame);
 		
 		putValue(NAME, "Kude bearbeiten");

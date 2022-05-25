@@ -3,6 +3,8 @@ package de.jprojekt.view.frames;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
@@ -12,22 +14,33 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import de.jprojekt.controller.User;
+import de.jprojekt.controller.interfaces.ISessionController;
+import de.jprojekt.main.Gui;
 import de.jprojekt.view.actions.ActionLogin;
+import de.jprojekt.view.models.LoginData;
 
-public class LoginFrame extends JFrame{
+public class LoginFrame extends JFrameAdapter{
 	private JTextField fieldUsername;
 	private JPasswordField fieldPassword;
 	private JButton btnLogin;
 	
+	private Gui gui;
+	private ISessionController session;
 	
 	private final AbstractAction actLogin;
-	
-	public LoginFrame() {
 		
-		actLogin = new ActionLogin(this);
+	public LoginFrame(Gui gui) {
+		this.gui = gui;
+		
+		session = gui.getApp().getSessionController();
+		
+		actLogin = new ActionLogin(gui, this);
 		
 		initialize();
 	}
+	
+	
 	
 	private void initialize() {
 		
@@ -56,7 +69,8 @@ public class LoginFrame extends JFrame{
 		
 		JPanel bottomPanel = new JPanel(new FlowLayout());
 		
-		btnLogin = new JButton(actLogin);
+		btnLogin = new JButton("Login");
+		btnLogin.setAction(actLogin);
 		
 		bottomPanel.add(btnLogin);
 		
@@ -64,6 +78,14 @@ public class LoginFrame extends JFrame{
 		
 		pack();
 		
+		
+	}
+
+
+
+	@Override
+	public Object getData() {
+		return new LoginData(fieldUsername.getText(), new String(fieldPassword.getPassword()));
 		
 	}
 }

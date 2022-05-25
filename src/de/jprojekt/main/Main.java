@@ -1,13 +1,5 @@
 package de.jprojekt.main;
 
-import de.jprojekt.utils.Mysql;
-import de.jprojekt.view.frames.LoginFrame;
-import de.jprojekt.view.frames.MainFrame;
-
-import java.sql.SQLException;
-
-import javax.swing.JFrame;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -22,8 +14,14 @@ public class Main {
         System.out.println("Test4");
         */
     	
-    	JFrame frame = new LoginFrame();
-    	frame.setVisible(true);
+    	Application app = new Application();
+    	Gui gui = new Gui();
+    	
+    	
+    	Launcher l = Launcher.create(gui, app);
+    	l.launchLogin();
+    	
+    	
     	
     }
 

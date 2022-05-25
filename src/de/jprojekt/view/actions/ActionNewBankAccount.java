@@ -2,9 +2,11 @@ package de.jprojekt.view.actions;
 
 import javax.swing.JFrame;
 
+import de.jprojekt.view.frames.JFrameAdapter;
+
 public class ActionNewBankAccount extends AbstractActionAdapter{
 
-	public ActionNewBankAccount(JFrame frame) {
+	public ActionNewBankAccount(JFrameAdapter frame) {
 		super(frame);
 		
 		putValue(NAME, "Neues Konto eröffnen");

@@ -2,9 +2,11 @@ package de.jprojekt.view.actions;
 
 import javax.swing.JFrame;
 
+import de.jprojekt.view.frames.JFrameAdapter;
+
 public class ActionWithdrawMoney extends AbstractActionAdapter{
 	
-	public ActionWithdrawMoney(JFrame frame) {
+	public ActionWithdrawMoney(JFrameAdapter frame) {
 		super(frame);
 		
 		putValue(NAME, "Geld abheben");
