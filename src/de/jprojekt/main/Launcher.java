@@ -14,8 +14,8 @@ import de.jprojekt.data.models.User;
  *und teilt es in zwei Phasen: Login und Haupt-Anwendung(Application)
  *
  *Beide Phasen haben jeweils eine Funktion (launchLogin und launchApplication),
- *die dafür zuständig sind, dass alle für die Phasen wichtigen initialisierungen
- *durchgegführt werden.
+ *die dafï¿½r zustï¿½ndig sind, dass alle fï¿½r die Phasen wichtigen initialisierungen
+ *durchgegfï¿½hrt werden.
  *}
  */
 public class Launcher {
@@ -70,7 +70,6 @@ public class Launcher {
 	public void launchLogin() {
 		app.onLaunchLogin();
 		gui.onLaunchLogin();
-		
 	}
 	
 	/**

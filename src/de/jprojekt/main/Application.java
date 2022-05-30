@@ -2,6 +2,9 @@ package de.jprojekt.main;
 
 import de.jprojekt.controller.interfaces.ISessionController;
 import de.jprojekt.controller.mockups.MockupSessionControllerLoginAsCustomer;
+import de.jprojekt.utils.Mysql;
+
+import java.sql.SQLException;
 
 public class Application {
 	
@@ -25,8 +28,15 @@ public class Application {
 	 * wird vom Laucher aufgerufen kurz bevor das Login-Fenster angezeigt wird
 	 */
 	public void onLaunchLogin() {
+
+        try {
+            Mysql.createDB();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Datenbank erfolgreich initialisiert.");
+
 		throwExeptionIfGuiIsMissing();
-		
 	}
 	/**
 	 * Wird vom Launcher aufgerufen, kurz bevor das Haupt-Fenster angezeigt wird
