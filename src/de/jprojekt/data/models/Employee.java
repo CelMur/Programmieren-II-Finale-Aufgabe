@@ -3,23 +3,11 @@ import java.util.ArrayList;
 
 public class Employee extends User {
 	
-	ArrayList<Customer> mycustomers;
+	ArrayList<Customer> customers;
 	
 	User user;
 	
-	public boolean addCustomer(Customer c) {
-		if (c != null) {
-			mycustomers.add(c);
-			return true;
-		}else {
-			return false;
-		}
+	public void addCustomer(Customer c) {
+		customers.add(c);
 	}
-
-	@Override
-	public void delete() {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }

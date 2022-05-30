@@ -4,28 +4,30 @@ public abstract class BankAccount {
 	
 	String name;
 	long balance;
-	//String Type; 
 	long maxDebt;
-	
-	public abstract boolean withdraw();
-	
-	public abstract boolean deposit();
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public long getBalance() {
+		return this.balance;
+	}
+
+	public void setBalance(long balance) {
+		this.balance = balance;
+	}
 
 	public long getMaxDebt() {
-		return maxDebt;
+		return this.maxDebt;
 	}
 
 	public void setMaxDebt(long maxDebt) {
 		this.maxDebt = maxDebt;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public long getBalance() {
-		return balance;
-	} 
-	
-	
 }
