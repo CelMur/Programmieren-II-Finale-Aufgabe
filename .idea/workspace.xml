@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3785197b-e82a-43ae-abad-964e86d06fa3" name="Changes" comment="remote add origin xavelyn@github.com CelMur/Programmieren-II-Finale-Aufgabe.git">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Programmieren-II-Finale-Aufgabe.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/jprojekt/data/models/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/jprojekt/data/models/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/jprojekt/data/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/jprojekt/data/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/de/jprojekt/data/models/BankAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/jprojekt/data/models/BankAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/de/jprojekt/utils/Mysql.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/jprojekt/utils/Mysql.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +146,21 @@
       <option name="project" value="LOCAL" />
       <updated>1653295516383</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="remote add origin xavelyn@github.com CelMur/Programmieren-II-Finale-Aufgabe.git">
+      <created>1653895578633</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1653895578633</updated>
+    </task>
+    <task id="LOCAL-00010" summary="remote add origin xavelyn@github.com CelMur/Programmieren-II-Finale-Aufgabe.git">
+      <created>1653895663015</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1653895663015</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

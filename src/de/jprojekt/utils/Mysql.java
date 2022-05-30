@@ -15,7 +15,7 @@ public class Mysql {
         String queryUser = "CREATE TABLE IF NOT EXISTS user (userid int, lastname varchar(255), firstname varchar(255), password varchar(255), address varchar(255), plz int, bday text(255), typ int);";
         String queryBanker = "CREATE TABLE IF NOT EXISTS banker (bankerid int);";
         String queryCustomer = "CREATE TABLE IF NOT EXISTS custumer (customerid int, bankerid int, accountid int);";
-        String queryAccount = "CREATE TABLE IF NOT EXISTS account (accountid int, balance bigint, typ int, customerid int, name varchar(255), maxdebt bigint);";
+        String queryAccount = "CREATE TABLE IF NOT EXISTS account (accountid int, balance bigint, typ int, customerid int, name varchar(255), maxdebt bigint, locked int);";
         String queryTransactions = "CREATE TABLE IF NOT EXISTS transactions (accountidfrom int, accountidto int, balance bigint, date text(255));";
 
         stm.addBatch(queryUser);
