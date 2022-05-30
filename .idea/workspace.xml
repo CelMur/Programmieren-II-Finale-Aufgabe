@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3785197b-e82a-43ae-abad-964e86d06fa3" name="Changes" comment="remote add origin xavelyn@github.com CelMur/Programmieren-II-Finale-Aufgabe.git">
-      <change afterPath="$PROJECT_DIR$/src/de/jprojekt/utils/Checks.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/de/jprojekt/utils/Krypto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/de/jprojekt/utils/Mysql.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Programmieren-II-Finale-Aufgabe.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/de/jprojekt/data/models/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/jprojekt/data/models/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/de/jprojekt/data/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/jprojekt/data/models/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,21 +51,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/mysql-connector-java-8.0.27.jar" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "jdk.selected.JAVA_MODULE": "11",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
+  }
+}]]></component>
   <component name="RunManager">
     <configuration name="JavaProjekt" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="de.jprojekt.main.Main" />
-      <module name="JavaProjekt" />
+      <module name="Programmieren-II-Finale-Aufgabe" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
