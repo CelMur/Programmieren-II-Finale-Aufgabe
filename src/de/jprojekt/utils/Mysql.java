@@ -35,21 +35,38 @@ public class Mysql {
         java.util.Date date = new java.util.Date();
         date.getTime();
 
-        //System.out.println("HansPeter");
-
-        //System.out.println(createCustomer("Hans", "Peter", "Haribo&123", "J7 26", 68159, 123456, date, 1));
+        System.out.println(createCustomer("Hans", "Peter", "Haribo&123", "J7 26", 68159, date, 1));
+        System.out.println(getPassword("b48c7cd3-dff8-11ec-ab47-06470e5e03a1"));
     }
-    public static String getPassword(int userid) throws SQLException {
+    public static String getPassword(String userid) throws SQLException {
+        String password = "";
         Connection con = DriverManager.getConnection(url, user, pass);
-        String query = "SELCET password FROM user WHERE userid=?;";
+        String query = "SELECT password FROM user WHERE userid=?;";
         PreparedStatement ps = con.prepareStatement(query);
-        ps.setInt(1, userid);
-        ps.executeUpdate();
+        ps.setString(1, userid);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            password = rs.getString(1);
+        }
         ps.close();
-        return "success";
+        return password;
     }
 
-    public static String createCustomer(String lastname, String firstname, String nonHashedPassword, String address, int plz, int salt, Date bday, int typ) throws SQLException{
+    public static int getSalt(String userid) throws SQLException {
+        int salt = 1;
+        Connection con = DriverManager.getConnection(url, user, pass);
+        String query = "SELECT salt FROM user WHERE userid=?;";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setString(1, userid);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            salt = rs.getInt(1);
+        }
+        ps.close();
+        return salt;
+    }
+
+    public static String createCustomer(String lastname, String firstname, String nonHashedPassword, String address, int plz, Date bday, int typ) throws SQLException{
         Connection con = DriverManager.getConnection(url, user, pass);
         String query = "INSERT INTO user (userid, lastname, firstname, password, salt, address, plz, bday, typ) VALUES (UUID(), ?, ?, ?, ?, ?, ?, ?, ?);";
         PreparedStatement ps = con.prepareStatement(query);
@@ -71,6 +88,7 @@ public class Mysql {
         }
 
         java.sql.Date sqlDate = new java.sql.Date(bday.getTime());
+        int salt = 10000000 + (int)(Math.random() * ((99999999 - 10000000) + 1));
 
         ps.setString(1, lastname);
         ps.setString(2, firstname);
@@ -79,7 +97,6 @@ public class Mysql {
         ps.setString(5, address);
         ps.setInt(6, plz);
         ps.setDate(7, sqlDate);
-        ps.setString(7, bday.toString());
         ps.setInt(8, typ);
 
         ps.executeUpdate();
