@@ -1,7 +1,6 @@
 package de.jprojekt.data.models;
 
 public abstract class BankAccount {
-
 	private int id;
 	private String name;
 	private long balance;
