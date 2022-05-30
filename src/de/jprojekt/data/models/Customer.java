@@ -5,14 +5,6 @@ import java.util.Date;
 
 public class Customer extends User {
 	
-	private String surname;
-	private String lastname;
-	
-	private Date birthday;
-	private String address;
-	private String telNumber;
-	
-	
 	private ArrayList<BankAccount> myaccounts;
 	
 	private Employee adviser;
