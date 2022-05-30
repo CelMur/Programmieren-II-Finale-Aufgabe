@@ -14,17 +14,17 @@ import de.jprojekt.data.models.User;
  *und teilt es in zwei Phasen: Login und Haupt-Anwendung(Application)
  *
  *Beide Phasen haben jeweils eine Funktion (launchLogin und launchApplication),
- *die dafï¿½r zustï¿½ndig sind, dass alle fï¿½r die Phasen wichtigen initialisierungen
- *durchgegfï¿½hrt werden.
+ *die dafür zuständig sind, dass alle für die Phasen wichtigen initialisierungen
+ *durchgegführt werden.
  *}
  */
 public class Launcher {
 	
 	private static Launcher instance;
 	
-	public static Launcher create(ApplicationGui gui, Application app, ApplicationData data) {
+	public static Launcher create(ApplicationGui gui, ApplicationController controller, ApplicationData data) {
 		if(instance == null) {
-			instance = new Launcher(gui, app, data);
+			instance = new Launcher(gui, controller, data);
 			return instance;
 		}
 		return null;
@@ -37,21 +37,21 @@ public class Launcher {
 	
 	
 	private ApplicationGui gui;
-	private Application app;
+	private ApplicationController controller;
 	private ApplicationData data;
 	
 	
 	
-	private Launcher(ApplicationGui gui, Application app, ApplicationData data) {
+	private Launcher(ApplicationGui gui, ApplicationController controller, ApplicationData data) {
 		this.gui = gui;
-		this.app = app;
+		this.controller = controller;
 		this.data = data;
 		
 		throwExceptionIfGuiIsMissing();
 		throwExceptionIfApplicationIsMissing();
 		
-		gui.setApp(app);
-		app.setGui(gui);
+		gui.setController(controller);
+		controller.setGui(gui);
 		
 	}
 	
@@ -60,7 +60,7 @@ public class Launcher {
 	}
 	
 	private void throwExceptionIfApplicationIsMissing() {
-		if(this.app == null) throw new NullPointerException("Launcher is missing the Application component");
+		if(this.controller == null) throw new NullPointerException("Launcher is missing the ApplicationController component");
 	}
 	
 	
@@ -68,8 +68,9 @@ public class Launcher {
 	 * Ruft das Login-Fenster
 	 */
 	public void launchLogin() {
-		app.onLaunchLogin();
+		controller.onLaunchLogin();
 		gui.onLaunchLogin();
+		
 	}
 	
 	/**
@@ -94,7 +95,7 @@ public class Launcher {
 		if(u instanceof Employee) gui.initializeEmployeeGui();
 			
 		
-		app.onLaunchApplication();
+		controller.onLaunchApplication();
 		gui.onLaunchApplication();
 	}
 	

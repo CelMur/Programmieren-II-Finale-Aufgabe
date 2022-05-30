@@ -9,7 +9,7 @@ import de.jprojekt.view.frames.MainFrame;
 
 public class ApplicationGui {
 	
-	private Application app;
+	private ApplicationController controller;
 	private ApplicationData data;
 	
 	private JFrameAdapter currentFrame;
@@ -63,13 +63,13 @@ public class ApplicationGui {
 		
 	}
 
-	public Application getApp() {
-		return this.app;
+	public ApplicationController getApp() {
+		return this.controller;
 	}
 	
 
-	public void setApp(Application app) {
-		this.app = app;
+	public void setController(ApplicationController controller) {
+		this.controller = controller;
 	}
 	
 	public JFrameAdapter getCurrentFrame() {

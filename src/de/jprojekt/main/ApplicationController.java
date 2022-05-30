@@ -6,7 +6,7 @@ import de.jprojekt.utils.Mysql;
 
 import java.sql.SQLException;
 
-public class Application {
+public class ApplicationController {
 	
 	protected ApplicationGui gui;
 	protected ApplicationData data;
@@ -14,7 +14,7 @@ public class Application {
 	
 	protected ISessionController sessionController;
 	
-	public Application() {
+	public ApplicationController() {
 		initializeController();
 	}
 	
@@ -50,7 +50,7 @@ public class Application {
 	
 	
 	protected void  throwExeptionIfGuiIsMissing() {
-		if(gui == null) throw new NullPointerException("missing GUI component in Application");
+		if(gui == null) throw new NullPointerException("missing GUI component in ApplicationController");
 	}
 	
 	
