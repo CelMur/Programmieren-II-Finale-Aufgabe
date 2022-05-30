@@ -4,11 +4,8 @@ import java.util.Date;
 
 
 public class Customer extends User {
-	
 	private ArrayList<BankAccount> bankAccounts;
-	
 	private Employee adviser;
-	
 	private User user;
 
 	public ArrayList<BankAccount> getBankAccounts() {
