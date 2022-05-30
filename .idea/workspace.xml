@@ -3,9 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="3785197b-e82a-43ae-abad-964e86d06fa3" name="Changes" comment="remote add origin xavelyn@github.com CelMur/Programmieren-II-Finale-Aufgabe.git">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/jprojekt/main/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/jprojekt/main/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/jprojekt/main/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/jprojekt/main/Launcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/jprojekt/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/jprojekt/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Programmieren-II-Finale-Aufgabe/de/jprojekt/data/models/BankAccount.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Programmieren-II-Finale-Aufgabe/de/jprojekt/data/models/BankAccount.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Programmieren-II-Finale-Aufgabe/de/jprojekt/data/models/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Programmieren-II-Finale-Aufgabe/de/jprojekt/data/models/Customer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Programmieren-II-Finale-Aufgabe/de/jprojekt/data/models/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Programmieren-II-Finale-Aufgabe/de/jprojekt/data/models/Employee.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Programmieren-II-Finale-Aufgabe/de/jprojekt/utils/Mysql.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Programmieren-II-Finale-Aufgabe/de/jprojekt/utils/Mysql.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/de/jprojekt/utils/Mysql.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/jprojekt/utils/Mysql.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,9 +57,10 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "jdk.selected.JAVA_MODULE": "11",
+    "last_opened_file_path": "/home/joshua/Downloads/mysql-connector-java-8.0.29.jar",
     "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
 }]]></component>
   <component name="RunManager">
@@ -169,7 +172,21 @@
       <option name="project" value="LOCAL" />
       <updated>1653895928538</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="remote add origin xavelyn@github.com CelMur/Programmieren-II-Finale-Aufgabe.git">
+      <created>1653896959082</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1653896959082</updated>
+    </task>
+    <task id="LOCAL-00013" summary="remote add origin xavelyn@github.com CelMur/Programmieren-II-Finale-Aufgabe.git">
+      <created>1653901637564</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1653901637564</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
