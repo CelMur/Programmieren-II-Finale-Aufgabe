@@ -31,9 +31,11 @@ public class Application {
 
         try {
             Mysql.createDB();
+			Mysql.testClass();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         System.out.println("Datenbank erfolgreich initialisiert.");
 
 		throwExeptionIfGuiIsMissing();
