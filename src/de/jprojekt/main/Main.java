@@ -2,6 +2,7 @@ package de.jprojekt.main;
 
 import de.jprojekt.controller.mockups.MockupSessionControllerLoginAsCustomer;
 import de.jprojekt.controller.mockups.MockupSessionControllerLoginAsEmployee;
+import de.jprojekt.utils.Krypto;
 
 public class Main {
 
@@ -24,8 +25,6 @@ public class Main {
     	
     	Launcher l = Launcher.create(gui, app, data);
     	l.launchLogin();
-    	
-    	
     	
     }
 
