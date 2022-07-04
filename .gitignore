@@ -2,3 +2,5 @@
 .metadata/*
 
 out/
+
+.idea/
