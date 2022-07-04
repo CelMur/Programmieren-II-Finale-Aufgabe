@@ -30,6 +30,14 @@ public class Launcher {
 		return null;
 	}
 	
+	public static Launcher create(ApplicationContext context) {
+		if(instance == null) {
+			instance = new Launcher(context);
+			return instance;
+		}
+		return null;
+	}
+	
 	public static Launcher getInstance() {
 		return instance; 
 	}
@@ -40,6 +48,8 @@ public class Launcher {
 	private ApplicationController controller;
 	private ApplicationData data;
 	
+	private ApplicationContext context;
+	
 	
 	
 	private Launcher(ApplicationGui gui, ApplicationController controller, ApplicationData data) {
@@ -47,21 +57,16 @@ public class Launcher {
 		this.controller = controller;
 		this.data = data;
 		
-		throwExceptionIfGuiIsMissing();
-		throwExceptionIfApplicationIsMissing();
-		
-		gui.setController(controller);
-		controller.setGui(gui);
-		
+		this.context = new ApplicationContext(gui, controller, data);
 	}
 	
-	private void throwExceptionIfGuiIsMissing() {
-		if(this.gui == null) throw new NullPointerException("Launcher is missing the GUI component");
+	private Launcher(ApplicationContext context) {
+		this.context = context;
+		this.gui = context.getGui();
+		this.controller = context.getController();
+		this.data = context.getData();
 	}
 	
-	private void throwExceptionIfApplicationIsMissing() {
-		if(this.controller == null) throw new NullPointerException("Launcher is missing the ApplicationController component");
-	}
 	
 	
 	/**
