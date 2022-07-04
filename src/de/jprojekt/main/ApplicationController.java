@@ -1,5 +1,7 @@
 package de.jprojekt.main;
 
+import de.jprojekt.controller.MySqlDbConnector;
+import de.jprojekt.controller.interfaces.IDBConnector;
 import de.jprojekt.controller.interfaces.ISessionController;
 import de.jprojekt.controller.mockups.MockupSessionControllerLoginAsCustomer;
 import de.jprojekt.utils.Mysql;
@@ -13,6 +15,7 @@ public class ApplicationController {
 	
 	
 	protected ISessionController sessionController;
+	protected IDBConnector dbConnector;
 	
 	public ApplicationController() {
 		initializeController();
@@ -21,6 +24,8 @@ public class ApplicationController {
 
 	protected void initializeController() {
 		//sessionController = new MockupSessionControllerLoginAsCustomer(data);
+		
+		dbConnector = new MySqlDbConnector();
 	}
 	
 	
@@ -29,16 +34,8 @@ public class ApplicationController {
 	 */
 	public void onLaunchLogin() {
 
-        try {
-            Mysql.createDB();
-			Mysql.testClass();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("Datenbank erfolgreich initialisiert.");
-
-		throwExeptionIfGuiIsMissing();
+       dbConnector.initConnection();
+       throwExeptionIfGuiIsMissing();
 	}
 	/**
 	 * Wird vom Launcher aufgerufen, kurz bevor das Haupt-Fenster angezeigt wird
@@ -72,5 +69,13 @@ public class ApplicationController {
 
 	public void setSessionController(ISessionController sessionController) {
 		this.sessionController = sessionController;
+	}
+	
+	public void setDBConnector(IDBConnector dbConnector) {
+		this.dbConnector = dbConnector;
+	}
+	
+	public IDBConnector getDBConnector() {
+		return this.dbConnector;
 	}
 }
