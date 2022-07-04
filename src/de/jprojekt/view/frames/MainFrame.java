@@ -33,7 +33,7 @@ public class MainFrame extends JFrameAdapter implements ActionListener{
 	}
 	
 	private void initialize() {
-		
+		//TODO: 
 		setJMenuBar(new CustomerMenuBar(gui, this));
 		
 		setLayout(new BorderLayout());
