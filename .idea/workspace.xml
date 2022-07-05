@@ -19,7 +19,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="Programmieren/main" />
+    <option name="BRANCH" value="origin/main" />
   </component>
   <component name="Git.Settings">
     <favorite-branches>
@@ -35,6 +35,11 @@
         </map>
       </branch-storage>
     </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -51,7 +56,6 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="openjdk-17" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/mysql-connector-java-8.0.27.jar" />
@@ -108,7 +112,7 @@
       <workItem from="1653901893629" duration="13000" />
       <workItem from="1653920821754" duration="636000" />
       <workItem from="1654162428937" duration="622000" />
-      <workItem from="1656958132928" duration="688000" />
+      <workItem from="1656958132928" duration="5185000" />
     </task>
     <task id="LOCAL-00001" summary="remote add origin xavelyn@github.com CelMur/Programmieren-II-Finale-Aufgabe.git">
       <created>1652699303549</created>
@@ -166,7 +170,56 @@
       <option name="project" value="LOCAL" />
       <updated>1653295516383</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="remote add origin xavelyn@github.com CelMur/Programmieren-II-Finale-Aufgabe.git">
+      <created>1656958834796</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1656958834796</updated>
+    </task>
+    <task id="LOCAL-00010" summary="remote add origin xavelyn@github.com CelMur/Programmieren-II-Finale-Aufgabe.git">
+      <created>1656958967604</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1656958967604</updated>
+    </task>
+    <task id="LOCAL-00011" summary="remote add origin xavelyn@github.com CelMur/Programmieren-II-Finale-Aufgabe.git">
+      <created>1656958987235</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1656958987235</updated>
+    </task>
+    <task id="LOCAL-00012" summary="remote add origin xavelyn@github.com CelMur/Programmieren-II-Finale-Aufgabe.git">
+      <created>1656960264622</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1656960264622</updated>
+    </task>
+    <task id="LOCAL-00013" summary="remote add origin xavelyn@github.com CelMur/Programmieren-II-Finale-Aufgabe.git">
+      <created>1656962936991</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1656962936991</updated>
+    </task>
+    <task id="LOCAL-00014" summary="remote add origin xavelyn@github.com CelMur/Programmieren-II-Finale-Aufgabe.git">
+      <created>1656963168056</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1656963168056</updated>
+    </task>
+    <task id="LOCAL-00015" summary="remote add origin xavelyn@github.com CelMur/Programmieren-II-Finale-Aufgabe.git">
+      <created>1656963304433</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1656963304433</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
