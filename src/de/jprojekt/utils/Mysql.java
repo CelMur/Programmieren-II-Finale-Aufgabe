@@ -33,18 +33,22 @@ public class Mysql {
 
     public static void testClass() throws SQLException {
         java.util.Date date = new java.util.Date();
-        date.getTime();
 
         System.out.println(createCustomer("unique","Hans", "Peter", "Haribo&123", "J7 26", 68159, date, 1));
         System.out.println(getPassword("ed899d45-fbcc-11ec-b8e1-0242ac180002"));
-        System.out.println(usernameExists("test"));
-        System.out.println(usernameExists("unique"));
+        System.out.println(userExists("test"));
+        System.out.println(userExists("86afefbd-fc8e-11ec-b8e1-0242ac180002"));
+        System.out.println(getLastname("86afefbd-fc8e-11ec-b8e1-0242ac180002"));
     }
-    public static String getPassword(String userid) throws SQLException {
+    public static String getPassword(String uid) throws SQLException {
         Connection con = DriverManager.getConnection(url, user, pass);
         String query = "SELECT password FROM user WHERE userid=?;";
+        return getString(uid, con, query);
+    }
+
+    private static String getString(String uid, Connection con, String query) throws SQLException {
         PreparedStatement ps = con.prepareStatement(query);
-        ps.setString(1, userid);
+        ps.setString(1, uid);
         ResultSet rs = ps.executeQuery();
         if (!rs.isBeforeFirst()) {
             ps.close();
@@ -59,49 +63,89 @@ public class Mysql {
         }
     }
 
-    public static String getUUID(String username) throws SQLException{
+    public static String getAddress(String uid) throws SQLException {
+        Connection con = DriverManager.getConnection(url, user, pass);
+        String query = "SELECT address FROM user WHERE userid=?;";
+        return getString(uid, con, query);
+    }
+
+    public static int getPlz(String uid) throws SQLException {
+        Connection con = DriverManager.getConnection(url, user, pass);
+        String query = "SELECT plz FROM user WHERE userid=?;";
+        return getInt(uid, con, query);
+    }
+
+    private static int getInt(String uid, Connection con, String query) throws SQLException {
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setString(1, uid);
+        ResultSet rs = ps.executeQuery();
+        if (!rs.isBeforeFirst()) {
+            ps.close();
+            return 0;
+        }else {
+            int plz = 0;
+            while (rs.next()) {
+                plz = rs.getInt(1);
+            }
+            ps.close();
+            return plz;
+        }
+    }
+
+    public static Date getBday(String uid) throws SQLException {
+        Connection con = DriverManager.getConnection(url, user, pass);
+        String query = "SELECT bday FROM user WHERE userid=?;";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setString(1, uid);
+        ResultSet rs = ps.executeQuery();
+        if (!rs.isBeforeFirst()) {
+            ps.close();
+            return new Date();
+        }else {
+            Date bday = new Date();
+            while (rs.next()) {
+                bday = rs.getDate(1);
+            }
+            ps.close();
+            return bday;
+        }
+    }
+
+    public static int getTyp(String uid) throws SQLException {
+        Connection con = DriverManager.getConnection(url, user, pass);
+        String query = "SELECT typ FROM user WHERE userid=?;";
+        return getInt(uid, con, query);
+    }
+
+    public static String getFirstname(String uid) throws SQLException{
+        Connection con = DriverManager.getConnection(url, user, pass);
+        String query = "SELECT firstname FROM user WHERE userid=?;";
+        return getString(uid, con, query);
+    }
+
+    public static String getLastname(String uid) throws SQLException{
+        Connection con = DriverManager.getConnection(url, user, pass);
+        String query = "SELECT lastname FROM user WHERE userid=?;";
+        return getString(uid, con, query);
+    }
+
+    public static String getUserid(String username) throws SQLException{
         Connection con = DriverManager.getConnection(url, user, pass);
         String query = "SELECT userid FROM user WHERE username=?;";
-        PreparedStatement ps = con.prepareStatement(query);
-        ps.setString(1, username);
-        ResultSet rs = ps.executeQuery();
-        if (!rs.isBeforeFirst()) {
-            ps.close();
-            return "";
-        }else {
-            String uuid = "";
-            while (rs.next()) {
-                uuid = rs.getString(1);
-            }
-            ps.close();
-            return uuid;
-        }
+        return getString(username, con, query);
     }
 
-    public static String getUsername(String uuid) throws SQLException{
+    public static String getUsername(String uid) throws SQLException{
         Connection con = DriverManager.getConnection(url, user, pass);
         String query = "SELECT username FROM user WHERE userid=?;";
-        PreparedStatement ps = con.prepareStatement(query);
-        ps.setString(1, uuid);
-        ResultSet rs = ps.executeQuery();
-        if (!rs.isBeforeFirst()) {
-            ps.close();
-            return "";
-        }else {
-            String username = "";
-            while (rs.next()) {
-                username = rs.getString(1);
-            }
-            ps.close();
-            return username;
-        }
+        return getString(uid, con, query);
     }
 
-    public static int getSalt(String userid) throws SQLException {
+    public static int getSalt(String uid) throws SQLException {
         Connection con = DriverManager.getConnection(url, user, pass);
         String query = "SELECT salt FROM user WHERE userid=?;";
         PreparedStatement ps = con.prepareStatement(query);
-        ps.setString(1, userid);
+        ps.setString(1, uid);
         ResultSet rs = ps.executeQuery();
         if (!rs.isBeforeFirst()) {
             ps.close();
@@ -116,13 +160,13 @@ public class Mysql {
         }
     }
 
-    public static boolean usernameExists(String username) throws SQLException {
+    public static boolean userExists(String uid) throws SQLException {
         boolean usernameExists;
         String result = "";
         Connection con = DriverManager.getConnection(url, user, pass);
-        String query = "SELECT username FROM user WHERE username=?;";
+        String query = "SELECT username FROM user WHERE userid=?;";
         PreparedStatement ps = con.prepareStatement(query);
-        ps.setString(1, username);
+        ps.setString(1, uid);
         ResultSet rs = ps.executeQuery();
         while(rs.next()){
             result = rs.getString(1);
