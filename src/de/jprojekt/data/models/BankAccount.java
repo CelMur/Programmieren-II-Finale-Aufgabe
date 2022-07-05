@@ -7,6 +7,7 @@ public abstract class BankAccount {
 	private long maxDebt;
 	private Customer customer;
 	private boolean locked;
+	public static int idcoutner;
 
 	public int getId() {
 		return this.id;
@@ -58,5 +59,11 @@ public abstract class BankAccount {
 
 	public void setLocked(boolean locked) {
 		this.locked = locked;
+	}
+
+	public BankAccount( String name, Customer customer) {
+		this.id = idcoutner++;
+		this.name = name;
+		this.customer = customer;
 	}
 }
