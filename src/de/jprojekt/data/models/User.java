@@ -7,7 +7,7 @@ public abstract class User {
 	public static final int TYPE_CUSTOMER = 0;
 	public static final int TYPE_EMPLOYEE = 1;
 
-	private int id;
+	private String id;
 	private String password;
 
 	private String firstname;
@@ -16,20 +16,31 @@ public abstract class User {
 	private Date bday;
 	private String address;
 	private int plz;
+	
+	public User(String id, String password, String firstname, String lastname, Date bday, String address, int plz) {
+		this.id = id;
+		this.password = password;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.bday = bday;
+		this.address = address;
+		this.plz = plz;
+	}
 
 	//type 0 = Customer 1 = Employee
 	private int type;
 
-	public int getId() {
+	public String getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public String getPassword() {
-		return this.password;
+	public String getPasswordHash() {
+		return DB.getInstance().getPasswordHash(this.id);
+
 	}
 
 	public void setPassword(String password) {

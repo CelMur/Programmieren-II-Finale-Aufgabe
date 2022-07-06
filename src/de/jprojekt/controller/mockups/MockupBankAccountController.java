@@ -3,6 +3,7 @@ package de.jprojekt.controller.mockups;
 import de.jprojekt.controller.interfaces.IBankAccountController;
 import de.jprojekt.data.models.*;
 import de.jprojekt.utils.BankingException;
+import de.jprojekt.utils.Mysql.java;
 
 public class MockupBankAccountController implements IBankAccountController {
 
@@ -20,7 +21,16 @@ public class MockupBankAccountController implements IBankAccountController {
     // soll ein Benutzer einen Konto erstellen können?
     @Override
     public BankAccount create(User user, String name, int type) throws BankingException {
-        
+        switch (type) {
+            case 0:
+                return new GiroAccount(name, user.getCustomer());
+            case 1:
+                return new SavingAccount(name, user.getCustomer());
+            case 2:
+                return new DepositAccount(name, user.getCustomer());
+            default:
+                throw new BankingException("Unbekannter Kontotyp.");
+        }
         return null;
     }
 
@@ -29,6 +39,9 @@ public class MockupBankAccountController implements IBankAccountController {
      */
     @Override
     public BankAccount create(Customer user, String name, int type, Employee e) throws BankingException {
+        if(DB.getUserbyUid() != null) {
+            throw new BankingException("Der Benutzer existiert bereits.");
+        }
         switch (type) {
             case 0:
                 return new DepositAccount(name, user);
@@ -42,15 +55,26 @@ public class MockupBankAccountController implements IBankAccountController {
     }
 
     @Override
-    public void delete(BankAccount b) throws BankingException {
-        // TODO Auto-generated method stub
-        
+    public void delete(Customer c,BankAccount b) throws BankingException {
+        if(u instanceof Employee || u == b.getCustomer()){
+            if(DB.deleteAccount(b.getId()) == true){
+                u.getBankAccounts().remove(b);
+            }
+        }
+        else{
+            throw new BankingException("Sie sind nicht berechtigt, dieses Konto zu löschen.");
+        }
     }
 
     @Override
     public void depositMoney(BankAccount b, long amount) throws BankingException {
-        // TODO Auto-generated method stub
-        
+        if(amount < 0){
+            throw new BankingException("Es ist nur ein positiver Betrag erlaubt.");
+        }
+        long balance = b.getBalance();
+        if(Mysql.setBalance(b.getId(), balance + amount) == true){
+            b.setBalance(balance + amount);
+        }
     }
 
     @Override
@@ -73,7 +97,11 @@ public class MockupBankAccountController implements IBankAccountController {
 
     @Override
     public void transferMoney(BankAccount src, BankAccount target, long amount) throws BankingException {
-        // TODO Auto-generated method stub
+        long srcBalance = Mysql.getBalance(src.getId());
+        long targetBalance = Mysql.getBalance(target.getId());
+        if(amount < 0 + src.maxDebt){
+            throw new BankingException("Es ist nur ein positiver Betrag erlaubt.");
+        }
         
     }
 

@@ -65,5 +65,6 @@ public abstract class BankAccount {
 		this.id = idcoutner++;
 		this.name = name;
 		this.customer = customer;
+		customer.addAccount(this);
 	}
 }

@@ -15,6 +15,9 @@ public class Customer extends User {
 	public void setBankAccounts(ArrayList<BankAccount> bankAccounts) {
 		this.bankAccounts = bankAccounts;
 	}
+	public void addBankAccount(BankAccount bankAccount) {
+		this.bankAccounts.add(bankAccount);
+	}
 
 	public Employee getAdviser() {
 		return this.adviser;
