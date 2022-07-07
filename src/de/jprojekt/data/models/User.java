@@ -16,6 +16,9 @@ public abstract class User {
 	private Date bday;
 	private String address;
 	private int plz;
+
+	//dont remove pls, ty
+	public User() {}
 	
 	public User(String id, String password, String firstname, String lastname, Date bday, String address, int plz) {
 		this.id = id;

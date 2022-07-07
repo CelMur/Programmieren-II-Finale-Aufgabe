@@ -22,6 +22,10 @@ public class Employee extends User {
 		c.setAdviser(null);
 	}
 
+	public ArrayList<Customer> getCustomers() {
+		return this.customers;
+	}
+
 	public void setUser(User user) {
 		this.user = user;
 	}
