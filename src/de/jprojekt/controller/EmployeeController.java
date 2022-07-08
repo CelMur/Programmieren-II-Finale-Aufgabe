@@ -6,7 +6,6 @@ import de.jprojekt.controller.interfaces.IEmployeeController;
 import de.jprojekt.data.models.Customer;
 import de.jprojekt.data.models.Employee;
 import de.jprojekt.utils.BankingException;
-import de.jprojekt.utils.mysql.Banker;
 import de.jprojekt.utils.mysql.DBBanker;
 import de.jprojekt.utils.mysql.DBUser;
 
@@ -22,7 +21,7 @@ public class EmployeeController extends UserController implements IEmployeeContr
             if(DBBanker.getAmountCustomers(e.getId()) != 0) {
                 throw new BankingException("Can not delete employee while they have customers assigned!");
             }
-            Banker.deleteBanker(e.getId());
+            DBBanker.deleteBanker(e.getId());
         }
         catch(SQLException exception) {
             throw new BankingException(exception.getMessage());
