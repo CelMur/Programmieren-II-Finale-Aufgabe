@@ -156,15 +156,15 @@ public class DBUser {
         switch (getTyp(uid)) {
             case 0:
                 de.jprojekt.data.models.Customer cust = new de.jprojekt.data.models.Customer(uid, getPassword(uid), getFirstname(uid), getLastname(uid), getBday(uid), getAddress(uid), getPlz(uid));
-                cust.setAdviser((Employee) getUser(Customer.getBankerid(uid)));
-                String[] accounts = Customer.getAccountid(uid).split(";");
+                cust.setAdviser((Employee) getUser(DBCustomer.getBankerid(uid)));
+                String[] accounts = DBCustomer.getAccountid(uid).split(";");
                 for (int i = 0; i < accounts.length; i++){
-                    cust.addBankAccount(Account.getAccount(accounts[i]));
+                    cust.addBankAccount(DBAccount.getAccount(accounts[i]));
                 }
                 return cust;
             case 1:
                 de.jprojekt.data.models.Employee empl = new de.jprojekt.data.models.Employee(uid, getPassword(uid), getFirstname(uid), getLastname(uid), getBday(uid), getAddress(uid), getPlz(uid));
-                String[] customers = Banker.getCustomerid(uid).split(";");
+                String[] customers = DBBanker.getCustomerid(uid).split(";");
                 for (int i = 0; i < customers.length; i++){
                     empl.addCustomer((de.jprojekt.data.models.Customer) getUser(customers[i]));
                 }
