@@ -10,31 +10,20 @@ public class DBAccount {
 
     public static String createAccount(String customerid, String name, int typ) throws Exception {
         Connection con = DriverManager.getConnection(Mysql.url, Mysql.user, Mysql.pass);
-        String query = "INSERT INTO account (accountid, balance, typ, customerid, name, maxdebt, locked) VALUES (UUID(),?,?,?,?,?,?);";
+        String uuid =  Mysql.createNewUUID();
+        String query = "INSERT INTO account (accountid, balance, typ, customerid, name, maxdebt, locked) VALUES (?,?,?,?,?,?,?);";
         PreparedStatement ps = con.prepareStatement(query);
-        ps.setInt(1, 0);
-        ps.setInt(2, typ);
-        ps.setString(3, customerid);
-        ps.setString(4, name);
-        ps.setInt(5, 0);
-        ps.setInt(6,0);
+        ps.setString(1, uuid);
+        ps.setInt(2, 0);
+        ps.setInt(3, typ);
+        ps.setString(4, customerid);
+        ps.setString(5, name);
+        ps.setInt(6, 0);
+        ps.setInt(7,0);
         ps.executeUpdate();
         ps.close();
 
-        String query2 = "SELECT LAST_INSERT_ID()";
-        PreparedStatement ps2 = con.prepareStatement(query2);
-        ResultSet rs = ps.executeQuery();
-        if (!rs.isBeforeFirst()) {
-            ps.close();
-            throw new Exception("Fehler bei der Erstellung");
-        }else {
-            String str = "";
-            while (rs.next()) {
-                str = rs.getString(1);
-            }
-            ps.close();
-            return str;
-        }
+        return uuid;
     }
 
     public static BankAccount getAccount(String accountid) throws Exception {
@@ -65,7 +54,7 @@ public class DBAccount {
         }
     }
 
-    public static long getBalance(String accountid) throws SQLException{
+    public static long getBalance(String accountid) throws Exception {
         String query = "SELECT balance FROM account WHERE accountid=?;";
         return Mysql.getLongFromDB(accountid, query);
     }
@@ -75,12 +64,12 @@ public class DBAccount {
         return Mysql.setLong(accountid, query, balance);
     }
 
-    public static int getTyp(String accountid) throws SQLException{
+    public static int getTyp(String accountid) throws Exception {
         String query = "SELECT typ FROM account WHERE accountid=?;";
         return Mysql.getIntFromDB(accountid, query);
     }
 
-    public static String getCustomer(String accountid) throws SQLException{
+    public static String getCustomer(String accountid) throws Exception {
         String query = "SELECT customerid FROM account WHERE accountid=?;";
         return Mysql.getStringFromDB(accountid, query);
     }
@@ -90,7 +79,7 @@ public class DBAccount {
         return Mysql.setLong(accountid, query, typ);
     }
 
-    public static String getName(String accountid) throws SQLException{
+    public static String getName(String accountid) throws Exception {
         String query = "SELECT name FROM account WHERE accountid=?;";
         return Mysql.getStringFromDB(accountid, query);
     }
@@ -100,7 +89,7 @@ public class DBAccount {
         return Mysql.setString(accountid, query, name);
     }
 
-    public static long getMaxdebt(String accountid) throws SQLException{
+    public static long getMaxdebt(String accountid) throws Exception {
         String query = "SELECT maxdebt FROM account WHERE accountid=?;";
         return Mysql.getLongFromDB(accountid, query);
     }
@@ -110,7 +99,7 @@ public class DBAccount {
         return Mysql.setLong(accountid, query, maxdebt);
     }
 
-    public static boolean getLocked(String accountid) throws SQLException{
+    public static boolean getLocked(String accountid) throws Exception {
         String query = "SELECT locked FROM account WHERE accountid=?;";
         int locked = Mysql.getIntFromDB(accountid, query);
         if(locked == 0){

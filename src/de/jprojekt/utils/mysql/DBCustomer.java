@@ -21,7 +21,7 @@ public class DBCustomer {
         return rows;
     }
 
-    public static String getBankerid(String uid) throws SQLException{
+    public static String getBankerid(String uid) throws Exception {
         String query = "SELECT bankerid FROM customer WHERE customerid=?;";
         return Mysql.getStringFromDB(uid, query);
     }
@@ -31,7 +31,7 @@ public class DBCustomer {
         return Mysql.setString(uid, query, bankerid);
     }
 
-    public static String getAccountid(String uid) throws SQLException{
+    public static String getAccountid(String uid) throws Exception {
         String query = "SELECT accountid FROM customer WHERE customerid=?;";
         return Mysql.getStringFromDB(uid, query);
     }
@@ -41,7 +41,7 @@ public class DBCustomer {
         return Mysql.setString(uid, query, accountid);
     }
 
-    public static int addAccount(String customerid, String accountid) throws SQLException{
+    public static int addAccount(String customerid, String accountid) throws Exception {
         List<String> account = new ArrayList<String>();
         account = List.of(getAccountid(customerid).split(";"));
         account.add(accountid);
@@ -52,7 +52,7 @@ public class DBCustomer {
         return setAccountid(customerid, ids);
     }
 
-    public static int removeAccount(String customerid, String accountid) throws SQLException{
+    public static int removeAccount(String customerid, String accountid) throws Exception {
         List<String> account = new ArrayList<String>();
         account = List.of(getAccountid(customerid).split(";"));
         account.remove(account.indexOf(accountid));

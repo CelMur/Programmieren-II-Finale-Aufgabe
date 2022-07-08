@@ -11,7 +11,7 @@ import java.sql.*;
 import java.util.Date;
 
 public class DBUser {
-    public static String getPassword(String uid) throws SQLException {
+    public static String getPassword(String uid) throws Exception {
         String query = "SELECT password FROM user WHERE userid=?;";
         return Mysql.getStringFromDB(uid, query);
     }
@@ -22,7 +22,7 @@ public class DBUser {
         return Mysql.setString(uid, query, hPassword);
     }
 
-    public static String getAddress(String uid) throws SQLException {
+    public static String getAddress(String uid) throws Exception {
         String query = "SELECT address FROM user WHERE userid=?;";
         return Mysql.getStringFromDB(uid, query);
     }
@@ -32,7 +32,7 @@ public class DBUser {
         return Mysql.setString(uid, query, address);
     }
 
-    public static int getPlz(String uid) throws SQLException {
+    public static int getPlz(String uid) throws Exception {
         String query = "SELECT plz FROM user WHERE userid=?;";
         return Mysql.getIntFromDB(uid, query);
     }
@@ -70,7 +70,7 @@ public class DBUser {
         return ps.executeUpdate();
     }
 
-    public static int getTyp(String uid) throws SQLException {
+    public static int getTyp(String uid) throws Exception {
         String query = "SELECT typ FROM user WHERE userid=?;";
         return Mysql.getIntFromDB(uid, query);
     }
@@ -80,7 +80,7 @@ public class DBUser {
         return Mysql.setInt(uid, query, typ);
     }
 
-    public static String getFirstname(String uid) throws SQLException{
+    public static String getFirstname(String uid) throws Exception {
         String query = "SELECT firstname FROM user WHERE userid=?;";
         return Mysql.getStringFromDB(uid, query);
     }
@@ -90,7 +90,7 @@ public class DBUser {
         return Mysql.setString(uid, query, firstname);
     }
 
-    public static String getLastname(String uid) throws SQLException{
+    public static String getLastname(String uid) throws Exception {
         String query = "SELECT lastname FROM user WHERE userid=?;";
         return Mysql.getStringFromDB(uid, query);
     }
@@ -100,12 +100,12 @@ public class DBUser {
         return Mysql.setString(uid, query, lastname);
     }
 
-    public static String getUserid(String username) throws SQLException{
+    public static String getUserid(String username) throws Exception {
         String query = "SELECT userid FROM user WHERE username=?;";
         return Mysql.getStringFromDB(username, query);
     }
 
-    public static String getUsername(String uid) throws SQLException{
+    public static String getUsername(String uid) throws Exception {
         String query = "SELECT username FROM user WHERE userid=?;";
         return Mysql.getStringFromDB(uid, query);
     }
@@ -172,14 +172,15 @@ public class DBUser {
                 }
                 return empl;
             default:
-                throw new BankingException("Unbekannter Kontotyp.");
+                throw new BankingException("Fehler");
         }
     }
 
     public static String createUser(String username, String lastname, String firstname, String nonHashedPassword, String address, int plz, Date bday, int typ) throws Exception {
         Connection con = DriverManager.getConnection(Mysql.url, Mysql.user, Mysql.pass);
-        String query = "INSERT INTO user (userid, username, lastname, firstname, password, salt, address, plz, bday, typ) VALUES (UUID(), ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-        PreparedStatement ps = con.prepareStatement(query);
+        String uuid =  Mysql.createNewUUID();
+        String query2 = "INSERT INTO user (userid, username, lastname, firstname, password, salt, address, plz, bday, typ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        PreparedStatement ps = con.prepareStatement(query2);
 
         if(!Checks.isName(lastname)){
             throw new Exception("Nachname ist ungültig");
@@ -200,33 +201,21 @@ public class DBUser {
         java.sql.Date sqlDate = new java.sql.Date(bday.getTime());
         int salt = 10000000 + (int)(Math.random() * ((99999999 - 10000000) + 1));
 
-        ps.setString(1, username);
-        ps.setString(2, lastname);
-        ps.setString(3, firstname);
-        ps.setString(4, Krypto.getHash(nonHashedPassword, Integer.toString(salt)));
-        ps.setInt(5, salt);
-        ps.setString(6, address);
-        ps.setInt(7, plz);
-        ps.setDate(8, sqlDate);
-        ps.setInt(9, typ);
+        ps.setString(1, uuid);
+        ps.setString(2, username);
+        ps.setString(3, lastname);
+        ps.setString(4, firstname);
+        ps.setString(5, Krypto.getHash(nonHashedPassword, Integer.toString(salt)));
+        ps.setInt(6, salt);
+        ps.setString(7, address);
+        ps.setInt(8, plz);
+        ps.setDate(9, sqlDate);
+        ps.setInt(10, typ);
 
         ps.executeUpdate();
         ps.close();
 
-        String query2 = "SELECT LAST_INSERT_ID()";
-        PreparedStatement ps2 = con.prepareStatement(query2);
-        ResultSet rs = ps.executeQuery();
-        if (!rs.isBeforeFirst()) {
-            ps.close();
-            throw new Exception("Fehler bei der Erstellung");
-        }else {
-            String str = "";
-            while (rs.next()) {
-                str = rs.getString(1);
-            }
-            ps.close();
-            return str;
-        }
+        return uuid;
     }
 
     public static int deleteUser(String uid) throws SQLException {

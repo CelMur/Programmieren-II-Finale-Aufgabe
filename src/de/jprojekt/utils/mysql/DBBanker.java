@@ -19,12 +19,12 @@ public class DBBanker {
         return rows;
     }
 
-    public static String getCustomerid(String bankerid) throws SQLException{
+    public static String getCustomerid(String bankerid) throws Exception {
         String query = "SELECT customerid FROM banker WHERE bankerid=?;";
         return Mysql.getStringFromDB(bankerid, query);
     }
 
-    public static int addCustomer(String bankerid, String customerid) throws SQLException{
+    public static int addCustomer(String bankerid, String customerid) throws Exception {
         List<String> customer = new ArrayList<String>();
         customer = List.of(getCustomerid(bankerid).split(";"));
         customer.add(customerid);
@@ -35,7 +35,7 @@ public class DBBanker {
         return setCustomerid(bankerid, ids);
     }
 
-    public static int removeCustomer(String bankerid, String customerid) throws SQLException{
+    public static int removeCustomer(String bankerid, String customerid) throws Exception {
         List<String> customer = new ArrayList<String>();
         customer = List.of(getCustomerid(bankerid).split(";"));
         customer.remove(customer.indexOf(customerid));
