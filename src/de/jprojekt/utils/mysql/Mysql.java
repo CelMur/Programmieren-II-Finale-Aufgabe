@@ -29,7 +29,7 @@ public class Mysql {
         System.out.println("Datenbank erfolgreich angelegt, falls noch nicht vorhanden.");
     }
 
-    public static void testClass() throws SQLException {
+    public static void testClass() throws Exception {
         java.util.Date date = new java.util.Date();
 
         System.out.println(DBUser.createUser("unique","Hans", "Peter", "Haribo&123", "J7 26", 68159, date, 1));
