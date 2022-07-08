@@ -1,6 +1,7 @@
 package de.jprojekt.data.models;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Employee extends User {
 	private ArrayList<Customer> customers;
@@ -32,5 +33,9 @@ public class Employee extends User {
 
 	public User getUser() {
 		return this.user;
+	}
+	public Employee(String id, String password, String firstname, String lastname, Date bday, String address, int plz){
+		super(id, password, firstname, lastname, bday, address, plz);
+		this.customers = new ArrayList<Customer>();
 	}
 }
