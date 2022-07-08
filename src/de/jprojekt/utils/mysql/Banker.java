@@ -37,6 +37,17 @@ public class Banker {
         return setCustomerid(bankerid, ids);
     }
 
+    public static int removeCustomer(String bankerid, String customerid) throws SQLException{
+        List<String> customer = new ArrayList<String>();
+        customer = List.of(getCustomerid(bankerid).split(";"));
+        customer.remove(customer.indexOf(customerid));
+        String ids = "";
+        for(int i = 0; i < customer.size(); i++){
+            ids = ids + customer.get(i) + ";";
+        }
+        return setCustomerid(bankerid, ids);
+    }
+
     public static int setCustomerid(String bankerid, String customerid) throws SQLException{
         String query = "UPDATE banker SET customerid=? WHERE bankerid=?";
         return Mysql.setString(bankerid, query, customerid);

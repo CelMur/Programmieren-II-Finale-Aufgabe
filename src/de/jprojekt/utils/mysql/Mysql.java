@@ -32,11 +32,11 @@ public class Mysql {
     public static void testClass() throws SQLException {
         java.util.Date date = new java.util.Date();
 
-        System.out.println(User.createUser("unique","Hans", "Peter", "Haribo&123", "J7 26", 68159, date, 1));
-        System.out.println(User.getPassword("ed899d45-fbcc-11ec-b8e1-0242ac180002"));
-        System.out.println(User.exists("test"));
-        System.out.println(User.exists("86afefbd-fc8e-11ec-b8e1-0242ac180002"));
-        System.out.println(User.getLastname("86afefbd-fc8e-11ec-b8e1-0242ac180002"));
+        System.out.println(DBUser.createUser("unique","Hans", "Peter", "Haribo&123", "J7 26", 68159, date, 1));
+        System.out.println(DBUser.getPassword("ed899d45-fbcc-11ec-b8e1-0242ac180002"));
+        System.out.println(DBUser.exists("test"));
+        System.out.println(DBUser.exists("86afefbd-fc8e-11ec-b8e1-0242ac180002"));
+        System.out.println(DBUser.getLastname("86afefbd-fc8e-11ec-b8e1-0242ac180002"));
     }
 
     public static String getStringFromDB(String uid, String query) throws SQLException {

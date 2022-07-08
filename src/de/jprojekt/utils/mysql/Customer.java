@@ -51,6 +51,18 @@ public class Customer {
         }
         return setAccountid(customerid, ids);
     }
+
+    public static int removeAccount(String customerid, String accountid) throws SQLException{
+        List<String> account = new ArrayList<String>();
+        account = List.of(getAccountid(customerid).split(";"));
+        account.remove(account.indexOf(accountid));
+        String ids = "";
+        for(int i = 0; i < account.size(); i++){
+            ids = ids + account.get(i) + ";";
+        }
+        return setAccountid(customerid, ids);
+    }
+
     public static int deleteCustomer(String uid) throws SQLException {
         Connection con = DriverManager.getConnection(Mysql.url, Mysql.user, Mysql.pass);
         String query = "DELETE FROM customer WHERE customerid=?;";

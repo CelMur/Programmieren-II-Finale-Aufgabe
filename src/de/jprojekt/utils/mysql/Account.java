@@ -26,21 +26,21 @@ public class Account {
     public static BankAccount getAccount(String accountid) throws Exception {
         switch (getTyp(accountid)) {
             case 0:
-                GiroAccount gacc = new GiroAccount(accountid, (Customer) User.getUser(getCustomer(accountid)));
+                GiroAccount gacc = new GiroAccount(accountid, (Customer) DBUser.getUser(getCustomer(accountid)));
                 gacc.setBalance(getBalance(accountid));
                 gacc.setName(getName(accountid));
                 gacc.setMaxDebt(getMaxdebt(accountid));
                 gacc.setLocked(getLocked(accountid));
                 return gacc;
             case 1:
-                SavingAccount sacc = new SavingAccount(accountid, (Customer) User.getUser(getCustomer(accountid)));
+                SavingAccount sacc = new SavingAccount(accountid, (Customer) DBUser.getUser(getCustomer(accountid)));
                 sacc.setBalance(getBalance(accountid));
                 sacc.setName(getName(accountid));
                 sacc.setMaxDebt(getMaxdebt(accountid));
                 sacc.setLocked(getLocked(accountid));
                 return sacc;
             case 2:
-                DepositAccount dacc = new DepositAccount(accountid, (Customer) User.getUser(getCustomer(accountid)));
+                DepositAccount dacc = new DepositAccount(accountid, (Customer) DBUser.getUser(getCustomer(accountid)));
                 dacc.setBalance(getBalance(accountid));
                 dacc.setName(getName(accountid));
                 dacc.setMaxDebt(getMaxdebt(accountid));
