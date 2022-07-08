@@ -8,7 +8,7 @@ public interface IBankAccountController {
 
     public void delete(User u, BankAccount b) throws BankingException;
 
-    public BankAccount create(User user, String name, int type) throws BankingException;
+    public BankAccount create(Customer user, String name, int type) throws BankingException;
 
     public BankAccount create(Customer user, String name, int type, Employee e) throws BankingException;
 
@@ -16,7 +16,7 @@ public interface IBankAccountController {
 
     public void depositMoney(User u, BankAccount b, long amount) throws BankingException;
 
-    public void withdrawMoney(User u, BankAccount b, long amount) throws Exception;
+    public void withdrawMoney(Customer c, BankAccount b, long amount) throws Exception;
 
     public void dissolve(BankAccount b, long amount) throws BankingException;
 

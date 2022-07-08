@@ -1,6 +1,8 @@
 package de.jprojekt.utils.mysql;
 
+import de.jprojekt.data.models.Customer;
 import de.jprojekt.data.models.Employee;
+import de.jprojekt.data.models.User;
 import de.jprojekt.utils.BankingException;
 import de.jprojekt.utils.Checks;
 import de.jprojekt.utils.Krypto;
@@ -152,10 +154,10 @@ public class DBUser {
 
     }
 
-    public static de.jprojekt.data.models.User getUser(String uid) throws Exception {
+    public static User getUser(String uid) throws Exception {
         switch (getTyp(uid)) {
             case 0:
-                de.jprojekt.data.models.Customer cust = new de.jprojekt.data.models.Customer(uid, getPassword(uid), getFirstname(uid), getLastname(uid), getBday(uid), getAddress(uid), getPlz(uid));
+                Customer cust = new Customer(uid, getPassword(uid), getFirstname(uid), getLastname(uid), getBday(uid), getAddress(uid), getPlz(uid));
                 cust.setAdviser((Employee) getUser(DBCustomer.getBankerid(uid)));
                 String[] accounts = DBCustomer.getAccountid(uid).split(";");
                 for (int i = 0; i < accounts.length; i++){
@@ -163,7 +165,7 @@ public class DBUser {
                 }
                 return cust;
             case 1:
-                de.jprojekt.data.models.Employee empl = new de.jprojekt.data.models.Employee(uid, getPassword(uid), getFirstname(uid), getLastname(uid), getBday(uid), getAddress(uid), getPlz(uid));
+                Employee empl = new Employee(uid, getPassword(uid), getFirstname(uid), getLastname(uid), getBday(uid), getAddress(uid), getPlz(uid));
                 String[] customers = DBBanker.getCustomerid(uid).split(";");
                 for (int i = 0; i < customers.length; i++){
                     empl.addCustomer((de.jprojekt.data.models.Customer) getUser(customers[i]));
@@ -174,25 +176,25 @@ public class DBUser {
         }
     }
 
-    public static int createUser(String username, String lastname, String firstname, String nonHashedPassword, String address, int plz, Date bday, int typ) throws SQLException{
+    public static String createUser(String username, String lastname, String firstname, String nonHashedPassword, String address, int plz, Date bday, int typ) throws Exception {
         Connection con = DriverManager.getConnection(Mysql.url, Mysql.user, Mysql.pass);
         String query = "INSERT INTO user (userid, username, lastname, firstname, password, salt, address, plz, bday, typ) VALUES (UUID(), ?, ?, ?, ?, ?, ?, ?, ?, ?);";
         PreparedStatement ps = con.prepareStatement(query);
 
         if(!Checks.isName(lastname)){
-            return 400;
+            throw new Exception("Nachname ist ungültig");
         }
         if(!Checks.isName(firstname)){
-            return 401;
+            throw new Exception("Vorname ist ungültig");
         }
         if(!Checks.isPassword(nonHashedPassword)){
-            return 402;
+            throw new Exception("Passwort ist ungültig");
         }
         if(Checks.isNull(address)){
-            return 403;
+            throw new Exception("Adresse ist ungültig");
         }
         if(!Checks.isPLZ(plz)){
-            return 404;
+            throw new Exception("PLZ ist ungültig");
         }
 
         java.sql.Date sqlDate = new java.sql.Date(bday.getTime());
@@ -208,10 +210,23 @@ public class DBUser {
         ps.setDate(8, sqlDate);
         ps.setInt(9, typ);
 
-        int rows = ps.executeUpdate();
+        ps.executeUpdate();
         ps.close();
 
-        return rows;
+        String query2 = "SELECT LAST_INSERT_ID()";
+        PreparedStatement ps2 = con.prepareStatement(query2);
+        ResultSet rs = ps.executeQuery();
+        if (!rs.isBeforeFirst()) {
+            ps.close();
+            throw new Exception("Fehler bei der Erstellung");
+        }else {
+            String str = "";
+            while (rs.next()) {
+                str = rs.getString(1);
+            }
+            ps.close();
+            return str;
+        }
     }
 
     public static int deleteUser(String uid) throws SQLException {

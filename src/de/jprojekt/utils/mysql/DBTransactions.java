@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class DBTransactions {
 
-    public static int createTransaction(String accountidfrom, String accountidto, long balance, Date date) throws SQLException {
+    public static String createTransaction(String accountidfrom, String accountidto, long balance, Date date) throws Exception {
         Connection con = DriverManager.getConnection(Mysql.url, Mysql.user, Mysql.pass);
         String query = "INSERT INTO transactions (transactionid, accountidfrom, accountidto, balance, date) VALUES (UUID(),?,?,?,?);";
         PreparedStatement ps = con.prepareStatement(query);
@@ -12,9 +12,23 @@ public class DBTransactions {
         ps.setString(2, accountidto);
         ps.setLong(3, balance);
         ps.setDate(4, date);
-        int rows = ps.executeUpdate();
+        ps.executeUpdate();
         ps.close();
-        return rows;
+
+        String query2 = "SELECT LAST_INSERT_ID()";
+        PreparedStatement ps2 = con.prepareStatement(query2);
+        ResultSet rs = ps.executeQuery();
+        if (!rs.isBeforeFirst()) {
+            ps.close();
+            throw new Exception("Fehler bei der Erstellung");
+        }else {
+            String str = "";
+            while (rs.next()) {
+                str = rs.getString(1);
+            }
+            ps.close();
+            return str;
+        }
     }
 
     public static String getAccountidfrom(String transactionid) throws SQLException{

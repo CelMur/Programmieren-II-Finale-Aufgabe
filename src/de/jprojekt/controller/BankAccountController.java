@@ -1,14 +1,12 @@
-package de.jprojekt.controller.mockups;
+package de.jprojekt.controller;
 
 import de.jprojekt.controller.interfaces.IBankAccountController;
-import de.jprojekt.data.models.*;
-import de.jprojekt.data.models.Customer;
-import de.jprojekt.data.models.User;
-import de.jprojekt.utils.BankingException;
+import de.jprojekt.data.models.BankAccount;
 import de.jprojekt.utils.mysql.*;
+import de.jprojekt.data.models.*;
+import de.jprojekt.utils.BankingException;
 
-
-public class MockupBankAccountController implements IBankAccountController {
+public class BankAccountController implements IBankAccountController {
 
     @Override
     public void changeMaxDebt(BankAccount b, long amount, Employee e) throws BankingException {
@@ -18,7 +16,11 @@ public class MockupBankAccountController implements IBankAccountController {
         if(b instanceof SavingAccount){
             throw new BankingException("Sie können den maximalen Schuldenbetrag nicht auf ein Sparbuch setzen.");
         }
-        //ggf Datenbank Query oder in setMaxDebt()
+        try{
+        DBAccount.setMaxdebt(b.getName(), amount);
+        }catch(Exception ex){
+            throw new BankingException("Es ist ein Fehler aufgetreten.");
+        }
         b.setMaxDebt(amount);
     }
     // soll ein Benutzer einen Konto erstellen können?
@@ -26,24 +28,35 @@ public class MockupBankAccountController implements IBankAccountController {
     public BankAccount create(Customer user, String name, int type) throws BankingException {
         switch (type) {
             case 0:
+            try{
                 if(DBAccount.createAccount(user.getId(),name,type) == 1) {
                     throw new BankingException("Dieses Konto existiert bereits.");
                 };
                 return new DepositAccount(name, user);
+            }catch(Exception ex){
+                throw new BankingException("Es ist ein Fehler aufgetreten.");
+            }
             case 1:
+            try{
                 if(DBAccount.createAccount(user.getId(),name,type) == 1) {
                     throw new BankingException("Dieses Konto existiert bereits.");
                 };
                 return new SavingAccount(name, user);
+            }catch(Exception ex){
+                throw new BankingException("Es ist ein Fehler aufgetreten.");
+            }
             case 2:
+            try{
                 if(DBAccount.createAccount(user.getId(),name,type) == 1) {
                     throw new BankingException("Dieses Konto existiert bereits.");
                 };
                 return new GiroAccount(name, user);
+            }catch(Exception ex){
+                throw new BankingException("Es ist ein Fehler aufgetreten.");
             }
-
         }
-
+        throw new BankingException("Es ist ein Fehler aufgetreten.");
+    }   
     /*Erstellen eines neuen Bankkontos für einen Benutzer.
      *@param type 0 = DepositAccount 1 = SavingAccount 2= GiroAccount
      */
@@ -140,21 +153,21 @@ public class MockupBankAccountController implements IBankAccountController {
         
     }
     @Override
-    public void delete(User u, BankAccount b) throws BankingException {
+    public void delete(OldUser u, BankAccount b) throws BankingException {
         // TODO Auto-generated method stub
     }
     @Override
-    public BankAccount create(User user, String name, int type) throws BankingException {
+    public BankAccount create(OldUser user, String name, int type) throws BankingException {
         // TODO Auto-generated method stub
         return null;
     }
     @Override
-    public void transferMoney(User u, BankAccount src, BankAccount target, long amount) throws BankingException {
+    public void transferMoney(OldUser u, BankAccount src, BankAccount target, long amount) throws BankingException {
         // TODO Auto-generated method stub
         
     }
     @Override
-    public void depositMoney(User u, BankAccount b, long amount) throws BankingException {
+    public void depositMoney(OldUser u, BankAccount b, long amount) throws BankingException {
         // TODO Auto-generated method stub
         
     }

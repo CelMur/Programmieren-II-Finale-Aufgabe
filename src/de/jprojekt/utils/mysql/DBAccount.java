@@ -8,7 +8,7 @@ import java.sql.*;
 
 public class DBAccount {
 
-    public static int createAccount(String customerid, String name, int typ) throws SQLException {
+    public static String createAccount(String customerid, String name, int typ) throws Exception {
         Connection con = DriverManager.getConnection(Mysql.url, Mysql.user, Mysql.pass);
         String query = "INSERT INTO account (accountid, balance, typ, customerid, name, maxdebt, locked) VALUES (UUID(),?,?,?,?,?,?);";
         PreparedStatement ps = con.prepareStatement(query);
@@ -18,9 +18,23 @@ public class DBAccount {
         ps.setString(4, name);
         ps.setInt(5, 0);
         ps.setInt(6,0);
-        int rows = ps.executeUpdate();
+        ps.executeUpdate();
         ps.close();
-        return rows;
+
+        String query2 = "SELECT LAST_INSERT_ID()";
+        PreparedStatement ps2 = con.prepareStatement(query2);
+        ResultSet rs = ps.executeQuery();
+        if (!rs.isBeforeFirst()) {
+            ps.close();
+            throw new Exception("Fehler bei der Erstellung");
+        }else {
+            String str = "";
+            while (rs.next()) {
+                str = rs.getString(1);
+            }
+            ps.close();
+            return str;
+        }
     }
 
     public static BankAccount getAccount(String accountid) throws Exception {

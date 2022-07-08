@@ -8,13 +8,6 @@ public abstract class BankAccount {
 	private Customer customer;
 	private boolean locked;
 
-	public int getId() {
-		return this.id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return this.name;
@@ -63,6 +56,6 @@ public abstract class BankAccount {
 	public BankAccount( String name, Customer customer) {
 		this.name = name;
 		this.customer = customer;
-		customer.addAccount(this);
+		customer.addBankAccount(this);
 	}
 }

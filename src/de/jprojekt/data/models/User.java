@@ -1,5 +1,6 @@
 package de.jprojekt.data.models;
 
+import de.jprojekt.utils.mysql.DBUser;
 import java.util.Date;
 
 public abstract class User {
@@ -41,9 +42,12 @@ public abstract class User {
 		this.id = id;
 	}
 
-	public String getPasswordHash() {
-		return DB.getInstance().getPasswordHash(this.id);
-
+	public String getPassword() {
+		try{
+			return DBUser.getPassword(this.id);}
+		catch(Exception e){
+			return null;
+		}
 	}
 
 	public void setPassword(String password) {
