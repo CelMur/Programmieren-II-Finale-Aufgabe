@@ -1,9 +1,14 @@
 package de.jprojekt.utils.mysql;
 
+import de.jprojekt.data.models.BankAccount;
+import de.jprojekt.data.models.Employee;
+import de.jprojekt.data.models.GiroAccount;
+import de.jprojekt.utils.BankingException;
 import de.jprojekt.utils.Checks;
 import de.jprojekt.utils.Krypto;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class User {
@@ -148,6 +153,28 @@ public class User {
             return true;
         }
 
+    }
+
+    public static de.jprojekt.data.models.User getUser(String uid) throws Exception {
+        switch (getTyp(uid)) {
+            case 0:
+                de.jprojekt.data.models.Customer cust = new de.jprojekt.data.models.Customer(uid, getPassword(uid), getFirstname(uid), getLastname(uid), getBday(uid), getAddress(uid), getPlz(uid));
+                cust.setAdviser((Employee) getUser(Customer.getBankerid(uid)));
+                String[] accounts = Customer.getAccountid(uid).split(";");
+                for (int i = 0; i < accounts.length; i++){
+                    cust.addBankAccount(Account.getAccount(accounts[i]));
+                }
+                return cust;
+            case 1:
+                de.jprojekt.data.models.Employee empl = new de.jprojekt.data.models.Employee(uid, getPassword(uid), getFirstname(uid), getLastname(uid), getBday(uid), getAddress(uid), getPlz(uid));
+                String[] customers = Banker.getCustomerid(uid).split(";");
+                for (int i = 0; i < customers.length; i++){
+                    empl.addCustomer((de.jprojekt.data.models.Customer) getUser(customers[i]));
+                }
+                return empl;
+            default:
+                throw new BankingException("Unbekannter Kontotyp.");
+        }
     }
 
     public static int createUser(String username, String lastname, String firstname, String nonHashedPassword, String address, int plz, Date bday, int typ) throws SQLException{

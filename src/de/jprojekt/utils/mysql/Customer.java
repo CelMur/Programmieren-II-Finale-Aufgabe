@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Customer {
 
@@ -32,6 +34,22 @@ public class Customer {
     public static String getAccountid(String uid) throws SQLException{
         String query = "SELECT accountid FROM customer WHERE customerid=?;";
         return Mysql.getStringFromDB(uid, query);
+    }
+
+    public static int setAccountid(String uid, String accountid) throws SQLException{
+        String query = "UPDATE customer SET accountid=? WHERE customerid=?";
+        return Mysql.setString(uid, query, accountid);
+    }
+
+    public static int addAccount(String customerid, String accountid) throws SQLException{
+        List<String> account = new ArrayList<String>();
+        account = List.of(getAccountid(customerid).split(";"));
+        account.add(accountid);
+        String ids = "";
+        for(int i = 0; i < account.size(); i++){
+            ids = ids + account.get(i) + ";";
+        }
+        return setAccountid(customerid, ids);
     }
     public static int deleteCustomer(String uid) throws SQLException {
         Connection con = DriverManager.getConnection(Mysql.url, Mysql.user, Mysql.pass);

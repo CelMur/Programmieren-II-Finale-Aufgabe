@@ -13,7 +13,7 @@ public class Mysql {
         Statement stm = con.createStatement();
 
         String queryUser = "CREATE TABLE IF NOT EXISTS user (userid varchar(255), username varchar(255), lastname varchar(255), firstname varchar(255), password varchar(255), salt int, address varchar(255), plz int, bday DATE, typ int);";
-        String queryBanker = "CREATE TABLE IF NOT EXISTS banker (bankerid varchar(255));";
+        String queryBanker = "CREATE TABLE IF NOT EXISTS banker (bankerid varchar(255), customerid varchar(255));";
         String queryCustomer = "CREATE TABLE IF NOT EXISTS customer (customerid varchar(255), bankerid varchar(255), accountid varchar(255));";
         String queryAccount = "CREATE TABLE IF NOT EXISTS account (accountid int, balance bigint, typ int, customerid varchar(255), name varchar(255), maxdebt bigint, locked int);";
         String queryTransactions = "CREATE TABLE IF NOT EXISTS transactions (transactionid varchar(255), accountidfrom varchar(255), accountidto varchar(255), balance bigint, date DATE);";
