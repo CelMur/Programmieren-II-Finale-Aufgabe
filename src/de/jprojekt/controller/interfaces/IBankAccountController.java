@@ -12,13 +12,13 @@ public interface IBankAccountController {
 
     public BankAccount create(Customer user, String name, int type, Employee e) throws BankingException;
 
-    public void transferMoney(User u, BankAccount src, BankAccount target, long amount) throws BankingException;
+    public void transferMoney(BankAccount src, BankAccount target, long amount) throws BankingException;
 
-    public void depositMoney(User u, BankAccount b, long amount) throws BankingException;
+    public void depositMoney(Customer u, BankAccount b, long amount) throws BankingException;
 
     public void withdrawMoney(Customer c, BankAccount b, long amount) throws Exception;
 
-    public void dissolve(BankAccount b, long amount) throws BankingException;
+    public void dissolve(BankAccount b) throws BankingException;
 
     public void lock(BankAccount b) throws BankingException;
 
