@@ -25,6 +25,9 @@ public class Customer extends User {
 	public void setAdviser(Employee adviser) {
 		this.adviser = adviser;
 	}
+	
+	public Customer() {}
+	
 	public Customer(String id, String password, String firstname, String lastname, Date bday, String address, int plz){
 		super(id, password, firstname, lastname, bday, address, plz);
 		this.bankAccounts = new ArrayList<BankAccount>();
