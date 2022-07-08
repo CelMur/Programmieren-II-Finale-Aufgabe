@@ -79,9 +79,13 @@ public class BankAccountController implements IBankAccountController {
 
     @Override
     public void delete(Customer c,BankAccount b) throws BankingException {
-        if(c instanceof Employee || c == b.getCustomer()){
-            if(DB.deleteAccount(b.getId()) == true){
+        if(c == b.getCustomer()){
+            try{
+            if(DBAccount.deleteAccount(b.getName()) == 1){
                 c.getBankAccounts().remove(b);
+            }
+            }catch(Exception ex){
+                throw new BankingException("Es ist ein Fehler aufgetreten.");
             }
         }
         else{
@@ -150,26 +154,5 @@ public class BankAccountController implements IBankAccountController {
         else{
             throw new BankingException("Sie sind nicht berechtigt, dieses Konto zu löschen.");
         }
-        
     }
-    @Override
-    public void delete(OldUser u, BankAccount b) throws BankingException {
-        // TODO Auto-generated method stub
-    }
-    @Override
-    public BankAccount create(OldUser user, String name, int type) throws BankingException {
-        // TODO Auto-generated method stub
-        return null;
-    }
-    @Override
-    public void transferMoney(OldUser u, BankAccount src, BankAccount target, long amount) throws BankingException {
-        // TODO Auto-generated method stub
-        
-    }
-    @Override
-    public void depositMoney(OldUser u, BankAccount b, long amount) throws BankingException {
-        // TODO Auto-generated method stub
-        
-    }
-    
 }

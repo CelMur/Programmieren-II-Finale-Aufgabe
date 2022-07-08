@@ -6,7 +6,7 @@ import de.jprojekt.utils.BankingException;
 public interface IBankAccountController {
     public void changeMaxDebt(BankAccount b, long amount, Employee e) throws BankingException;
 
-    public void delete(User u, BankAccount b) throws BankingException;
+    public void delete(Customer u, BankAccount b) throws BankingException;
 
     public BankAccount create(Customer user, String name, int type) throws BankingException;
 
