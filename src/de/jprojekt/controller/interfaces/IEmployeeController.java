@@ -9,5 +9,5 @@ public interface IEmployeeController {
 
     public void delete(Employee e) throws BankingException;
 
-    public Customer create(Employee employee);
+    public void create(Employee employee) throws BankingException;
 }

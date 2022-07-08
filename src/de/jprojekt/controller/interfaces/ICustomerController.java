@@ -9,5 +9,5 @@ public interface ICustomerController {
 
     public void delete(Customer c);
 
-    public Customer create(Customer customer, Employee employee);
+    public void create(Customer customer);
 }
