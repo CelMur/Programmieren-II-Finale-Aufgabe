@@ -3,7 +3,7 @@ package de.jprojekt.controller;
 import java.sql.SQLException;
 
 import de.jprojekt.controller.interfaces.IDBConnector;
-import de.jprojekt.utils.Mysql;
+import de.jprojekt.utils.mysql.Mysql;
 
 public class MySqlDbConnector implements IDBConnector{
 
