@@ -19,11 +19,6 @@ public class DBBanker {
         return rows;
     }
 
-    public static int getAmountCustomers(String bankerid) throws SQLException {
-        String query = "SELECT count(customerid) as anz FROM customer WHERE bankerid = ?;";
-        return Mysql.getIntFromDB(bankerid, query);
-    }
-
     public static String getCustomerid(String bankerid) throws SQLException{
         String query = "SELECT customerid FROM banker WHERE bankerid=?;";
         return Mysql.getStringFromDB(bankerid, query);
@@ -55,6 +50,7 @@ public class DBBanker {
         String query = "UPDATE banker SET customerid=? WHERE bankerid=?";
         return Mysql.setString(bankerid, query, customerid);
     }
+
     public static int deleteBanker(String uid) throws SQLException {
         Connection con = DriverManager.getConnection(Mysql.url, Mysql.user, Mysql.pass);
         String query = "DELETE FROM banker WHERE bankerid=?;";
