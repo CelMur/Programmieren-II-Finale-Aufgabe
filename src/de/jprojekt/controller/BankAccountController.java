@@ -178,7 +178,7 @@ public class BankAccountController implements IBankAccountController {
             target.setBalance(targetBalance);
             LocalDate now = LocalDateTime.now().toLocalDate();
             java.sql.Date date = java.sql.Date.valueOf(now);
-            Transactions.createTransaction(src.getName(), target.getName(), amount, date);
+            DBTransactions.createTransaction(src.getName(), target.getName(), amount, date);
         }
     }catch(Exception ex){
         throw new BankingException("Es ist ein Fehler aufgetreten.");
