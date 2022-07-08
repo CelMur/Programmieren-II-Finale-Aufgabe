@@ -6,7 +6,7 @@ import de.jprojekt.controller.interfaces.IEmployeeController;
 import de.jprojekt.data.models.Customer;
 import de.jprojekt.data.models.Employee;
 import de.jprojekt.utils.BankingException;
-import de.jprojekt.utils.mysql.Banker;
+import de.jprojekt.utils.mysql.OldBanker;
 
 public class EmployeeController extends UserController implements IEmployeeController {
     @Override
@@ -17,7 +17,7 @@ public class EmployeeController extends UserController implements IEmployeeContr
     @Override
     public void delete(Employee e) throws BankingException{
         try {
-            Banker.deleteBanker(e.getId());
+            OldBanker.deleteBanker(e.getId());
         }
         catch(SQLException exception) {
             throw new BankingException(exception.getMessage());
