@@ -4,7 +4,6 @@ import de.jprojekt.controller.MySqlDbConnector;
 import de.jprojekt.controller.interfaces.IDBConnector;
 import de.jprojekt.controller.interfaces.ISessionController;
 import de.jprojekt.controller.mockups.MockupSessionControllerLoginAsCustomer;
-import de.jprojekt.utils.Mysql;
 
 import java.sql.SQLException;
 
