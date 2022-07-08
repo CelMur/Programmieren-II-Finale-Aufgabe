@@ -1,13 +1,12 @@
 package de.jprojekt.data.models;
 
 public abstract class BankAccount {
-	private int id;
+	
 	private String name;
 	private long balance;
 	private long maxDebt;
 	private Customer customer;
 	private boolean locked;
-	public static int idcoutner;
 
 	public int getId() {
 		return this.id;
@@ -62,7 +61,6 @@ public abstract class BankAccount {
 	}
 
 	public BankAccount( String name, Customer customer) {
-		this.id = idcoutner++;
 		this.name = name;
 		this.customer = customer;
 		customer.addAccount(this);

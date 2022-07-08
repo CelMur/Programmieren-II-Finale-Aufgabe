@@ -3,8 +3,7 @@ package de.jprojekt.controller.mockups;
 import de.jprojekt.controller.interfaces.IBankAccountController;
 import de.jprojekt.data.models.*;
 import de.jprojekt.utils.BankingException;
-import de.jprojekt.utils.Mysql.java;
-
+import de.jprojekt.utils.mysql.*;
 public class MockupBankAccountController implements IBankAccountController {
 
     @Override
@@ -20,7 +19,7 @@ public class MockupBankAccountController implements IBankAccountController {
     }
     // soll ein Benutzer einen Konto erstellen können?
     @Override
-    public BankAccount create(User user, String name, int type) throws BankingException {
+    public BankAccount create(Customer user, String name, int type) throws BankingException {
         switch (type) {
             case 0:
                 return new GiroAccount(name, user.getCustomer());
@@ -56,9 +55,9 @@ public class MockupBankAccountController implements IBankAccountController {
 
     @Override
     public void delete(Customer c,BankAccount b) throws BankingException {
-        if(u instanceof Employee || u == b.getCustomer()){
+        if(c instanceof Employee || c == b.getCustomer()){
             if(DB.deleteAccount(b.getId()) == true){
-                u.getBankAccounts().remove(b);
+                c.getBankAccounts().remove(b);
             }
         }
         else{
