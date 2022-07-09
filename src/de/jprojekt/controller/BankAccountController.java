@@ -100,6 +100,7 @@ public class BankAccountController implements IBankAccountController {
             try {
                 if (DBAccount.deleteAccount(b.getName()) == 1) {
                     c.getBankAccounts().remove(b);
+                    DBCustomer.removeAccount(c.getId(), b.getName());
                 }
             } catch (Exception ex) {
                 throw new BankingException("Es ist ein Fehler aufgetreten.");
