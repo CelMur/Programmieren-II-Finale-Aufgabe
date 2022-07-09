@@ -1,7 +1,9 @@
 package de.jprojekt.main;
 
 import de.jprojekt.controller.MySqlDbConnector;
+import de.jprojekt.controller.interfaces.ICustomerController;
 import de.jprojekt.controller.interfaces.IDBConnector;
+import de.jprojekt.controller.interfaces.IEmployeeController;
 import de.jprojekt.controller.interfaces.ISessionController;
 import de.jprojekt.controller.mockups.MockupSessionControllerLoginAsCustomer;
 
@@ -9,12 +11,14 @@ import java.sql.SQLException;
 
 public class ApplicationController {
 	
-	protected ApplicationGui gui;
-	protected ApplicationData data;
+	private ApplicationGui gui;
+	private ApplicationData data;
 	
 	
-	protected ISessionController sessionController;
-	protected IDBConnector dbConnector;
+	private ISessionController sessionController;
+	private IDBConnector dbConnector;
+	private ICustomerController customer;
+	private IEmployeeController employee;
 	
 	
 	
@@ -94,5 +98,21 @@ public class ApplicationController {
 	
 	public IDBConnector getDBConnector() {
 		return this.dbConnector;
+	}
+	
+	public void setCustomerController(ICustomerController controller) {
+		this.customer = controller;
+	}
+	
+	public void setEmployeeController(IEmployeeController controller) {
+		this.employee = controller;
+	}
+	
+	public ICustomerController getCustomerController() {
+		return this.customer;
+	}
+	
+	public IEmployeeController getEmployeeController() {
+		return this.employee;
 	}
 }

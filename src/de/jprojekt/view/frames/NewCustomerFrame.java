@@ -37,38 +37,41 @@ public class NewCustomerFrame extends JDialog {
 	private ICustomerController controller;
 
 	
-	public NewCustomerFrame(JFrame parent, String title){
-		super(parent, title);
+	public NewCustomerFrame(JFrameAdapter owner, ICustomerController controller){
+		super(owner);
+		this.controller = controller;
+		initializeComponent();
+	}
+	
+	
+	private void initializeComponent() {
 		setLayout(new FlowLayout());
 		
-		JLabel nutzer = new JLabel("Wähle den Nutzertypen aus: ");
-		add(nutzer);
-		
-		JLabel vorname = new JLabel("Vorname: ");
+		JLabel vorname = new JLabel("*Vorname: ");
 		add (vorname);
 		txtVorname = new JTextField(15);
 		add (txtVorname);
-		JLabel nachname = new JLabel("Nachname: ");
+		JLabel nachname = new JLabel("*Nachname: ");
 		add (nachname);
 		txtNachname = new JTextField(15);
 		add (txtNachname);
 		
 		
-		JLabel adresse = new JLabel("Adresse: ");
+		JLabel adresse = new JLabel("*Adresse: ");
 		add (adresse);
 		txtAdresse = new JTextField(15);
 		add (txtAdresse);
-		JLabel plz = new JLabel("PLZ: ");
+		JLabel plz = new JLabel("*PLZ: ");
 		add (plz);
 		txtPlz = new JTextField(15);
 		add (txtPlz);
 		
 		
-		JLabel label2 = new JLabel("Passwort: ");
+		JLabel label2 = new JLabel("*Passwort: ");
 		add (label2);
 		txtPassword = new JPasswordField(15);
 		add (txtPassword);
-		JLabel repasswort = new JLabel("Passwort wiederholen: ");
+		JLabel repasswort = new JLabel("*Passwort wiederholen: ");
 		add (repasswort);
 		txtRepeatPassword = new JPasswordField(15);
 		add (txtRepeatPassword);
