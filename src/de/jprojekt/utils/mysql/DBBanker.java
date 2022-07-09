@@ -24,6 +24,11 @@ public class DBBanker {
         return Mysql.getStringFromDB(bankerid, query);
     }
 
+    public static int getAmountCustomers(String bankerid) throws Exception  {
+        String query = "SELECT count(customerid) AS anz FROM customer WHERE bankerid = ? GROUP BY customerid";
+        return Mysql.getIntFromDB(bankerid, query);
+    }
+
     public static int addCustomer(String bankerid, String customerid) throws Exception {
         List<String> customer = new ArrayList<String>();
         customer = List.of(getCustomerid(bankerid).split(";"));
