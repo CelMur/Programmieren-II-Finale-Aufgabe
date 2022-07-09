@@ -16,28 +16,28 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import de.jprojekt.controller.interfaces.ICustomerController;
+import de.jprojekt.controller.interfaces.IEmployeeController;
 import de.jprojekt.data.models.Customer;
+import de.jprojekt.data.models.Employee;
 import de.jprojekt.main.ApplicationData;
 import de.jprojekt.utils.BankingException;
 import de.jprojekt.utils.Checks;
 
 
-public class NewCustomerFrame extends JDialog {
+public class NewEmployeeFrame extends JDialog {
 	
 	protected JTextField txtVorname;
 	protected JTextField txtNachname;
-	protected JTextField txtAdresse;
-	protected JTextField txtPlz;
 	
 	protected JButton btnCreateUser;
 	protected JPasswordField txtPassword;
 	protected JPasswordField txtRepeatPassword;
 	
 	
-	private ICustomerController controller;
+	private IEmployeeController controller;
 
 	
-	public NewCustomerFrame(JFrameAdapter owner, ICustomerController controller){
+	public NewEmployeeFrame(JFrameAdapter owner, IEmployeeController controller){
 		super(owner);
 		this.controller = controller;
 		initializeComponent();
@@ -57,21 +57,11 @@ public class NewCustomerFrame extends JDialog {
 		add (txtNachname);
 		
 		
-		JLabel adresse = new JLabel("*Adresse: ");
-		add (adresse);
-		txtAdresse = new JTextField(15);
-		add (txtAdresse);
-		JLabel plz = new JLabel("*PLZ: ");
-		add (plz);
-		txtPlz = new JTextField(15);
-		add (txtPlz);
-		
-		
-		JLabel label2 = new JLabel("*Passwort: ");
+		JLabel label2 = new JLabel("Passwort: ");
 		add (label2);
 		txtPassword = new JPasswordField(15);
 		add (txtPassword);
-		JLabel repasswort = new JLabel("*Passwort wiederholen: ");
+		JLabel repasswort = new JLabel("Passwort wiederholen: ");
 		add (repasswort);
 		txtRepeatPassword = new JPasswordField(15);
 		add (txtRepeatPassword);
@@ -86,8 +76,8 @@ public class NewCustomerFrame extends JDialog {
 				validatePassword();
 				validateData();
 				
-				Customer c = createCustomer();
-				controller.create(c);
+				Employee employee = createEmployee();
+				controller.create(employee);
 			}catch(BankingException e) {
 				showDialog(e.getMessage());
 			}catch(Exception e) {
@@ -98,14 +88,12 @@ public class NewCustomerFrame extends JDialog {
 		
 	}
 	
-	protected Customer createCustomer() {
-		Customer c = new Customer();
-		c.setFirstname(txtVorname.getText());
-		c.setLastname(txtNachname.getText());
-		c.setAddress(txtAdresse.getText());
-		c.setPlz(Integer.getInteger(txtPlz.getText()));
+	protected Employee createEmployee() {
+		Employee e = new Employee();
+		e.setFirstname(txtVorname.getText());
+		e.setLastname(txtNachname.getText());
 		
-		return c;
+		return e;
 	}
 	
 	
@@ -147,7 +135,6 @@ public class NewCustomerFrame extends JDialog {
 		
 		checkVorname();
 		checkNachname();
-		checkPlz();
 	}
 	
 	protected void checkVorname() throws BankingException{
@@ -164,20 +151,10 @@ public class NewCustomerFrame extends JDialog {
 			throw new BankingException("Nachname ist ungültig");
 	}
 	
-	protected void checkPlz() throws BankingException{
-		String plz = txtPlz.getText();
-		
-		if(!Checks.isPLZ(plz))
-			throw new BankingException("PLZ ist ungültig");
-	}
-	
-	
 	protected boolean isAnyDataEmpty() {
 		if (txtVorname.getText().equals("")) return true;
 		if (txtNachname.getText().equals(""))return true;
-		if (txtAdresse.getText().equals(""))return true;
-		if(txtPlz.getText().equals(""))return true;
-		
+	
 		return false;
 	}
 	
