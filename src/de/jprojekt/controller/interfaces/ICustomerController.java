@@ -11,5 +11,5 @@ public interface ICustomerController {
 
     public void create(Customer customer);
     
-    public boolean isPasswordValid(Customer customer, String Password);
+    public boolean isPasswordValid(Customer customer, String password);
 }
