@@ -2,6 +2,24 @@ package de.jprojekt.data.models;
 
 public abstract class BankAccount {
 	
+	
+	public enum BankAccountType{
+		
+		GIRO(2),
+		SAVING(1),
+		DEPOSIT(0);
+		
+		
+		private final int value;
+		
+		BankAccountType(int value) {
+			this.value = value;
+		}
+		
+		public int value(){return value;}
+	}
+	
+	
 	private String name;
 	private long balance;
 	private long maxDebt;
