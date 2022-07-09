@@ -22,6 +22,10 @@ public class Checks {
         }
         return false;
     }
+    
+    public static boolean isPLZ(String plz) {
+    	 return plz.matches("[0-9]+");
+    }
 
     public static boolean isPassword(String j){
 
