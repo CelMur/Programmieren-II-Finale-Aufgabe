@@ -42,7 +42,7 @@ public class MainFrame extends JFrameAdapter implements ActionListener{
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(450, 450);
-		
+		setLocationRelativeTo(null);
 		
 		
 		

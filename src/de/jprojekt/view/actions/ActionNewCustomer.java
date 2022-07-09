@@ -6,6 +6,7 @@ import javax.swing.AbstractAction;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
+import de.jprojekt.view.frames.NewCustomerFrame;
 import de.jprojekt.view.panels.CustomerDataPanel;
 
 public class ActionNewCustomer extends AbstractActionAdapter{
@@ -22,8 +23,11 @@ public class ActionNewCustomer extends AbstractActionAdapter{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		JDialog dialog = new CustomerDataPanel(this.frame, "Neuer Kunde");
-		
+		//JDialog dialog = new CustomerDataPanel(this.frame, "Neuer Kunde");
+		JDialog dialog = new NewCustomerFrame(this.frame, "Neuer Kunde");
+		dialog.setSize(200, 400);
+		dialog.setLocationRelativeTo(null);
+		dialog.setResizable(false);
 		dialog.setVisible(true);
 		
 	}

@@ -19,7 +19,7 @@ public abstract class BankAccount {
 		public int value(){return value;}
 	}
 	
-	
+	//name = kontonummer
 	private String name;
 	private String id;
 	private long balance;
@@ -30,8 +30,7 @@ public abstract class BankAccount {
 	public static final int TYPE_GIRO = 1;
 	public static final int TYPE_SAVING = 2;
 
-	public BankAccount(String id, String name, Customer customer) {
-		this.id = id;
+	public BankAccount(String name, Customer customer) {
 		this.name = name;
 		this.customer = customer;
 		customer.addBankAccount(this);

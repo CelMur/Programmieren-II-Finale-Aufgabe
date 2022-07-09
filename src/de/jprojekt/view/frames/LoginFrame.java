@@ -77,6 +77,7 @@ public class LoginFrame extends JFrameAdapter{
 		add(bottomPanel, BorderLayout.SOUTH);
 		
 		pack();
+		setLocationRelativeTo(null);
 		
 		
 	}
