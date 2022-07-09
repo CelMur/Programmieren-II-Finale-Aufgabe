@@ -34,6 +34,8 @@ public class CustomerController implements ICustomerController {
             DBUser.setFirstname(c.getId(), c.getFirstname());
             DBUser.setLastname(c.getId(), c.getLastname());
 
+        }catch(SQLException e){
+            throw new BankingException("Es ist ein Fehler aufgetreten.");
         }
 
         
@@ -57,6 +59,8 @@ public class CustomerController implements ICustomerController {
            
             customer.setId(DBUser.createUser(customer.getLastname(), customer.getFirstname(), customer.getPassword(), customer.getAddress(), customer.getPlz(), customer.getBday(), 0));	
             DBCustomer.createCustomer(customer.getId(), customer.getAdviser().getId());
+        }catch(Exception e){
+            System.out.println("Kunde konnte nicht erstellt werden.");
         }
         
     }
