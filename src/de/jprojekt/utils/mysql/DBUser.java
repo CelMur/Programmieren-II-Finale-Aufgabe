@@ -105,16 +105,6 @@ public class DBUser {
         return Mysql.getStringFromDB(username, query);
     }
 
-    public static String getUsername(String uid) throws Exception {
-        String query = "SELECT username FROM user WHERE userid=?;";
-        return Mysql.getStringFromDB(uid, query);
-    }
-
-    public static int setUsername(String uid, String username) throws SQLException{
-        String query = "UPDATE user SET username=? WHERE userid=?";
-        return Mysql.setString(uid, query, username);
-    }
-
     public static int getSalt(String uid) throws SQLException {
         Connection con = DriverManager.getConnection(Mysql.url, Mysql.user, Mysql.pass);
         String query = "SELECT salt FROM user WHERE userid=?;";
@@ -176,10 +166,10 @@ public class DBUser {
         }
     }
 
-    public static String createUser(String username, String lastname, String firstname, String nonHashedPassword, String address, int plz, Date bday, int typ) throws Exception {
+    public static String createUser(String lastname, String firstname, String nonHashedPassword, String address, int plz, Date bday, int typ) throws Exception {
         Connection con = DriverManager.getConnection(Mysql.url, Mysql.user, Mysql.pass);
         String uuid =  Mysql.createNewUUID();
-        String query2 = "INSERT INTO user (userid, username, lastname, firstname, password, salt, address, plz, bday, typ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        String query2 = "INSERT INTO user (userid, lastname, firstname, password, salt, address, plz, bday, typ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
         PreparedStatement ps = con.prepareStatement(query2);
 
         if(!Checks.isName(lastname)){
@@ -202,15 +192,14 @@ public class DBUser {
         int salt = 10000000 + (int)(Math.random() * ((99999999 - 10000000) + 1));
 
         ps.setString(1, uuid);
-        ps.setString(2, username);
-        ps.setString(3, lastname);
-        ps.setString(4, firstname);
-        ps.setString(5, Krypto.getHash(nonHashedPassword, Integer.toString(salt)));
-        ps.setInt(6, salt);
-        ps.setString(7, address);
-        ps.setInt(8, plz);
-        ps.setDate(9, sqlDate);
-        ps.setInt(10, typ);
+        ps.setString(2, lastname);
+        ps.setString(3, firstname);
+        ps.setString(4, Krypto.getHash(nonHashedPassword, Integer.toString(salt)));
+        ps.setInt(5, salt);
+        ps.setString(6, address);
+        ps.setInt(7, plz);
+        ps.setDate(8, sqlDate);
+        ps.setInt(9, typ);
 
         ps.executeUpdate();
         ps.close();
