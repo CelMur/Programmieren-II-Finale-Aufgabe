@@ -10,4 +10,6 @@ public interface IEmployeeController {
     public void delete(Employee e) throws BankingException;
 
     public void create(Employee employee) throws BankingException;
+    
+    public void isPasswordValid(Employee employee, String password) throws BankingException;
 }

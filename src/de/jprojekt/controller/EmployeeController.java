@@ -65,4 +65,10 @@ public class EmployeeController extends UserController implements IEmployeeContr
             throw new BankingException(exception.getMessage());
         }
     }
+
+	@Override
+	public void isPasswordValid(Employee employee, String password) throws BankingException {
+		// TODO Auto-generated method stub
+		
+	}
 }

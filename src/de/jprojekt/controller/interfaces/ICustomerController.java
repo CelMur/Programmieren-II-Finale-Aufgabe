@@ -10,4 +10,6 @@ public interface ICustomerController {
     public void delete(Customer c);
 
     public void create(Customer customer);
+    
+    public boolean isPasswordValid(Customer customer, String Password);
 }
