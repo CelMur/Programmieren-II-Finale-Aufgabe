@@ -1,10 +1,10 @@
 package de.jprojekt.utils.mysql;
 
 import de.jprojekt.data.models.*;
-import de.jprojekt.data.models.Customer;
 import de.jprojekt.utils.BankingException;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DBAccount {
 
@@ -113,6 +113,7 @@ public class DBAccount {
         String query = "UPDATE account SET locked=? WHERE accountid=?";
         return Mysql.setLong(accountid, query, locked);
     }
+
     public static int deleteAccount(String accountid) throws SQLException {
         Connection con = DriverManager.getConnection(Mysql.url, Mysql.user, Mysql.pass);
         String query = "DELETE FROM account WHERE accountid=?;";
@@ -121,6 +122,42 @@ public class DBAccount {
         int rows = ps.executeUpdate();
         ps.close();
         return rows;
+    }
+
+    public static ArrayList<BankAccount> getBankAccountsForCustomer(Customer customer) throws SQLException { 
+        ArrayList<BankAccount> accounts = new ArrayList<BankAccount>();
+
+        Connection con = DriverManager.getConnection(Mysql.url, Mysql.user, Mysql.pass);
+        String query = "SELECT * FROM account WHERE customerid = ?";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setString(1, customer.getId());
+        ResultSet rs = ps.executeQuery();
+
+        while(rs.next())  {
+            String accountid    = String.valueOf(rs.getInt("accountid"));
+            String name         = rs.getString("name");
+            int balance         = rs.getInt("balance");
+            int type            = rs.getInt("typ");
+            int maxDebt        = rs.getInt("maxdebt");
+            int locked          = rs.getInt("locked");
+
+            if(type == BankAccount.TYPE_GIRO) {
+                GiroAccount account = new GiroAccount(name, customer);
+                account.setId(accountid);
+                account.setBalance(balance);
+                account.setMaxDebt(maxDebt);
+                account.setLocked(locked != 0);
+                accounts.add(account);
+            } else {
+                SavingAccount account = new SavingAccount(name, customer);
+                account.setId(accountid);
+                account.setBalance(balance);
+                account.setLocked(locked != 0);
+                accounts.add(account);
+            }
+        }
+
+        return accounts;
     }
 
 }

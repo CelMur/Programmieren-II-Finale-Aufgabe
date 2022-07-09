@@ -3,18 +3,29 @@ package de.jprojekt.data.models;
 public abstract class BankAccount {
 	
 	private String name;
+	private String id;
 	private long balance;
 	private long maxDebt;
 	private Customer customer;
 	private boolean locked;
-	
 
-	public BankAccount(String name, Customer customer) {
+	public static final int TYPE_GIRO = 1;
+	public static final int TYPE_SAVING = 2;
+
+	public BankAccount(String id, String name, Customer customer) {
+		this.id = id;
 		this.name = name;
 		this.customer = customer;
 		customer.addBankAccount(this);
 	}
 	
+	public String getId() {
+		return this.id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 	
 	public String getName() {
 		return this.name;
