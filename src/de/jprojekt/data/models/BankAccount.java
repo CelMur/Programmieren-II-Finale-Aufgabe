@@ -5,10 +5,11 @@ public abstract class BankAccount {
 	
 	public enum BankAccountType{
 		
-		DEPOSIT(0),
+		GIRO(2),
 		SAVING(1),
-		GIRO(2);
-				
+		DEPOSIT(0);
+		
+		
 		private final int value;
 		
 		BankAccountType(int value) {
@@ -26,9 +27,8 @@ public abstract class BankAccount {
 	private Customer customer;
 	private boolean locked;
 
-	public static final int TYPE_DEPOSIT = 0;
-	public static final int TYPE_SAVING = 1;
-	public static final int TYPE_GIRO = 2;
+	public static final int TYPE_GIRO = 1;
+	public static final int TYPE_SAVING = 2;
 
 	public BankAccount(String id, String name, Customer customer) {
 		this.id = id;
