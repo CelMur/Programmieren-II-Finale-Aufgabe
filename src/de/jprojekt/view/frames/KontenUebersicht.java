@@ -36,9 +36,9 @@ public class KontenUebersicht extends JFrame{
 		person.setLastname("Winkler");
 		person.setAddress("iwo in Seckenheim :)");
 	
-		konten.add(new GiroAccount("abc", person));
-		konten.add(new DepositAccount("def", person));
-		konten.add(new SavingAccount("ghi", person));
-		konten.add(new SavingAccount("jkl", person));
+		konten.add(new GiroAccount("1", "abc", person));
+		konten.add(new DepositAccount("2", "def", person));
+		konten.add(new SavingAccount("3", "ghi", person));
+		konten.add(new SavingAccount("4", "jkl", person));
 	}
 }
