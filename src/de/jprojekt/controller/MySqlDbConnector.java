@@ -14,7 +14,7 @@ public class MySqlDbConnector implements IDBConnector{
 	            Mysql.createDB();
 				Mysql.testClass();
 				System.out.println("Datenbank erfolgreich initialisiert.");
-	        } catch (SQLException e) {
+	        } catch (Exception e) {
 	        	System.out.println("Datenbank-Initialisierung fehlerhaft.\n");
 	            e.printStackTrace();
 	        }
