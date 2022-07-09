@@ -35,31 +35,34 @@ public class BankAccountController implements IBankAccountController {
         switch (type) {
             case 0:
                 try {
-                    if (DBAccount.createAccount(user.getId(), name, type) == null) {
+                    String uuid = DBAccount.createAccount(user.getId(), name, type) ;
+                    if (uuid== null) {
                         throw new BankingException("Dieses Konto existiert bereits.");
                     }
                     ;
-                    return new DepositAccount(name, user);
+                    return new DepositAccount(name, user, uuid);
                 } catch (Exception ex) {
                     throw new BankingException("Es ist ein Fehler aufgetreten.");
                 }
             case 1:
                 try {
-                    if (DBAccount.createAccount(user.getId(), name, type) == null) {
+                    String uuid = DBAccount.createAccount(user.getId(), name, type) ;
+                    if (uuid == null) {
                         throw new BankingException("Dieses Konto existiert bereits.");
                     }
                     ;
-                    return new SavingAccount(name, user);
+                    return new SavingAccount(name, user, uuid);
                 } catch (Exception ex) {
                     throw new BankingException("Es ist ein Fehler aufgetreten.");
                 }
             case 2:
                 try {
-                    if (DBAccount.createAccount(user.getId(), name, type) == null) {
+                    String uuid = DBAccount.createAccount(user.getId(), name, type);
+                    if (uuid == null) {
                         throw new BankingException("Dieses Konto existiert bereits.");
                     }
                     ;
-                    return new GiroAccount(name, user);
+                    return new GiroAccount(name, user, uuid);
                 } catch (Exception ex) {
                     throw new BankingException("Es ist ein Fehler aufgetreten.");
                 }
@@ -84,13 +87,48 @@ public class BankAccountController implements IBankAccountController {
         }
         switch (type) {
             case 0:
-                return new DepositAccount(name, user);
+                try {
+                    String uuid = DBAccount.createAccount(user.getId(), name, type) ;
+                    if (uuid== null) {
+                        throw new BankingException("Dieses Konto existiert bereits.");
+                    }
+                    ;
+                    DepositAccount tmp = new DepositAccount(name, user, uuid);
+                    tmp.setLocked(false);
+                    return tmp;
+                } catch (Exception ex) {
+                    throw new BankingException("Es ist ein Fehler aufgetreten.");
+                }
             case 1:
-                return new SavingAccount(name, user);
+                try {
+                    String uuid = DBAccount.createAccount(user.getId(), name, type) ;
+                    if (uuid== null) {
+                        throw new BankingException("Dieses Konto existiert bereits.");
+                    }
+                    ;
+                    SavingAccount tmp = new SavingAccount(name, user, uuid);
+                    tmp.setLocked(false);
+                    return tmp;
+                    
+                } catch (Exception ex) {
+                    throw new BankingException("Es ist ein Fehler aufgetreten.");
+                }
             case 2:
-                return new GiroAccount(name, user);
+                try {
+                    String uuid = DBAccount.createAccount(user.getId(), name, type) ;
+                    if (uuid== null) {
+                        throw new BankingException("Dieses Konto existiert bereits.");
+                    }
+                    ;
+                    GiroAccount tmp = new GiroAccount(name, user, uuid);
+                    tmp.setLocked(false);
+                    return tmp;
+                    
+                } catch (Exception ex) {
+                    throw new BankingException("Es ist ein Fehler aufgetreten.");
+                }
             default:
-                throw new BankingException("Unbekannte Kontotyp");
+                throw new BankingException("Unbekannter Kontotyp");
         }
     }
 

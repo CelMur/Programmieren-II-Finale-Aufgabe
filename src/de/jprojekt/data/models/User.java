@@ -1,7 +1,7 @@
 package de.jprojekt.data.models;
 
 import de.jprojekt.utils.mysql.DBUser;
-import java.util.Date;
+import java.sql.Date;
 
 public abstract class User {
 
@@ -21,12 +21,12 @@ public abstract class User {
 	//dont remove pls, ty
 	public User() {}
 	
-	public User(String id, String password, String firstname, String lastname, Date bday, String address, int plz) {
+	public User(String id, String password, String firstname, String lastname, String bday, String address, int plz) {
 		this.id = id;
 		this.password = password;
 		this.firstname = firstname;
 		this.lastname = lastname;
-		this.bday = bday;
+		this.bday = Date.valueOf(bday);
 		this.address = address;
 		this.plz = plz;
 	}

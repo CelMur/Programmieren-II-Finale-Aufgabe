@@ -30,10 +30,12 @@ public abstract class BankAccount {
 	public static final int TYPE_GIRO = 1;
 	public static final int TYPE_SAVING = 2;
 
-	public BankAccount(String name, Customer customer) {
+	public BankAccount(String name, Customer customer, String uuid) {
+		this.id = uuid;
 		this.name = name;
 		this.customer = customer;
 		customer.addBankAccount(this);
+		this.locked = true;
 	}
 	
 	public String getId() {

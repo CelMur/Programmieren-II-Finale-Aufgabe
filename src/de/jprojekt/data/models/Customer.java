@@ -28,7 +28,7 @@ public class Customer extends User {
 	
 	public Customer() {}
 	
-	public Customer(String id, String password, String firstname, String lastname, Date bday, String address, int plz){
+	public Customer(String id, String password, String firstname, String lastname, String bday, String address, int plz){
 		super(id, password, firstname, lastname, bday, address, plz);
 		this.bankAccounts = new ArrayList<BankAccount>();
 	}

@@ -28,8 +28,7 @@ public class CustomerController implements ICustomerController {
         try{
             DBCustomer.setBankerid(c.getId(), c.getAdviser().getId());
             DBUser.setAddress(c.getId(), c.getAddress());
-            //TODO Brithday ggf konvertiren
-            //DBUser.setBday(c.getId(), c.getBday());
+            DBUser.setBday(c.getId(), c.getBday());
             DBUser.setPlz(c.getId(), c.getPlz());
             DBUser.setFirstname(c.getId(), c.getFirstname());
             DBUser.setLastname(c.getId(), c.getLastname());
