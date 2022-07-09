@@ -1,8 +1,10 @@
 package de.jprojekt.controller.interfaces;
 
+import de.jprojekt.data.models.User;
+
 public interface ISessionController {
 	/**
-	 * wird von der Gui zum einloggen benötigt
+	 * wird von der Gui zum einloggen benï¿½tigt
 	 * 
 	 * @param username
 	 * @param password

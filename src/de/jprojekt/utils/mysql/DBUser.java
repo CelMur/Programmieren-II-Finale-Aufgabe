@@ -226,4 +226,12 @@ public class DBUser {
         return ps.executeUpdate();
     }
 
+    public static boolean checkPassword(String uid, String passwordToCheck) throws Exception {
+        String password = DBUser.getPassword(uid);
+        int salt = DBUser.getSalt(uid);
+
+        String hashedPassword = Krypto.getHash(passwordToCheck, String.valueOf(salt));
+        return hashedPassword.equals(password);
+    }
+
 }
