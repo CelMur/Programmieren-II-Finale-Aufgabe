@@ -81,8 +81,6 @@ public class LoginFrame extends JFrameAdapter{
 		
 	}
 
-
-
 	@Override
 	public Object getData() {
 		return new LoginData(fieldUsername.getText(), new String(fieldPassword.getPassword()));

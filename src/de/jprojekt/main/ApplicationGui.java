@@ -3,11 +3,32 @@ package de.jprojekt.main;
 import javax.swing.JFrame;
 
 import de.jprojekt.controller.interfaces.ISessionController;
+import de.jprojekt.data.models.Customer;
+import de.jprojekt.data.models.Employee;
+import de.jprojekt.data.models.User;
+import de.jprojekt.view.factories.MenuBarFactory;
 import de.jprojekt.view.frames.JFrameAdapter;
 import de.jprojekt.view.frames.LoginFrame;
 import de.jprojekt.view.frames.MainFrame;
 
 public class ApplicationGui {
+	
+	
+	
+	private static ApplicationGui instance;
+	
+	
+	public static ApplicationGui create() {
+		if(instance == null) {
+			instance = new ApplicationGui();
+		}
+		return instance;
+	}
+	
+	public static ApplicationGui getInstance() {
+		return instance;
+	}
+	
 	
 	private ApplicationController controller;
 	private ApplicationData data;
@@ -15,8 +36,8 @@ public class ApplicationGui {
 	private JFrameAdapter currentFrame;
 	
 	
-	public ApplicationGui() {
-	
+	private ApplicationGui() {
+		
 	}
 	
 	/**
@@ -35,6 +56,11 @@ public class ApplicationGui {
 	public void onLaunchApplication() {
 		cleanupCurrentFrame();
 		showMainFrame();
+		
+		User u = data.getCurrentUser();
+		
+		if(u instanceof Employee) initializeEmployeeGui();
+		if(u instanceof Customer) initializeCustomerGui();
 	}
 	
 	
@@ -43,24 +69,23 @@ public class ApplicationGui {
 	}
 	
 	private void showLoginFrame() {
-
 		currentFrame = new LoginFrame(this);
 		currentFrame.setVisible(true);
 	}
 	
 	private void showMainFrame() {
-
 		currentFrame = new MainFrame(this);
 		currentFrame.setVisible(true);
+		
 	}
 	
 	
 	public void initializeCustomerGui() {
-		
+		currentFrame.setJMenuBar(MenuBarFactory.createCustomerMenuBar(currentFrame));
 	}
 	
 	public void initializeEmployeeGui() {
-		
+		currentFrame.setJMenuBar(MenuBarFactory.createEmployeeMenuBar(currentFrame));
 	}
 
 	public ApplicationController getApp() {
@@ -83,6 +108,8 @@ public class ApplicationGui {
 	public void setData(ApplicationData data) {
 		this.data = data;
 	}
+	
+	
 	
 	
 }

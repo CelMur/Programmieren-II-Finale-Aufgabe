@@ -16,7 +16,25 @@ public class ApplicationController {
 	protected ISessionController sessionController;
 	protected IDBConnector dbConnector;
 	
-	public ApplicationController() {
+	
+	
+	private static ApplicationController instance;
+	
+	public static ApplicationController create() {
+		if(instance == null) {
+			instance = new ApplicationController();
+		}
+		
+		return instance;
+	}
+	
+	public static ApplicationController getInstance() {
+		return instance;
+	}
+	
+	
+	
+	private ApplicationController() {
 		initializeController();
 	}
 	

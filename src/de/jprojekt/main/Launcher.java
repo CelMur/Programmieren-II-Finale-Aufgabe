@@ -3,6 +3,7 @@ package de.jprojekt.main;
 import de.jprojekt.data.models.Customer;
 import de.jprojekt.data.models.Employee;
 import de.jprojekt.data.models.User;
+import de.jprojekt.utils.BankingException;
 
 /**
  * 
@@ -27,16 +28,9 @@ public class Launcher {
 			instance = new Launcher(gui, controller, data);
 			return instance;
 		}
-		return null;
+		return instance;
 	}
 	
-	public static Launcher create(ApplicationContext context) {
-		if(instance == null) {
-			instance = new Launcher(context);
-			return instance;
-		}
-		return null;
-	}
 	
 	public static Launcher getInstance() {
 		return instance; 
@@ -48,7 +42,7 @@ public class Launcher {
 	private ApplicationController controller;
 	private ApplicationData data;
 	
-	private ApplicationContext context;
+	//private ApplicationContext context;
 	
 	
 	
@@ -57,16 +51,23 @@ public class Launcher {
 		this.controller = controller;
 		this.data = data;
 		
-		this.context = new ApplicationContext(gui, controller, data);
+		throwExceptionIfGuiIsMissing();
+		throwExceptionIfApplicationIsMissing();
+		
+		gui.setController(controller);
+		controller.setGui(gui);
+		
+		gui.setData(data);
+		controller.setData(data);
 	}
 	
-	private Launcher(ApplicationContext context) {
-		this.context = context;
-		this.gui = context.getGui();
-		this.controller = context.getController();
-		this.data = context.getData();
+	private void throwExceptionIfGuiIsMissing() {
+		if(this.gui == null) throw new NullPointerException("Launcher is missing the GUI component");
 	}
 	
+	private void throwExceptionIfApplicationIsMissing() {
+		if(this.controller == null) throw new NullPointerException("Launcher is missing the ApplicationController component");
+	}
 	
 	
 	/**
@@ -81,8 +82,9 @@ public class Launcher {
 	/**
 	 * Initialisiert die Gui je nach eingeloggtem User (Customer oder Employee)) und 
 	 * zeigt das Haupt-Fenster an.
+	 * @throws BankingException 
 	 */
-	public void launchApplication() {
+	public void launchApplication(){
 		
 		
 		/*TODO: Unterscheidung des "User" Typs
@@ -92,13 +94,7 @@ public class Launcher {
 		 * Fall 2:	Typ = Employee -> gui.setupEmployeeGui()
 		 * 
 		 * 
-		 */
-		
-		User u = data.getCurrentUser();
-		
-		if(u instanceof Customer) gui.initializeCustomerGui();
-		if(u instanceof Employee) gui.initializeEmployeeGui();
-			
+		 */	
 		
 		controller.onLaunchApplication();
 		gui.onLaunchApplication();

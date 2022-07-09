@@ -18,12 +18,14 @@ import javax.swing.JPanel;
 import de.jprojekt.main.ApplicationGui;
 import de.jprojekt.view.CustomerMenuBar;
 import de.jprojekt.view.EmployeeMenuBar;
+import de.jprojekt.view.factories.MenuBarFactory;
 
 public class MainFrame extends JFrameAdapter implements ActionListener{
 
 	
 	private ApplicationGui gui;
 	private JPanel centerPanel;
+	private MenuBarFactory menuBarFactory;
 	
 	
 	public MainFrame(ApplicationGui gui) {
@@ -34,7 +36,8 @@ public class MainFrame extends JFrameAdapter implements ActionListener{
 	
 	private void initialize() {
 		//TODO: 
-		setJMenuBar(new CustomerMenuBar(gui, this));
+		//setJMenuBar(new CustomerMenuBar(gui, this));
+		//setJMenuBar(menuBarFactory.createMenuBar());
 		
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,6 +65,5 @@ public class MainFrame extends JFrameAdapter implements ActionListener{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-		
+	
 }
