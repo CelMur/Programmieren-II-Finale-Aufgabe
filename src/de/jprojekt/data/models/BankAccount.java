@@ -19,7 +19,7 @@ public abstract class BankAccount {
 		public int value(){return value;}
 	}
 	
-	
+	//name = kontonummer
 	private String name;
 	private String id;
 	private long balance;
