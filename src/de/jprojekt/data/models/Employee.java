@@ -12,7 +12,7 @@ public class Employee extends User {
 		
 	}
 
-	public Employee(String id, String password, String firstname, String lastname, Date bday, String address, int plz){
+	public Employee(String id, String password, String firstname, String lastname, String bday, String address, int plz){
 		super(id, password, firstname, lastname, bday, address, plz);
 		this.customers = new ArrayList<Customer>();
 	}
