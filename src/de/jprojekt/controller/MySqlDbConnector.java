@@ -17,11 +17,7 @@ public class MySqlDbConnector implements IDBConnector{
 	        } catch (Exception e) {
 	        	System.out.println("Datenbank-Initialisierung fehlerhaft.\n");
 	            e.printStackTrace();
-	        } catch (Exception e) {
-	        	
-	        }
-
-	       
+	        }	       
 	}
 
 }

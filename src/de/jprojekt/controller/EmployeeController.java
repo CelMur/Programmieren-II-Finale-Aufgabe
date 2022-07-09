@@ -23,11 +23,9 @@ public class EmployeeController extends UserController implements IEmployeeContr
             }
             DBBanker.deleteBanker(e.getId());
         }
-        catch(SQLException exception) {
+        catch(Exception exception) {
             throw new BankingException(exception.getMessage());
-        }
-        // TODO check and persist in DB
-        
+        }        
     }
 
     @Override
