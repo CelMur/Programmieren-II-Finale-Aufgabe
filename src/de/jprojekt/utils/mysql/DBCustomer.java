@@ -9,13 +9,12 @@ import java.util.List;
 
 public class DBCustomer {
 
-    public static int createCustomer(String uid, String bankerid, String accountid) throws SQLException {
+    public static int createCustomer(String uid, String bankerid) throws SQLException {
         Connection con = DriverManager.getConnection(Mysql.url, Mysql.user, Mysql.pass);
-        String query = "INSERT INTO customer (customerid, bankerid, accountid) VALUES (?,?,?);";
+        String query = "INSERT INTO customer (customerid, bankerid) VALUES (?,?);";
         PreparedStatement ps = con.prepareStatement(query);
         ps.setString(1, uid);
         ps.setString(2, bankerid);
-        ps.setString(3, accountid);
         int rows = ps.executeUpdate();
         ps.close();
         return rows;

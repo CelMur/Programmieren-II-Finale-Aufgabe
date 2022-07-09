@@ -12,7 +12,7 @@ public class Mysql {
         Connection con = DriverManager.getConnection(url, user, pass);
         Statement stm = con.createStatement();
 
-        String queryUser = "CREATE TABLE IF NOT EXISTS user (userid varchar(255), username varchar(255), lastname varchar(255), firstname varchar(255), password varchar(255), salt int, address varchar(255), plz int, bday DATE, typ int, PRIMARY KEY (userid));";
+        String queryUser = "CREATE TABLE IF NOT EXISTS user (userid varchar(255), lastname varchar(255), firstname varchar(255), password varchar(255), salt int, address varchar(255), plz int, bday DATE, typ int, PRIMARY KEY (userid));";
         String queryBanker = "CREATE TABLE IF NOT EXISTS banker (bankerid varchar(255), customerid varchar(255), PRIMARY KEY (bankerid));";
         String queryCustomer = "CREATE TABLE IF NOT EXISTS customer (customerid varchar(255), bankerid varchar(255), accountid varchar(255), PRIMARY KEY (customerid));";
         String queryAccount = "CREATE TABLE IF NOT EXISTS account (accountid int, balance bigint, typ int, customerid varchar(255), name varchar(255), maxdebt bigint, locked int, PRIMARY KEY (accountid));";
@@ -35,7 +35,7 @@ public class Mysql {
         java.util.Date date = new java.util.Date();
 
         try {
-            System.out.println(DBUser.createUser("unique","Hans", "Peter", "Haribo&123", "J7 26", 68159, date, 1));
+            System.out.println(DBUser.createUser("Hans", "Peter", "Haribo&123", "J7 26", 68159, date, 1));
             System.out.println(DBUser.getPassword("ed899d45-fbcc-11ec-b8e1-0242ac180002"));
             System.out.println(DBUser.exists("test"));
             System.out.println(DBUser.exists("bf983ea3-fef2-11ec-b8e1-0242ac180002"));
