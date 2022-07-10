@@ -3,9 +3,12 @@ package de.jprojekt.utils.mysql;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import de.jprojekt.data.models.Employee;
 
 public class DBBanker {
 
@@ -66,6 +69,30 @@ public class DBBanker {
         int rows = ps.executeUpdate();
         ps.close();
         return rows;
+    }
+
+    public static Employee getEmployee(String uid) throws SQLException {
+        Connection con = DriverManager.getConnection(Mysql.url, Mysql.user, Mysql.pass);
+        String query = "SELECT * FROM user WHERE user.userid = ?";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setString(1, uid);
+        ResultSet rs = ps.executeQuery();
+
+        if (!rs.next()) {
+            throw new SQLException("User not found");
+        }
+
+        Employee employee = new Employee(
+            rs.getString("userid"),
+            rs.getString("password"),
+            rs.getString("firstname"),
+            rs.getString("lastname"),
+            rs.getDate("bday").toString(),
+            rs.getString("address"),
+            rs.getInt("plz")
+        );
+
+        return employee;
     }
 
 }

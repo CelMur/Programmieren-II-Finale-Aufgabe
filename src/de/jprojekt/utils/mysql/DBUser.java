@@ -147,12 +147,12 @@ public class DBUser {
     public static User getUser(String uid) throws Exception {
         switch (getTyp(uid)) {
             case 0:
-                Customer customer = new Customer(uid, getPassword(uid), getFirstname(uid), getLastname(uid), getBday(uid).toString(), getAddress(uid), getPlz(uid));
+                Customer customer = DBCustomer.getCustomer(uid);
                 customer.setAdviser((Employee) getUser(DBCustomer.getBankerid(uid)));
                 customer.setBankAccounts(DBAccount.getBankAccountsForCustomer(customer));
                 return customer;
             case 1:
-                Employee employee = new Employee(uid, getPassword(uid), getFirstname(uid), getLastname(uid), getBday(uid).toString(), getAddress(uid), getPlz(uid));
+                Employee employee = DBBanker.getEmployee(uid);
                 employee.setCustomers(DBCustomer.getCustomersForEmployee(employee));
                 return employee;
             default:
