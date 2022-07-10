@@ -134,7 +134,7 @@ public class DBAccount {
         ResultSet rs = ps.executeQuery();
 
         while(rs.next())  {
-            String accountid    = String.valueOf(rs.getInt("accountid"));
+            String accountid    = String.valueOf(rs.getString("accountid"));
             String name         = rs.getString("name");
             int balance         = rs.getInt("balance");
             int type            = rs.getInt("typ");
