@@ -26,6 +26,7 @@ import de.jprojekt.data.models.BankAccount;
 import de.jprojekt.data.models.Customer;
 import de.jprojekt.main.ApplicationController;
 import de.jprojekt.main.ApplicationData;
+import de.jprojekt.utils.BankingException;
 import de.jprojekt.utils.mysql.DBAccount;
 import de.jprojekt.utils.mysql.DBCustomer;
 
@@ -112,6 +113,10 @@ public class JFrameMoneyTransfer extends JFrame{
 						BankAccount Konto =(BankAccount) srcKonto.getSelectedItem();
 						ApplicationController.getInstance().getBankAccountController().transferMoney(Konto, DBAccount.getAccount(IBAN.getText()), (long) Integer.parseInt(Zweck.getText()));
 						JOptionPane.showMessageDialog(null, "Überweisung erfolgreich abgeschlossen!");
+						}
+						catch(BankingException e) {
+							JOptionPane.showMessageDialog(null, e.getMessage());
+							System.out.println(e.getMessage());
 						}
 						catch(Exception e){
 							JOptionPane.showMessageDialog(null, "Überweisung fehlgeschlagen!");

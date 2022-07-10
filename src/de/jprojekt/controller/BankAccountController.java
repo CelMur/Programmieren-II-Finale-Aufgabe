@@ -38,8 +38,8 @@ public class BankAccountController implements IBankAccountController {
         switch (type) {
             case 0:
                 try {
-                    String uuid = DBAccount.createAccount(user.getId(), name, type) ;
-                    if (uuid== null) {
+                    String uuid = DBAccount.createAccount(user.getId(), name, type);
+                    if (uuid == null) {
                         throw new BankingException("Dieses Konto existiert bereits.");
                     }
                     return new DepositAccount(name, user, uuid);
@@ -48,7 +48,7 @@ public class BankAccountController implements IBankAccountController {
                 }
             case 1:
                 try {
-                    String uuid = DBAccount.createAccount(user.getId(), name, type) ;
+                    String uuid = DBAccount.createAccount(user.getId(), name, type);
                     if (uuid == null) {
                         throw new BankingException("Dieses Konto existiert bereits.");
                     }
@@ -88,8 +88,8 @@ public class BankAccountController implements IBankAccountController {
         switch (type) {
             case 0:
                 try {
-                    String uuid = DBAccount.createAccount(user.getId(), name, type) ;
-                    if (uuid== null) {
+                    String uuid = DBAccount.createAccount(user.getId(), name, type);
+                    if (uuid == null) {
                         throw new BankingException("Dieses Konto existiert bereits.");
                     }
                     DepositAccount tmp = new DepositAccount(name, user, uuid);
@@ -100,27 +100,27 @@ public class BankAccountController implements IBankAccountController {
                 }
             case 1:
                 try {
-                    String uuid = DBAccount.createAccount(user.getId(), name, type) ;
-                    if (uuid== null) {
+                    String uuid = DBAccount.createAccount(user.getId(), name, type);
+                    if (uuid == null) {
                         throw new BankingException("Dieses Konto existiert bereits.");
                     }
                     SavingAccount tmp = new SavingAccount(name, user, uuid);
                     tmp.setLocked(false);
                     return tmp;
-                    
+
                 } catch (Exception ex) {
                     throw new BankingException("Es ist ein Fehler aufgetreten.");
                 }
             case 2:
                 try {
-                    String uuid = DBAccount.createAccount(user.getId(), name, type) ;
-                    if (uuid== null) {
+                    String uuid = DBAccount.createAccount(user.getId(), name, type);
+                    if (uuid == null) {
                         throw new BankingException("Dieses Konto existiert bereits.");
                     }
                     GiroAccount tmp = new GiroAccount(name, user, uuid);
                     tmp.setLocked(false);
                     return tmp;
-                    
+
                 } catch (Exception ex) {
                     throw new BankingException("Es ist ein Fehler aufgetreten.");
                 }
@@ -211,14 +211,14 @@ public class BankAccountController implements IBankAccountController {
             throw new BankingException("Es ist nur ein positiver Betrag erlaubt.");
         }
 
-        if(src instanceof SavingAccount) {
-            if(target.getCustomer() != src.getCustomer()) {
+        if (src instanceof SavingAccount) {
+            if (target.getCustomer() != src.getCustomer()) {
                 throw new BankingException("Tagesgeldkonten können nur an Konten des selben Nutzer überweisen.");
             }
         }
 
-        if(src instanceof DepositAccount || target instanceof DepositAccount) {
-            if(src.getCustomer() != target.getCustomer()) {
+        if (src instanceof DepositAccount || target instanceof DepositAccount) {
+            if (src.getCustomer() != target.getCustomer()) {
                 throw new BankingException("Aktiendepots sind vom regulären Zahlungsverkehr ausgeschlossen.");
             }
         }
@@ -253,19 +253,22 @@ public class BankAccountController implements IBankAccountController {
     }
 
     @Override
-    public void withdrawMoney(Customer c, BankAccount b, long amount) throws Exception {
-        if (c.getId() == b.getCustomer().getId()) {
-            if (amount < 0) {
-                throw new BankingException("Es ist nur ein positiver Betrag erlaubt.");
-            }
-            long balance = b.getBalance();
-            if (balance + b.getMaxDebt() < amount) {
-                throw new BankingException("Sie haben nicht genug Geld und können sich nicht (weiter) verschulden.");
-            }
-            DBAccount.setBalance(b.getName(), balance - amount);
-            b.setBalance(balance - amount);
-        } else {
+    public void withdrawMoney(Customer c, BankAccount b, long amount) throws BankingException {
+        if (c.getId() != b.getCustomer().getId()) {
             throw new BankingException("Sie sind nicht berechtigt, dieses Konto zu löschen.");
         }
+        if (amount < 0) {
+            throw new BankingException("Es ist nur ein positiver Betrag erlaubt.");
+        }
+        long balance = b.getBalance();
+        if (balance + b.getMaxDebt() < amount) {
+            throw new BankingException("Sie haben nicht genug Geld und können sich nicht (weiter) verschulden.");
+        }
+        try {
+            DBAccount.setBalance(b.getName(), balance - amount);
+        } catch (Exception ex) {
+            throw new BankingException("Fehler bei Kommunikation mit der Datenbank.");
+        }
+        b.setBalance(balance - amount);
     }
 }

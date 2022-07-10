@@ -16,7 +16,7 @@ public interface IBankAccountController {
 
     public void depositMoney(Customer u, BankAccount b, long amount) throws BankingException;
 
-    public void withdrawMoney(Customer c, BankAccount b, long amount) throws Exception;
+    public void withdrawMoney(Customer c, BankAccount b, long amount) throws BankingException;
 
     public void dissolve(BankAccount b) throws BankingException;
 
