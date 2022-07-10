@@ -56,11 +56,6 @@ public class JFrameMoneyTransfer extends JDialog{
 			JLabel lblBeschreibungsrc = new JLabel("Ursprungskonto");
 			add(lblBeschreibungsrc);
 			add(cboSrcKonto);
-	
-			JLabel lblBeschreibungName = new JLabel("txtName");
-			add (lblBeschreibungName);
-			txtName = new JTextField(15);
-			add (txtName);
 			
 			JLabel lblBeschreibungIban = new JLabel("Kontonummer");
 			add (lblBeschreibungIban);

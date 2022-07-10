@@ -1,5 +1,7 @@
 package de.jprojekt.view.actions;
 
+import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +46,9 @@ public class ActionShowBankingAccountsEmployee extends AbstractActionAdapter{
 		//TODO:
 		JPanel p = new JPanelKontenUebersicht(list);
 		
-		
+		Container c = frame.getContentPane();
+		c.setLayout(new BorderLayout());
+		c.add(p, BorderLayout.CENTER);
 		
 		dialog.setTitle("Zugewiesene Konten");
 		dialog.setSize(200, 400);
