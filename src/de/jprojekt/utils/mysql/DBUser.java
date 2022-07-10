@@ -173,7 +173,7 @@ public class DBUser {
             throw new Exception("Vorname ist ungültig");
         }
         if(!Checks.isPassword(nonHashedPassword)){
-            throw new Exception("Passwort ist ungültig");
+            throw new Exception("Passwort ist ungültig. Passwort muss min. 8 Zeichen lang sein, ein Großbuchstaben, eine Zahl und ein Sonderzeichen beinhalten.");
         }
         if(Checks.isNull(address)){
             throw new Exception("Adresse ist ungültig");
