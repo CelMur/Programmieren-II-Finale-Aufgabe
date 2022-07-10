@@ -1,12 +1,18 @@
 package de.jprojekt.view.actions;
 
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 
 import de.jprojekt.controller.interfaces.IEmployeeController;
+import de.jprojekt.data.models.BankAccount;
+import de.jprojekt.data.models.Customer;
+import de.jprojekt.data.models.Employee;
 import de.jprojekt.main.ApplicationController;
+import de.jprojekt.main.ApplicationData;
 import de.jprojekt.view.frames.JDialogNewEmpolyee;
 import de.jprojekt.view.frames.JFrameAdapter;
 import de.jprojekt.view.frames.JPanelKontenUebersicht;
@@ -22,11 +28,21 @@ public class ActionShowBankingAccountsEmployee extends AbstractActionAdapter{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		ApplicationController appController = ApplicationController.getInstance();
-		//IEmployeeController controller = appController.getEmployeeController(); 
+		ApplicationData appData = ApplicationData.getInstance();
+		
+		Employee employee = (Employee) appData.getCurrentUser();
 		JFrameAdapter frame = getFrame();
 		
 		JDialog dialog = new JDialog(frame);
-		JPanel p = new JPanelKontenUebersicht(null);
+		
+		List<BankAccount> list = new ArrayList<BankAccount>();
+		
+		for (Customer c : employee.getCustomers()) {
+			list.addAll(c.getBankAccounts());
+		}
+		
+		//TODO:
+		JPanel p = new JPanelKontenUebersicht(list);
 		
 		
 		
