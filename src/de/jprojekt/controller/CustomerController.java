@@ -53,15 +53,14 @@ public class CustomerController implements ICustomerController {
     }
 
     @Override
-    public void create(Customer customer) {
+    public void create(Customer customer) throws BankingException {
         try {
             customer.setId(DBUser.createUser(customer.getLastname(), customer.getFirstname(), customer.getPassword(),
                     customer.getAddress(), customer.getPlz(), customer.getBday(), User.TYPE_CUSTOMER));
             DBCustomer.createCustomer(customer.getId(), customer.getAdviser().getId());
         } catch (Exception e) {
-            System.out.println("Kunde konnte nicht erstellt werden.");
+            throw new BankingException(e.getMessage());
         }
-
     }
 
     @Override

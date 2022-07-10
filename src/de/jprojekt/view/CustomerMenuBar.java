@@ -11,7 +11,7 @@ import de.jprojekt.view.actions.ActionDepositMoney;
 import de.jprojekt.view.actions.ActionEditCustomer;
 import de.jprojekt.view.actions.ActionLogout;
 import de.jprojekt.view.actions.ActionNewBankAccount;
-import de.jprojekt.view.actions.ActionResetPassword;
+import de.jprojekt.view.actions.ActionChangePassword;
 import de.jprojekt.view.actions.ActionTransferMoney;
 import de.jprojekt.view.actions.ActionWithdrawMoney;
 import de.jprojekt.view.frames.JFrameAdapter;
@@ -35,7 +35,7 @@ public class CustomerMenuBar extends JMenuBar{
 		actDepostiMoney = new ActionDepositMoney(frame);
 		actEditCustomer = new ActionEditCustomer(frame);
 		actNewBankAccount = new ActionNewBankAccount(frame);
-		actResetPassword = new ActionResetPassword(frame);
+		actResetPassword = new ActionChangePassword(frame);
 		actTransferMoney = new ActionTransferMoney(frame);
 		actWithdrawMoney = new ActionWithdrawMoney(frame);
 		
