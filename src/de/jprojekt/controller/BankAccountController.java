@@ -220,6 +220,12 @@ public class BankAccountController implements IBankAccountController {
             }
         }
 
+        if(src instanceof DepositAccount || target instanceof DepositAccount) {
+            if(src.getCustomer() != target.getCustomer()) {
+                throw new BankingException("Aktiendepots sind vom regulären Zahlungsverkehr ausgeschlossen.");
+            }
+        }
+
         try {
             if (DBAccount.setBalance(src.getName(), srcBalance - amount) == 1
                     && DBAccount.setBalance(target.getName(), targetBalance + amount) == 1) {
@@ -257,7 +263,7 @@ public class BankAccountController implements IBankAccountController {
             }
             long balance = b.getBalance();
             if (balance + b.getMaxDebt() < amount) {
-                throw new BankingException("Sie haben nicht genug Geld.");
+                throw new BankingException("Sie haben nicht genug Geld und können sich nicht (weiter) verschulden.");
             }
             DBAccount.setBalance(b.getName(), balance - amount);
             b.setBalance(balance - amount);
