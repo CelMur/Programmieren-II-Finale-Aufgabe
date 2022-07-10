@@ -27,20 +27,22 @@ public class JDialogEditCustomer extends JDialog {
 	
 	
 	private ICustomerController controller;
+	
+	private Customer customer;
 
 	
-	public JDialogEditCustomer(JFrameAdapter owner, ICustomerController controller){
+	public JDialogEditCustomer(JFrameAdapter owner, ICustomerController controller, Customer customer){
 		super(owner);
 		this.controller = controller;
+		this.customer = customer;
 		
 		initializeComponent();
+		initializeValues();
 	}
 	
 	
 	private void initializeComponent() {
 		setLayout(new FlowLayout());
-		
-		
 		
 		JLabel lblVorname = new JLabel("*Vorname: ");
 		add (lblVorname);
@@ -64,7 +66,7 @@ public class JDialogEditCustomer extends JDialog {
 		txtPlz = new JTextField(15);
 		add (txtPlz);
 		
-		btnUpdateUser = new JButton("Änderungen speichern");
+		btnUpdateUser = new JButton("ï¿½nderungen speichern");
 		add(btnUpdateUser);
 		
 		//NewUserhandler handler = new NewUserhandler();
@@ -72,9 +74,9 @@ public class JDialogEditCustomer extends JDialog {
 			
 			try {
 				validateData();
+				updateData();
 				
-				Customer c = createCustomer();
-				controller.update(c);
+				controller.update(customer);
 			}catch(BankingException e) {
 				showDialog(e.getMessage());
 			}catch(Exception e) {
@@ -85,19 +87,22 @@ public class JDialogEditCustomer extends JDialog {
 		
 	}
 	
-	protected Customer createCustomer() {
-		Customer c = new Customer();
-		c.setFirstname(txtVorname.getText());
-		c.setLastname(txtNachname.getText());
-		c.setAddress(txtAdresse.getText());
-		c.setPlz(Integer.getInteger(txtPlz.getText()));
-		
-		return c;
+	private void initializeValues() {
+		txtVorname.setText(customer.getFirstname());
+		txtNachname.setText(customer.getLastname());
 	}
 	
-	protected void validateData() throws BankingException {
+	private void updateData() {
+		
+		customer.setFirstname(txtVorname.getText());
+		customer.setLastname(txtNachname.getText());
+		customer.setAddress(txtAdresse.getText());
+		customer.setPlz(Integer.parseInt(txtPlz.getText()));
+	}
+	
+	private void validateData() throws BankingException {
 		if(isAnyDataEmpty()) {
-			throw new BankingException("Bitte Füllen Sie alle mit '*' markierten Datenfelder aus.");
+			throw new BankingException("Bitte Fï¿½llen Sie alle mit '*' markierten Datenfelder aus.");
 		}
 		
 		checkVorname();
@@ -105,29 +110,29 @@ public class JDialogEditCustomer extends JDialog {
 		checkPlz();
 	}
 	
-	protected void checkVorname() throws BankingException{
+	private void checkVorname() throws BankingException{
 		String vorname = txtVorname.getText();
 		
 		if(!Checks.isName(vorname))
-			throw new BankingException("Vorname ist ungültig");
+			throw new BankingException("Vorname ist ungï¿½ltig");
 	}
 	
-	protected void checkNachname() throws BankingException{
+	private void checkNachname() throws BankingException{
 		String nachname = txtNachname.getText();
 		
 		if(!Checks.isName(nachname))
-			throw new BankingException("Nachname ist ungültig");
+			throw new BankingException("Nachname ist ungï¿½ltig");
 	}
 	
-	protected void checkPlz() throws BankingException{
+	private void checkPlz() throws BankingException{
 		String plz = txtPlz.getText();
 		
 		if(!Checks.isPLZ(plz))
-			throw new BankingException("PLZ ist ungültig");
+			throw new BankingException("PLZ ist ungï¿½ltig");
 	}
 	
 	
-	protected boolean isAnyDataEmpty() {
+	private boolean isAnyDataEmpty() {
 		if (txtVorname.getText().equals("")) return true;
 		if (txtNachname.getText().equals(""))return true;
 		if (txtAdresse.getText().equals(""))return true;
@@ -137,7 +142,7 @@ public class JDialogEditCustomer extends JDialog {
 	}
 	
 	
-	protected void showDialog(String message) {
+	private void showDialog(String message) {
 		JOptionPane.showMessageDialog(this.getOwner(), message);
 	}
 }
