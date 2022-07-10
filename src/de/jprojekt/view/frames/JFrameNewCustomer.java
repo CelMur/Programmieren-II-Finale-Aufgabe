@@ -1,6 +1,8 @@
 package de.jprojekt.view.frames;
 
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -16,96 +18,88 @@ import de.jprojekt.main.ApplicationData;
 import de.jprojekt.utils.BankingException;
 import de.jprojekt.utils.Checks;
 
-
 public class JFrameNewCustomer extends JDialog {
-	
+
 	protected JTextField txtVorname;
 	protected JTextField txtNachname;
 	protected JTextField txtAdresse;
 	protected JTextField txtPlz;
-	
-	
-	
+
 	protected JButton btnCreateUser;
 	protected JPasswordField txtPassword;
 	protected JPasswordField txtRepeatPassword;
-	
-	
+
 	private ICustomerController controller;
 	private ApplicationData appData;
 
-	
-	public JFrameNewCustomer(JFrameAdapter owner, ICustomerController controller){
+	public JFrameNewCustomer(JFrameAdapter owner, ICustomerController controller) {
 		super(owner);
 		this.controller = controller;
 		initializeComponent();
 		appData = ApplicationData.getInstance();
 	}
-	
-	
+
 	private void initializeComponent() {
 		setLayout(new FlowLayout());
-		
-		
-		
+
 		JLabel lblVorname = new JLabel("*Vorname: ");
-		add (lblVorname);
+		add(lblVorname);
 		txtVorname = new JTextField(15);
-		add (txtVorname);
+		add(txtVorname);
 		JLabel lblNachname = new JLabel("*Nachname: ");
-		add (lblNachname);
+		add(lblNachname);
 		txtNachname = new JTextField(15);
-		add (txtNachname);
-		//JLabel lblBDay = new JLabel("*Geburtstag: ");
-		//add(lblBDay);
-		
-		
-		
+		add(txtNachname);
+		// JLabel lblBDay = new JLabel("*Geburtstag: ");
+		// add(lblBDay);
+
 		JLabel adresse = new JLabel("*Adresse: ");
-		add (adresse);
+		add(adresse);
 		txtAdresse = new JTextField(15);
-		add (txtAdresse);
+		add(txtAdresse);
 		JLabel plz = new JLabel("*PLZ: ");
-		add (plz);
+		add(plz);
 		txtPlz = new JTextField(15);
-		add (txtPlz);
-		
-		
+		add(txtPlz);
+
 		JLabel label2 = new JLabel("*Passwort: ");
-		add (label2);
+		add(label2);
 		txtPassword = new JPasswordField(15);
-		add (txtPassword);
+		add(txtPassword);
 		JLabel repasswort = new JLabel("*Passwort wiederholen: ");
-		add (repasswort);
+		add(repasswort);
 		txtRepeatPassword = new JPasswordField(15);
-		add (txtRepeatPassword);
+		add(txtRepeatPassword);
 
 		btnCreateUser = new JButton("Nutzer erstellen");
 		add(btnCreateUser);
-		
+
 		btnCreateUser.addActionListener(handler -> {
-			
+
 			try {
 				validatePassword();
 				validateData();
-				
+
 				Customer c = createCustomer();
 				controller.create(c);
-				showDialog("Neuer Kunde wurde erfolgreich angelegt");
+				StringSelection selection = new StringSelection(c.getId());
+				Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, selection);
+
+				showDialog("Bitte notieren Sie sich folgende Login-ID (ins Clipboard kopiert): " + c.getId());
 				setVisible(false);
-			}catch(BankingException e) {
+			} catch (BankingException e) {
 				showDialog(e.getMessage());
-			}catch(Exception e) {
+			} catch (Exception e) {
 				showDialog("Es ist ein Fehler aufgetreten.");
 			}
-			
+
 		});
-		
+
 	}
-	
+
 	protected Customer createCustomer() {
 		Customer c = new Customer();
-		c.setAdviser((Employee)appData.getCurrentUser());
+		c.setAdviser((Employee) appData.getCurrentUser());
 		c.setFirstname(txtVorname.getText());
 		c.setLastname(txtNachname.getText());
 		c.setAddress(txtAdresse.getText());
@@ -114,84 +108,82 @@ public class JFrameNewCustomer extends JDialog {
 		c.setBday("2022-07-10");
 		return c;
 	}
-	
-	
-	protected void validatePassword() throws BankingException{
+
+	protected void validatePassword() throws BankingException {
 		String password = new String(txtPassword.getPassword());
 		String repeatPassword = new String(txtRepeatPassword.getPassword());
-		
+
 		checkPasswordEquals(password, repeatPassword);
 		checkPasswordIsSet(password);
 		checkReapeatPasswordIsSet(repeatPassword);
 		checkPassword(password);
 	}
-	
+
 	protected void checkPasswordEquals(String password, String repeatPassword) throws BankingException {
-		if (!password.equals(repeatPassword)) 
-			throw new BankingException("Passwort und Passwort-Wdh. stimmen nicht überein.");
+		if (!password.equals(repeatPassword))
+			throw new BankingException("Passwort und Passwort-Wdh. stimmen nicht ï¿½berein.");
 	}
-	
+
 	protected void checkPasswordIsSet(String password) throws BankingException {
-		if (password.equals("")) 
+		if (password.equals(""))
 			throw new BankingException("Passwort darf nicht leer sein");
 	}
-	
+
 	protected void checkReapeatPasswordIsSet(String repeatPassword) throws BankingException {
-		if (repeatPassword.equals("")) 
+		if (repeatPassword.equals(""))
 			throw new BankingException("Passwort-Wdh. darf nicht leer sein");
-	}	
-	
-	protected void checkPassword(String password) throws BankingException {
-		if(!Checks.isPassword(password)) 
-			throw new BankingException("Passwort ist ungültig");
 	}
-	
-	
+
+	protected void checkPassword(String password) throws BankingException {
+		if (!Checks.isPassword(password))
+			throw new BankingException("Passwort ist ungï¿½ltig");
+	}
+
 	protected void validateData() throws BankingException {
-		if(isAnyDataEmpty()) {
-			throw new BankingException("Bitte Füllen Sie alle mit '*' markierten Datenfelder aus.");
+		if (isAnyDataEmpty()) {
+			throw new BankingException("Bitte Fï¿½llen Sie alle mit '*' markierten Datenfelder aus.");
 		}
-		
+
 		checkVorname();
 		checkNachname();
 		checkPlz();
 	}
-	
-	protected void checkVorname() throws BankingException{
+
+	protected void checkVorname() throws BankingException {
 		String vorname = txtVorname.getText();
-		
-		if(!Checks.isName(vorname))
-			throw new BankingException("Vorname ist ungültig");
+
+		if (!Checks.isName(vorname))
+			throw new BankingException("Vorname ist ungï¿½ltig");
 	}
-	
-	protected void checkNachname() throws BankingException{
+
+	protected void checkNachname() throws BankingException {
 		String nachname = txtNachname.getText();
-		
-		if(!Checks.isName(nachname))
-			throw new BankingException("Nachname ist ungültig");
+
+		if (!Checks.isName(nachname))
+			throw new BankingException("Nachname ist ungï¿½ltig");
 	}
-	
-	protected void checkPlz() throws BankingException{
+
+	protected void checkPlz() throws BankingException {
 		String plz = txtPlz.getText();
-		
-		if(!Checks.isPLZ(plz))
-			throw new BankingException("PLZ ist ungültig");
+
+		if (!Checks.isPLZ(plz))
+			throw new BankingException("PLZ ist ungï¿½ltig");
 	}
-	
-	
+
 	protected boolean isAnyDataEmpty() {
-		if (txtVorname.getText().equals("")) return true;
-		if (txtNachname.getText().equals(""))return true;
-		if (txtAdresse.getText().equals(""))return true;
-		if(txtPlz.getText().equals(""))return true;
-		
+		if (txtVorname.getText().equals(""))
+			return true;
+		if (txtNachname.getText().equals(""))
+			return true;
+		if (txtAdresse.getText().equals(""))
+			return true;
+		if (txtPlz.getText().equals(""))
+			return true;
+
 		return false;
 	}
-	
-	
+
 	protected void showDialog(String message) {
 		JOptionPane.showMessageDialog(this.getOwner(), message);
 	}
 }
-
-
