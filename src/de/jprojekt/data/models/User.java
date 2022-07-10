@@ -43,11 +43,7 @@ public abstract class User {
 	}
 
 	public String getPassword() {
-		try{
-			return DBUser.getPassword(this.id);}
-		catch(Exception e){
-			return null;
-		}
+		return this.password;
 	}
 
 	public void setPassword(String password) {
