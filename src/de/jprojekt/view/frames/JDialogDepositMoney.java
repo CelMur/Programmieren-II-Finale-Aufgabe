@@ -58,7 +58,7 @@ public class JDialogDepositMoney extends JDialog{
 				long betrag=Integer.parseInt(money.getText());
 				
 				try {
-					//TODO:
+					//TODO: null parameter muss durch konto ersetzt werden
 					controller.depositMoney(currentUser, null, betrag);
 				} catch (BankingException e) {
 					// TODO Auto-generated catch block
