@@ -1,26 +1,16 @@
 package de.jprojekt.view.frames;
 
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import de.jprojekt.controller.interfaces.ICustomerController;
 import de.jprojekt.data.models.Customer;
-import de.jprojekt.main.ApplicationData;
 import de.jprojekt.utils.BankingException;
 import de.jprojekt.utils.Checks;
 

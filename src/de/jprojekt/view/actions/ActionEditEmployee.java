@@ -9,7 +9,7 @@ public class ActionEditEmployee extends AbstractActionAdapter{
 	public ActionEditEmployee(JFrameAdapter frame) {
 		super(frame);
 		
-		putValue(NAME, "Profiel bearbeiten");
+		putValue(NAME, "Profil bearbeiten");
 		putValue(SHORT_DESCRIPTION, "zeigt einen Dialog zum bearbeiten der Banker-Daten an");
 	}
 }

@@ -1,5 +1,7 @@
 package de.jprojekt.main;
 
+import de.jprojekt.controller.CustomerController;
+import de.jprojekt.controller.EmployeeController;
 import de.jprojekt.controller.MySqlDbConnector;
 import de.jprojekt.controller.SessionController;
 import de.jprojekt.controller.interfaces.ICustomerController;
@@ -49,6 +51,8 @@ public class ApplicationController {
 		
 		dbConnector = new MySqlDbConnector();
 		sessionController = new SessionController();
+		customerController = new CustomerController();
+		employeeController = new EmployeeController();
 	}
 	
 	

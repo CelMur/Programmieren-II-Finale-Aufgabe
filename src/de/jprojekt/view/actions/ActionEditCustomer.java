@@ -9,7 +9,7 @@ public class ActionEditCustomer extends AbstractActionAdapter{
 	public ActionEditCustomer(JFrameAdapter frame) {
 		super(frame);
 		
-		putValue(NAME, "Kude bearbeiten");
+		putValue(NAME, "Kunde bearbeiten");
 		putValue(SHORT_DESCRIPTION, "zeigt einen Dialog zum bearbeiten der Kunden-Daten an");
 	}
 }

@@ -45,7 +45,7 @@ public class ActionLogin extends AbstractActionAdapter{
 			
 		}catch(Exception ex) {
 			JFrameAdapter parent = getFrame();
-			JOptionPane.showMessageDialog(parent, ex.getMessage());
+			JOptionPane.showMessageDialog(parent, "Login Fehlgeschlagen.");
 		}
 		
 	}
