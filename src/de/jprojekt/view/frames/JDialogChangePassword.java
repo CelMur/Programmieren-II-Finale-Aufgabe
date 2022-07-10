@@ -13,10 +13,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
 public class JDialogChangePassword extends JFrame{ 
-	private JPasswordField OldPW;
-	private JPasswordField newPW;
-	private JPasswordField reNewPW;
-	private JButton change;
+	private JPasswordField txtOldPassword;
+	private JPasswordField txtNewPassword;
+	private JPasswordField txtReapeatNewPassword;
+	private JButton btnChangePassword;
 	private JLabel label1;
 	private JLabel label2;
 	private JLabel label3;
@@ -31,8 +31,8 @@ public class JDialogChangePassword extends JFrame{
 		up.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 		JLabel label1 = new JLabel("Altes Passwort");
 		add (label1);		
-		OldPW =  new JPasswordField(15);
-		add (OldPW);
+		txtOldPassword =  new JPasswordField(15);
+		add (txtOldPassword);
 		
 		
 		lp = new JPanel();
@@ -40,25 +40,25 @@ public class JDialogChangePassword extends JFrame{
 		JLabel label2 = new JLabel("Neues Passwort");
 		add (label2);
 		
-		newPW = new JPasswordField(15);
-		add (newPW);
+		txtNewPassword = new JPasswordField(15);
+		add (txtNewPassword);
 		
 		JLabel label3 = new JLabel("Neues Passwort wiederholen");
 		add (label3);
 		
-		reNewPW = new JPasswordField(15);
-		add (reNewPW);
+		txtReapeatNewPassword = new JPasswordField(15);
+		add (txtReapeatNewPassword);
 		
-		change = new JButton("Passwort ändern");
-		add(change);
+		btnChangePassword = new JButton("Passwort ändern");
+		add(btnChangePassword);
 		
 		
 		
 		PasswordHandler handler = new PasswordHandler();
-		OldPW.addActionListener(handler);
-		newPW.addActionListener(handler);
-		reNewPW.addActionListener(handler);
-		change.addActionListener(handler);
+		txtOldPassword.addActionListener(handler);
+		txtNewPassword.addActionListener(handler);
+		txtReapeatNewPassword.addActionListener(handler);
+		btnChangePassword.addActionListener(handler);
 	}
 	
 	private class PasswordHandler implements ActionListener{
@@ -67,14 +67,14 @@ public class JDialogChangePassword extends JFrame{
 		public void actionPerformed(ActionEvent event) {
 			String string = "";
 						
-		if (event.getSource()==change){
-			String strOldPW = new String(OldPW.getPassword());
+		if (event.getSource()==btnChangePassword){
+			String strOldPW = new String(txtOldPassword.getPassword());
 				if (strOldPW.equals("test")){
 					//TEST ENTFERNEN UND DURCH PARAMETER ERSETZEN !!!
-					string=String.format("reNewPW: %s", event.getActionCommand());
-					String strReNewPW = new String(reNewPW.getPassword());
-					string=String.format("newPW: %s", event.getActionCommand());
-					String strNewPW = new String(newPW.getPassword());
+					string=String.format("txtReapeatNewPassword: %s", event.getActionCommand());
+					String strReNewPW = new String(txtReapeatNewPassword.getPassword());
+					string=String.format("txtNewPassword: %s", event.getActionCommand());
+					String strNewPW = new String(txtNewPassword.getPassword());
 					 if (strNewPW.equals(strReNewPW)){
 						//PASSWORTVARIABEL = strNewPW
 						JOptionPane.showMessageDialog(null, "Passwort geändert!");}}
