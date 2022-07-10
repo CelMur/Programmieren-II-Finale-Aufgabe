@@ -29,7 +29,7 @@ public class ActionWithdrawMoney extends AbstractActionAdapter{
 		JDialog dialog = new JDialogWithdrawMoney(frame, controller);
 		
 		
-		dialog.setTitle("Neuer Kunde");
+		dialog.setTitle("Geld Abheben");
 		dialog.setSize(200, 400);
 		dialog.setLocationRelativeTo(null);
 		dialog.setResizable(false);
