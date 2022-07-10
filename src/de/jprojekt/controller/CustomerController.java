@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import de.jprojekt.controller.interfaces.ICustomerController;
 import de.jprojekt.data.models.BankAccount;
 import de.jprojekt.data.models.Customer;
+import de.jprojekt.data.models.Employee;
 import de.jprojekt.utils.BankingException;
 import de.jprojekt.utils.Krypto;
 import de.jprojekt.utils.mysql.DBAccount;
@@ -53,10 +54,11 @@ public class CustomerController implements ICustomerController {
     }
 
     @Override
-    public void create(Customer customer) {
+    public void create(Customer customer, Employee e) {
         try{
            
             customer.setId(DBUser.createUser(customer.getLastname(), customer.getFirstname(), customer.getPassword(), customer.getAddress(), customer.getPlz(), customer.getBday(), 0));	
+            customer.setAdviser(e);
             DBCustomer.createCustomer(customer.getId(), customer.getAdviser().getId());
         }catch(Exception e){
             System.out.println("Kunde konnte nicht erstellt werden.");
