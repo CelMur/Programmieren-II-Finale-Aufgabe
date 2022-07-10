@@ -42,7 +42,6 @@ public class BankAccountController implements IBankAccountController {
                     if (uuid== null) {
                         throw new BankingException("Dieses Konto existiert bereits.");
                     }
-                    ;
                     return new DepositAccount(name, user, uuid);
                 } catch (Exception ex) {
                     throw new BankingException("Es ist ein Fehler aufgetreten.");
@@ -53,7 +52,6 @@ public class BankAccountController implements IBankAccountController {
                     if (uuid == null) {
                         throw new BankingException("Dieses Konto existiert bereits.");
                     }
-                    ;
                     return new SavingAccount(name, user, uuid);
                 } catch (Exception ex) {
                     throw new BankingException("Es ist ein Fehler aufgetreten.");
@@ -64,7 +62,6 @@ public class BankAccountController implements IBankAccountController {
                     if (uuid == null) {
                         throw new BankingException("Dieses Konto existiert bereits.");
                     }
-                    ;
                     return new GiroAccount(name, user, uuid);
                 } catch (Exception ex) {
                     throw new BankingException("Es ist ein Fehler aufgetreten.");
@@ -95,7 +92,6 @@ public class BankAccountController implements IBankAccountController {
                     if (uuid== null) {
                         throw new BankingException("Dieses Konto existiert bereits.");
                     }
-                    ;
                     DepositAccount tmp = new DepositAccount(name, user, uuid);
                     tmp.setLocked(false);
                     return tmp;
@@ -108,7 +104,6 @@ public class BankAccountController implements IBankAccountController {
                     if (uuid== null) {
                         throw new BankingException("Dieses Konto existiert bereits.");
                     }
-                    ;
                     SavingAccount tmp = new SavingAccount(name, user, uuid);
                     tmp.setLocked(false);
                     return tmp;
@@ -122,7 +117,6 @@ public class BankAccountController implements IBankAccountController {
                     if (uuid== null) {
                         throw new BankingException("Dieses Konto existiert bereits.");
                     }
-                    ;
                     GiroAccount tmp = new GiroAccount(name, user, uuid);
                     tmp.setLocked(false);
                     return tmp;
