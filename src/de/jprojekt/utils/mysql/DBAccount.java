@@ -19,7 +19,7 @@ public class DBAccount {
         ps.setString(4, customerid);
         ps.setString(5, name);
         ps.setInt(6, 0);
-        ps.setInt(7,0);
+        ps.setInt(7,1);
         ps.executeUpdate();
         ps.close();
 
