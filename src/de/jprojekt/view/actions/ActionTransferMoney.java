@@ -26,16 +26,16 @@ public class ActionTransferMoney extends AbstractActionAdapter{
 		ApplicationController appController = ApplicationController.getInstance();
 		IBankAccountController controller = appController.getBankAccountController();
 		JFrameAdapter frame = getFrame();
-		/*
-		JDialog dialog = new JFrameMoneyTransfer();
+		
+		JDialog dialog = new JFrameMoneyTransfer(getFrame(), controller);
 		
 		
-		dialog.setTitle("Neuer Kunde");
+		dialog.setTitle("Geld Überweisen");
 		dialog.setSize(200, 400);
 		dialog.setLocationRelativeTo(null);
 		dialog.setResizable(false);
 		dialog.setVisible(true);
-		*/
+		
 		
 	}
 
