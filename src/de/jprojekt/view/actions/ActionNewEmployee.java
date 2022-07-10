@@ -11,8 +11,8 @@ import de.jprojekt.controller.interfaces.IEmployeeController;
 import de.jprojekt.main.ApplicationController;
 import de.jprojekt.view.GuiMessages;
 import de.jprojekt.view.frames.JFrameAdapter;
-import de.jprojekt.view.frames.NewCustomerFrame;
-import de.jprojekt.view.frames.NewEmployeeFrame;
+import de.jprojekt.view.frames.JFrameNewCustomer;
+import de.jprojekt.view.frames.JFrameNewEmpolyee;
 
 public class ActionNewEmployee extends AbstractActionAdapter{
 
@@ -29,7 +29,7 @@ public class ActionNewEmployee extends AbstractActionAdapter{
 		IEmployeeController controller = appController.getEmployeeController(); 
 		JFrameAdapter frame = getFrame();
 		
-		JDialog dialog = new NewEmployeeFrame(frame, controller);
+		JDialog dialog = new JFrameNewEmpolyee(frame, controller);
 		
 		dialog.setTitle("Neuer Banker");
 		dialog.setSize(200, 400);

@@ -8,8 +8,8 @@ import de.jprojekt.data.models.Employee;
 import de.jprojekt.data.models.User;
 import de.jprojekt.view.factories.MenuBarFactory;
 import de.jprojekt.view.frames.JFrameAdapter;
-import de.jprojekt.view.frames.LoginFrame;
-import de.jprojekt.view.frames.MainFrame;
+import de.jprojekt.view.frames.JFrameLogin;
+import de.jprojekt.view.frames.JFrameMain;
 
 public class ApplicationGui {
 	
@@ -69,12 +69,12 @@ public class ApplicationGui {
 	}
 	
 	private void showLoginFrame() {
-		currentFrame = new LoginFrame(this);
+		currentFrame = new JFrameLogin(this);
 		currentFrame.setVisible(true);
 	}
 	
 	private void showMainFrame() {
-		currentFrame = new MainFrame(this);
+		currentFrame = new JFrameMain(this);
 		currentFrame.setVisible(true);
 		
 	}

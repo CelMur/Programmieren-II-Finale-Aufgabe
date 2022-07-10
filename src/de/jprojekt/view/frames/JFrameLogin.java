@@ -20,7 +20,7 @@ import de.jprojekt.main.ApplicationGui;
 import de.jprojekt.view.actions.ActionLogin;
 import de.jprojekt.view.models.LoginData;
 
-public class LoginFrame extends JFrameAdapter{
+public class JFrameLogin extends JFrameAdapter{
 	private JTextField fieldUsername;
 	private JPasswordField fieldPassword;
 	private JButton btnLogin;
@@ -30,7 +30,7 @@ public class LoginFrame extends JFrameAdapter{
 	
 	private final AbstractAction actLogin;
 		
-	public LoginFrame(ApplicationGui gui) {
+	public JFrameLogin(ApplicationGui gui) {
 		this.gui = gui;
 		
 		session = gui.getApp().getSessionController();

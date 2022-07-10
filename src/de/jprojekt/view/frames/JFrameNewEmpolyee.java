@@ -24,7 +24,7 @@ import de.jprojekt.utils.BankingException;
 import de.jprojekt.utils.Checks;
 
 
-public class NewEmployeeFrame extends JDialog {
+public class JFrameNewEmpolyee extends JDialog {
 	
 	protected JTextField txtVorname;
 	protected JTextField txtNachname;
@@ -37,7 +37,7 @@ public class NewEmployeeFrame extends JDialog {
 	private IEmployeeController controller;
 
 	
-	public NewEmployeeFrame(JFrameAdapter owner, IEmployeeController controller){
+	public JFrameNewEmpolyee(JFrameAdapter owner, IEmployeeController controller){
 		super(owner);
 		this.controller = controller;
 		initializeComponent();

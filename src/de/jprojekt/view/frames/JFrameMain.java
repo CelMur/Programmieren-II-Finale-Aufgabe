@@ -20,7 +20,7 @@ import de.jprojekt.view.CustomerMenuBar;
 import de.jprojekt.view.EmployeeMenuBar;
 import de.jprojekt.view.factories.MenuBarFactory;
 
-public class MainFrame extends JFrameAdapter implements ActionListener{
+public class JFrameMain extends JFrameAdapter implements ActionListener{
 
 	
 	private ApplicationGui gui;
@@ -28,7 +28,7 @@ public class MainFrame extends JFrameAdapter implements ActionListener{
 	private MenuBarFactory menuBarFactory;
 	
 	
-	public MainFrame(ApplicationGui gui) {
+	public JFrameMain(ApplicationGui gui) {
 		this.gui = gui;
 		
 		initialize();
