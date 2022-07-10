@@ -10,6 +10,7 @@ import de.jprojekt.controller.interfaces.ICustomerController;
 import de.jprojekt.controller.interfaces.IDBConnector;
 import de.jprojekt.controller.interfaces.IEmployeeController;
 import de.jprojekt.controller.interfaces.ISessionController;
+import de.jprojekt.controller.interfaces.IUserController;
 import de.jprojekt.controller.mockups.MockupSessionControllerLoginAsCustomer;
 
 import java.sql.SQLException;
@@ -122,7 +123,7 @@ public class ApplicationController {
 	public ICustomerController getCustomerController() {
 		return this.customerController;
 	}
-	
+
 	public IEmployeeController getEmployeeController() {
 		return this.employeeController;
 	}

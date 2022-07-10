@@ -1,8 +1,7 @@
 package de.jprojekt.controller;
 
-import java.sql.SQLException;
-
 import de.jprojekt.controller.interfaces.IEmployeeController;
+import de.jprojekt.controller.interfaces.IUserController;
 import de.jprojekt.data.models.Customer;
 import de.jprojekt.data.models.Employee;
 import de.jprojekt.data.models.User;
@@ -11,7 +10,7 @@ import de.jprojekt.utils.mysql.DBBanker;
 import de.jprojekt.utils.mysql.DBCustomer;
 import de.jprojekt.utils.mysql.DBUser;
 
-public class EmployeeController extends UserController implements IEmployeeController {
+public class EmployeeController extends UserController implements IEmployeeController, IUserController {
     /**
      * @param e
      * @throws BankingException

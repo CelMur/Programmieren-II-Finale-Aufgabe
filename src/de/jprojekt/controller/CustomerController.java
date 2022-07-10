@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import de.jprojekt.controller.interfaces.ICustomerController;
+import de.jprojekt.controller.interfaces.IUserController;
 import de.jprojekt.data.models.BankAccount;
 import de.jprojekt.data.models.Customer;
 import de.jprojekt.data.models.Employee;
@@ -15,12 +16,8 @@ import de.jprojekt.utils.mysql.DBAccount;
 import de.jprojekt.utils.mysql.DBCustomer;
 import de.jprojekt.utils.mysql.DBUser;
 
-public class CustomerController implements ICustomerController {
+public class CustomerController extends UserController implements ICustomerController, IUserController {
 
-    /**
-     * 
-     * Params can be null or Fields to update
-     */
     @Override
     public void update(Customer c) throws BankingException {
         if (c == null) {
@@ -28,13 +25,9 @@ public class CustomerController implements ICustomerController {
         }
         try {
             DBCustomer.setBankerid(c.getId(), c.getAdviser().getId());
-            DBUser.setAddress(c.getId(), c.getAddress());
-            DBUser.setBday(c.getId(), c.getBday());
-            DBUser.setPlz(c.getId(), c.getPlz());
-            DBUser.setFirstname(c.getId(), c.getFirstname());
-            DBUser.setLastname(c.getId(), c.getLastname());
+            super.update(c);
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new BankingException("Es ist ein Fehler aufgetreten.");
         }
 
@@ -65,31 +58,10 @@ public class CustomerController implements ICustomerController {
 
     @Override
     public boolean isPasswordValid(Customer customer, String password) throws BankingException {
-        // if(customer == null) {
-        // return false;
-        // }
-        // int salt;
-
-        // try {
-        // salt = DBUser.getSalt(customer.getId());
-        // } catch (SQLException e) {
-        // throw new BankingException("error while checking password");
-        // }
-        // try {
-        // if(DBUser.getPassword(customer.getId()).equals(Krypto.getHash(password,
-        // Integer.toString(salt)))) {
-        // return true;
-        // }else{
-        // return false;
-        // }
-        // } catch (Exception e) {
-        // throw new BankingException("error while checking password");
-        // }
         try {
             return DBUser.checkPassword(customer.getId(), password);
         } catch (Exception e) {
             return false;
         }
     }
-
 }

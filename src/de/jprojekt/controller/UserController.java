@@ -8,7 +8,7 @@ import de.jprojekt.utils.BankingException;
 import de.jprojekt.utils.mysql.DBUser;
 
 public abstract class UserController {
-    void update(User user) throws BankingException {
+    public void update(User user) throws BankingException {
         try {
             String id = user.getId();
             DBUser.setAddress(id, user.getAddress());
@@ -20,5 +20,25 @@ public abstract class UserController {
             throw new BankingException(exception.getMessage());
         }
     }
-    
+
+    public void changePassword(User user, String passwordOld, String passwordNew) throws BankingException {
+        try {
+            if(!DBUser.checkPassword(user.getId(), passwordOld)) {
+                throw new BankingException("Altes Passwort ist falsch!");
+            }
+            DBUser.setPassword(user.getId(), passwordNew);
+        } catch(Exception e) {
+            throw new BankingException(e.getMessage());
+        }
+    }
+
+    public boolean isPasswordValid(User user, String password) throws BankingException {
+        try {
+            return DBUser.checkPassword(user.getId(), password);
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
+
 }

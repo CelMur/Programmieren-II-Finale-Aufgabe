@@ -9,7 +9,6 @@ import javax.swing.JMenuItem;
 import de.jprojekt.main.ApplicationGui;
 import de.jprojekt.view.actions.ActionDepositMoney;
 import de.jprojekt.view.actions.ActionEditCustomer;
-import de.jprojekt.view.actions.ActionEditProfileCustomer;
 import de.jprojekt.view.actions.ActionLogout;
 import de.jprojekt.view.actions.ActionNewBankAccount;
 import de.jprojekt.view.actions.ActionChangePassword;
@@ -27,15 +26,14 @@ public class CustomerMenuBar extends JMenuBar{
 	private final AbstractAction actResetPassword;
 	private final AbstractAction actTransferMoney;
 	private final AbstractAction actNewBankAccount;
-	private final AbstractAction actEditProfileCustomer;
-	
+	private final AbstractAction actEditCustomer;
 	
 	public CustomerMenuBar(ApplicationGui gui, JFrameAdapter frame) {
 		this.frame = frame;
 		
 		actLogout = new ActionLogout(gui, frame);
 		actDepostiMoney = new ActionDepositMoney(frame);
-		actEditProfileCustomer = new ActionEditProfileCustomer(frame);
+		actEditCustomer = new ActionEditCustomer(frame);
 		actNewBankAccount = new ActionNewBankAccount(frame);
 		actResetPassword = new ActionChangePassword(frame);
 		actTransferMoney = new ActionTransferMoney(frame);
@@ -63,7 +61,7 @@ public class CustomerMenuBar extends JMenuBar{
 	private JMenu createAccoutMenu() {
 		JMenu menu = new JMenu("Account");
 		
-		menu.add(createMenuItem(actEditProfileCustomer));
+		menu.add(createMenuItem(actEditCustomer));
 		menu.add(createMenuItem(actResetPassword));
 		menu.add(createMenuItem(actLogout));
 		
