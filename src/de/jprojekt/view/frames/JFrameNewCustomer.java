@@ -91,7 +91,7 @@ public class JFrameNewCustomer extends JDialog {
 				
 				Customer c = createCustomer();
 				controller.create(c);
-				showDialog("Bitte notieren Sie sich folgende Login-ID:"+c.getId());
+				showDialog("Neuer Kunde wurde erfolgreich angelegt");
 				setVisible(false);
 			}catch(BankingException e) {
 				showDialog(e.getMessage());
