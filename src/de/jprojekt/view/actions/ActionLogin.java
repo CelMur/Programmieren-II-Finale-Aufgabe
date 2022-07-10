@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import de.jprojekt.controller.interfaces.ISessionController;
 import de.jprojekt.main.ApplicationGui;
 import de.jprojekt.main.Launcher;
+import de.jprojekt.utils.BankingException;
 import de.jprojekt.view.frames.JFrameAdapter;
 import de.jprojekt.view.models.LoginData;
 
@@ -31,8 +32,7 @@ public class ActionLogin extends AbstractActionAdapter{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		JFrameAdapter frame = getFrame();
-		Object obj = frame.getData();
+		Object obj = getFrame().getData();
 		LoginData data = null;
 		
 		if(obj instanceof LoginData) data = (LoginData) obj;
@@ -42,10 +42,13 @@ public class ActionLogin extends AbstractActionAdapter{
 		try {
 			if(session.login(data.getUsername(), data.getPassword())) 
 				Launcher.getInstance().launchApplication();
-			
+			else
+				JOptionPane.showMessageDialog(getFrame(), "Login Fehlgeschlagen.");
+		
+		}catch(BankingException ex) {
+			JOptionPane.showMessageDialog(getFrame(), ex.getMessage());
 		}catch(Exception ex) {
-			JFrameAdapter parent = getFrame();
-			JOptionPane.showMessageDialog(parent, "Login Fehlgeschlagen.");
+			JOptionPane.showMessageDialog(getFrame(), "Login Fehlgeschlagen.");
 		}
 		
 	}
