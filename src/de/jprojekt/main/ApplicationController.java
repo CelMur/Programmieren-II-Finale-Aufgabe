@@ -1,9 +1,11 @@
 package de.jprojekt.main;
 
+import de.jprojekt.controller.BankAccountController;
 import de.jprojekt.controller.CustomerController;
 import de.jprojekt.controller.EmployeeController;
 import de.jprojekt.controller.MySqlDbConnector;
 import de.jprojekt.controller.SessionController;
+import de.jprojekt.controller.interfaces.IBankAccountController;
 import de.jprojekt.controller.interfaces.ICustomerController;
 import de.jprojekt.controller.interfaces.IDBConnector;
 import de.jprojekt.controller.interfaces.IEmployeeController;
@@ -22,6 +24,7 @@ public class ApplicationController {
 	private IDBConnector dbConnector;
 	private ICustomerController customerController;
 	private IEmployeeController employeeController;
+	private IBankAccountController bankAccountController;
 	
 	
 	
@@ -53,6 +56,8 @@ public class ApplicationController {
 		sessionController = new SessionController();
 		customerController = new CustomerController();
 		employeeController = new EmployeeController();
+		bankAccountController = new BankAccountController();
+
 	}
 	
 	
@@ -120,5 +125,11 @@ public class ApplicationController {
 	
 	public IEmployeeController getEmployeeController() {
 		return this.employeeController;
+	}
+	public void setBankAccountController(IBankAccountController controller) {
+		this.bankAccountController = controller;
+	}
+	public IBankAccountController getBankAccountController() {
+		return this.bankAccountController;
 	}
 }
