@@ -77,11 +77,12 @@ public class JDialogWithdrawMoney extends JDialog{
 				long betrag=Integer.parseInt(money.getText());
 				Customer currUser = (Customer) ApplicationData.getInstance().getCurrentUser();
 				BankAccount Konto =(BankAccount) srcKonto.getSelectedItem();
+				
 				try{
 					controller.withdrawMoney(currUser, Konto, betrag);
-					JOptionPane.showMessageDialog(null, "Sie haben den folgenden Betrag abgehoben: " +  betrag );
+					JOptionPane.showMessageDialog(getOwner(), "Sie haben den folgenden Betrag abgehoben: " +  betrag );
 			    }catch(Exception e){
-			    	JOptionPane.showMessageDialog(null, "Sie haben nicht genug Geld auf Ihrem Konto");
+			    	JOptionPane.showMessageDialog(getOwner(), "Sie haben nicht genug Geld auf Ihrem Konto");
 			    } 
 			});
 		}
