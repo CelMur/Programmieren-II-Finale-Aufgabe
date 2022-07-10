@@ -26,5 +26,5 @@ public interface IBankAccountController {
 
     public void enable(BankAccount b) throws BankingException;
 
-    public BankAccount getAccount(String name) throws BankingException;
+    public BankAccount getAccountByID(String kontoID) throws BankingException;
 }
