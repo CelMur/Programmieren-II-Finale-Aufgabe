@@ -12,7 +12,7 @@ public class MySqlDbConnector implements IDBConnector{
 		// TODO Auto-generated method stub
 		 try {
 	            Mysql.createDB();
-				Mysql.testClass();
+				//Mysql.testClass();
 				System.out.println("Datenbank erfolgreich initialisiert.");
 	        } catch (Exception e) {
 	        	System.out.println("Datenbank-Initialisierung fehlerhaft.\n");
