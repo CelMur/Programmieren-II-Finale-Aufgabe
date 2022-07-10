@@ -22,7 +22,7 @@ import de.jprojekt.utils.BankingException;
 public class JFrameMoneyTransfer extends JDialog{ 
 		private JTextField txtName;
 		private JTextField txtKontoID;
-		private JTextArea txtAmount;
+		private JTextField txtAmount;
 		private JButton btnTransfer;
 		
 		private JComboBox cboSrcKonto;
@@ -62,12 +62,12 @@ public class JFrameMoneyTransfer extends JDialog{
 			txtKontoID = new JTextField(15);
 			add (txtKontoID);
 			
-			JLabel lblBeschreibungZweck = new JLabel("Verwendungszweck");
-			add (lblBeschreibungZweck);
-			txtAmount = new JTextArea(5,15);
+			JLabel lblAmount = new JLabel("Betrag");
+			add (lblAmount);
+			txtAmount = new JTextField(15);
 			add(txtAmount);
 			
-			btnTransfer = new JButton("Freigeben");
+			btnTransfer = new JButton("Überweisen");
 			add(btnTransfer);
 			
 			btnTransfer.addActionListener(handler ->{
