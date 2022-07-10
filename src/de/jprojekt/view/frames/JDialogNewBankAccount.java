@@ -65,7 +65,7 @@ public class JDialogNewBankAccount extends JDialog {
 		btnAnlegen = new JButton("Konto anlegen");
 		add(btnAnlegen);
 		
-		cboBankAccountType.addActionListener(handler -> {
+		btnAnlegen.addActionListener(handler -> {
 			try {
 				Customer currentUser = (Customer) appData.getCurrentUser();
 			
