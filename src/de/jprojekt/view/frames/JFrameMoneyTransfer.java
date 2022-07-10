@@ -44,20 +44,22 @@ public class JFrameMoneyTransfer extends JFrame{
 		public JFrameMoneyTransfer() {
 			super("Geldtransfer");
 			setLayout(new FlowLayout());
-
+			setSize(400, 400);
 			String userid = ApplicationData.getInstance().getCurrentUser().getId();
+			BankAccount[] accounts;
+			try{
+				accounts = new BankAccount[DBCustomer.getCustomer(userid).getBankAccounts().size()];
+				accounts = DBCustomer.getCustomer(userid).getBankAccounts().toArray(accounts);
+				srcKonto = new JComboBox(new DefaultComboBoxModel(accounts));
+			}catch(Exception e){
+				JOptionPane.showMessageDialog(null, "Keine Konten vorhanden");
+				System.out.println(e + "Dantenbankfehler");
+			}
 
-			BankAccount[] accounts = new BankAccount[DBCustomer.getCustomer(userid).getBankAccounts().size()];
-			accounts = DBCustomer.getCustomer(userid).getBankAccounts().toArray(accounts);
 
-
-			srcKonto = new JComboBox(new DefaultComboBoxModel(accounts));
-			srcKonto.removeAllItems();
-			srcKonto.setEditable(false);
 			
-			for (BankAccount konto : DBCustomer.getCustomer(userid).getBankAccounts()) {
-				srcKonto.addItem(konto);
-			}	
+			
+			srcKonto.setEditable(false);
 			Beschreibungsrc = new JLabel("Ursprungskonto");
 			add(Beschreibungsrc);
 			add(srcKonto);
