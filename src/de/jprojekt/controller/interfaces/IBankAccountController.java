@@ -25,4 +25,6 @@ public interface IBankAccountController {
     public void unlock(BankAccount b) throws BankingException;
 
     public void enable(BankAccount b) throws BankingException;
+
+    public BankAccount getAccount(String name) throws BankingException;
 }
