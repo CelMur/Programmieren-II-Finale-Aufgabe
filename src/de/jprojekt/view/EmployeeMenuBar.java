@@ -31,7 +31,7 @@ public class EmployeeMenuBar extends JMenuBar{
 		actEditCustomer = new ActionEditCustomer(frame);
 		actNewEmployee = new ActionNewEmployee(frame);
 		actEditEmployee = new ActionEditEmployee(frame);
-		actResetPassword = new ActionResetPassword(frame);
+		actResetPassword = new ActionChangePassword(frame);
 		
 		
 		actLogout = new ActionLogout(gui, frame);
