@@ -10,7 +10,6 @@ import de.jprojekt.controller.interfaces.ICustomerController;
 import de.jprojekt.main.ApplicationController;
 import de.jprojekt.view.frames.JFrameAdapter;
 import de.jprojekt.view.frames.JFrameNewCustomer;
-import de.jprojekt.view.panels.CustomerDataPanel;
 
 public class ActionNewCustomer extends AbstractActionAdapter{
 	

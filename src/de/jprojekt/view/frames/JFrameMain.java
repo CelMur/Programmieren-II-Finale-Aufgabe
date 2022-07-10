@@ -50,7 +50,8 @@ public class JFrameMain extends JFrameAdapter implements ActionListener{
 		centerPanel = new JPanel();
 		centerPanel.setBackground(Color.LIGHT_GRAY);
 		
-		add(centerPanel, BorderLayout.CENTER);
+		//add(centerPanel, BorderLayout.CENTER);
+		setContentPane(centerPanel);
 		
 	}
 

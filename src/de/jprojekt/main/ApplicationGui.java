@@ -1,8 +1,7 @@
 package de.jprojekt.main;
 
-import javax.swing.JFrame;
+import java.awt.Container;
 
-import de.jprojekt.controller.interfaces.ISessionController;
 import de.jprojekt.data.models.Customer;
 import de.jprojekt.data.models.Employee;
 import de.jprojekt.data.models.User;
@@ -86,8 +85,11 @@ public class ApplicationGui {
 	}
 	
 	public void initializeEmployeeGui() {
+		Container content = currentFrame.getContentPane();
+		
 		currentFrame.setJMenuBar(MenuBarFactory.createEmployeeMenuBar(currentFrame));
-		currentFrame.add(new JPanelCustomerTable());
+		content.add(new JPanelCustomerTable());
+		
 	}
 
 	public ApplicationController getApp() {
