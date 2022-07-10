@@ -224,8 +224,8 @@ public class BankAccountController implements IBankAccountController {
         }
 
         try {
-            if (DBAccount.setBalance(src.getName(), srcBalance - amount) == 1
-                    && DBAccount.setBalance(target.getName(), targetBalance + amount) == 1) {
+            if (DBAccount.setBalance(src.getId(), srcBalance - amount) == 1
+                    && DBAccount.setBalance(target.getId(), targetBalance + amount) == 1) {
                 srcBalance -= amount;
                 targetBalance += amount;
                 src.setBalance(srcBalance);
