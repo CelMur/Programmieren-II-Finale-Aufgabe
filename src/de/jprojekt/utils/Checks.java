@@ -13,7 +13,7 @@ public class Checks {
         if(isNull(j)){
             return false;
         }
-        return j.matches("[a-zA-ZöüÄÖÜÄ]+");
+        return j.matches("[a-zA-ZöüÄÖÜÄß]+");
     }
 
     public static boolean isPLZ(int j){
