@@ -3,18 +3,13 @@ package de.jprojekt.utils.mysql;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.jprojekt.data.models.Employee;
-
 public class DBBanker {
 
-    public static void createBanker(Employee employee) throws Exception {
-        String uid = DBUser.createUser(employee.getLastname(), employee.getFirstname(), employee.getPassword(), employee.getAddress(), employee.getPlz(), employee.getBday(), employee.getType());
-
+    public static void createBanker(String uid) throws Exception {
         Connection con = DriverManager.getConnection(Mysql.url, Mysql.user, Mysql.pass);
         String query = "INSERT INTO banker (bankerid) VALUES (?);";
         PreparedStatement ps = con.prepareStatement(query);
@@ -31,7 +26,7 @@ public class DBBanker {
         return Mysql.getStringFromDB(bankerid, query);
     }
 
-    public static int getAmountCustomers(String bankerid) throws Exception  {
+    public static int getAmountCustomers(String bankerid) throws Exception {
         String query = "SELECT count(customerid) AS anz FROM customer WHERE bankerid = ? GROUP BY customerid";
         return Mysql.getIntFromDB(bankerid, query);
     }
@@ -41,7 +36,7 @@ public class DBBanker {
         customer = List.of(getCustomerid(bankerid).split(";"));
         customer.add(customerid);
         String ids = "";
-        for(int i = 0; i < customer.size(); i++){
+        for (int i = 0; i < customer.size(); i++) {
             ids = ids + customer.get(i) + ";";
         }
         return setCustomerid(bankerid, ids);
@@ -52,13 +47,13 @@ public class DBBanker {
         customer = List.of(getCustomerid(bankerid).split(";"));
         customer.remove(customer.indexOf(customerid));
         String ids = "";
-        for(int i = 0; i < customer.size(); i++){
+        for (int i = 0; i < customer.size(); i++) {
             ids = ids + customer.get(i) + ";";
         }
         return setCustomerid(bankerid, ids);
     }
 
-    public static int setCustomerid(String bankerid, String customerid) throws SQLException{
+    public static int setCustomerid(String bankerid, String customerid) throws SQLException {
         String query = "UPDATE banker SET customerid=? WHERE bankerid=?";
         return Mysql.setString(bankerid, query, customerid);
     }

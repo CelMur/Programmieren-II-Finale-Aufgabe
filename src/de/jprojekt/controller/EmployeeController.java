@@ -5,25 +5,26 @@ import java.sql.SQLException;
 import de.jprojekt.controller.interfaces.IEmployeeController;
 import de.jprojekt.data.models.Customer;
 import de.jprojekt.data.models.Employee;
+import de.jprojekt.data.models.User;
 import de.jprojekt.utils.BankingException;
 import de.jprojekt.utils.mysql.DBBanker;
 import de.jprojekt.utils.mysql.DBCustomer;
 import de.jprojekt.utils.mysql.DBUser;
 
 public class EmployeeController extends UserController implements IEmployeeController {
-    /** 
-     * @param e 
+    /**
+     * @param e
      * @throws BankingException
      */
     @Override
     public void update(Employee e) throws BankingException {
-        //update user 
+        // update user
         super.update(e.getUser());
 
-        //update customers in DB
+        // update customers in DB
         try {
-            for(Customer customer: e.getCustomers()) {
-                if(DBCustomer.getBankerid(customer.getId()) != e.getId()) {
+            for (Customer customer : e.getCustomers()) {
+                if (DBCustomer.getBankerid(customer.getId()) != e.getId()) {
                     DBCustomer.setBankerid(customer.getId(), e.getId());
                 }
             }
@@ -51,24 +52,26 @@ public class EmployeeController extends UserController implements IEmployeeContr
     /**
      * @param employee
      * @throws BankingException
-     * @todo implement createUser when username is implemented 
+     * @todo implement createUser when username is implemented
      */
     @Override
     public void create(Employee employee) throws BankingException {
         try {
-            DBBanker.createBanker(employee);
+            employee.setId(DBUser.createUser(employee.getLastname(), employee.getFirstname(), employee.getPassword(),
+                    employee.getAddress(), employee.getPlz(), employee.getBday(), User.TYPE_EMPLOYEE));
+            DBBanker.createBanker(employee.getId());
         } catch (Exception exception) {
             throw new BankingException(exception.getMessage());
         }
     }
 
-	@Override
-	public boolean isPasswordValid(Employee employee, String password) throws BankingException {
-		try {
+    @Override
+    public boolean isPasswordValid(Employee employee, String password) throws BankingException {
+        try {
             return DBUser.checkPassword(employee.getId(), password);
         } catch (Exception e) {
             return false;
         }
-		
-	}
+
+    }
 }
