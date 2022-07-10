@@ -27,8 +27,9 @@ public abstract class BankAccount {
 	private Customer customer;
 	private boolean locked;
 
-	public static final int TYPE_GIRO = 1;
-	public static final int TYPE_SAVING = 2;
+	public static final int TYPE_GIRO = 2;
+	public static final int TYPE_SAVING = 1;
+	public static final int TYPE_DEPOSIT = 0;
 
 	public BankAccount(String name, Customer customer, String uuid) {
 		this.id = uuid;
@@ -89,5 +90,7 @@ public abstract class BankAccount {
 	public void setLocked(boolean locked) {
 		this.locked = locked;
 	}
+
+	public abstract String getTypeName();
 
 }

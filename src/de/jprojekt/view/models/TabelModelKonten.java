@@ -10,10 +10,10 @@ public class TabelModelKonten extends AbstractTableModel {
     private final List<BankAccount> kontoList;
      
 	    private final String[] columnNames = new String[] {
-	            "Kontotyp", "Vorname", "Nachname", "Balance"
+	            "Kontotyp", "Bezeichnung", "Kontostand", "Maximalverschuldung", "Gesperrt"
 	    };
 	    private final Class[] columnClass = new Class[] {
-	        Integer.class, String.class, String.class, Long.class
+	        String.class, String.class, Long.class, Long.class, Boolean.class
 	    };
 	 
 	    public TabelModelKonten(List<BankAccount> kontoListe)
@@ -50,17 +50,21 @@ public class TabelModelKonten extends AbstractTableModel {
 	    {
 	        BankAccount row = kontoList.get(rowIndex);
 	        if(0 == columnIndex) {
-	            return row.getName();
+	            return row.getTypeName();
 	        }
 	        else if(1 == columnIndex) {
-	            return row.getCustomer().getFirstname();
+	            return row.getName();
 	        }
-            else if(2 == columnIndex) {
-	            return row.getCustomer().getLastname();
-	        }
-	        else if(3 == columnIndex) {
+	        else if(2 == columnIndex) {
 	            return row.getBalance();
 	        }
+	        else if(3 == columnIndex) {
+	            return row.getMaxDebt();
+	        }
+	        else if(4 == columnIndex) {
+	        	return row.getLocked();
+	        }
+	        
 	        return null;
 	    }
     

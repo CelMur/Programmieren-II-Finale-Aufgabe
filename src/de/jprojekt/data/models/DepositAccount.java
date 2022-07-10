@@ -7,4 +7,12 @@ public class DepositAccount extends BankAccount {
         setMaxDebt(1000);
     }
 
+	@Override
+	public String getTypeName() {
+		// TODO Auto-generated method stub
+		return "Depot";
+	}
+    
+    
+
 }

@@ -6,5 +6,11 @@ public class SavingAccount extends BankAccount {
         super(name, customer, uuid);
         setMaxDebt(0);
     }
+
+	@Override
+	public String getTypeName() {
+		// TODO Auto-generated method stub
+		return "Sparkonto";
+	}
 }
 
