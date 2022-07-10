@@ -35,7 +35,7 @@ public class JDialogEditEmployee extends JDialog {
 	private Employee employee;
 
 	
-	public JDialogEditEmployee(JFrameAdapter owner, IEmployeeController controller, Employee empoyee){
+	public JDialogEditEmployee(JFrameAdapter owner, IEmployeeController controller, Employee employee){
 		super(owner);
 		this.controller = controller;
 		this.employee = employee;

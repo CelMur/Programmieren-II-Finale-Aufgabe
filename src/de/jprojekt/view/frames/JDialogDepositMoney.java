@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 	
-public class JFrameMoneyInOut extends JFrame{ 
+public class JDialogDepositMoney extends JFrame{ 
 		private JTextField money;
 		private JButton einzahlen;
 		private JButton auszahlen;
@@ -21,7 +21,7 @@ public class JFrameMoneyInOut extends JFrame{
 		private JPanel up;
 		private JPanel lp;
 
-		public JFrameMoneyInOut(){
+		public JDialogDepositMoney(){
 			super("Geldautomat");
 			setLayout(new FlowLayout());
 			
