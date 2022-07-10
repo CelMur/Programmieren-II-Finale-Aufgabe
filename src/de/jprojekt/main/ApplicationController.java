@@ -1,6 +1,7 @@
 package de.jprojekt.main;
 
 import de.jprojekt.controller.MySqlDbConnector;
+import de.jprojekt.controller.SessionController;
 import de.jprojekt.controller.interfaces.ICustomerController;
 import de.jprojekt.controller.interfaces.IDBConnector;
 import de.jprojekt.controller.interfaces.IEmployeeController;
@@ -17,8 +18,8 @@ public class ApplicationController {
 	
 	private ISessionController sessionController;
 	private IDBConnector dbConnector;
-	private ICustomerController customer;
-	private IEmployeeController employee;
+	private ICustomerController customerController;
+	private IEmployeeController employeeController;
 	
 	
 	
@@ -47,6 +48,7 @@ public class ApplicationController {
 		//sessionController = new MockupSessionControllerLoginAsCustomer(data);
 		
 		dbConnector = new MySqlDbConnector();
+		sessionController = new SessionController();
 	}
 	
 	
@@ -101,18 +103,18 @@ public class ApplicationController {
 	}
 	
 	public void setCustomerController(ICustomerController controller) {
-		this.customer = controller;
+		this.customerController = controller;
 	}
 	
 	public void setEmployeeController(IEmployeeController controller) {
-		this.employee = controller;
+		this.employeeController = controller;
 	}
 	
 	public ICustomerController getCustomerController() {
-		return this.customer;
+		return this.customerController;
 	}
 	
 	public IEmployeeController getEmployeeController() {
-		return this.employee;
+		return this.employeeController;
 	}
 }

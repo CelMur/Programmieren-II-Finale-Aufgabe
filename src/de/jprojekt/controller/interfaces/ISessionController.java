@@ -10,7 +10,7 @@ public interface ISessionController {
 	 * @param password
 	 * @return true wenn der Login erfolgreich ist
 	 */
-	public boolean login(String username, String password);
+	public boolean login(String username, String password)throws Exception;
 	
 	/**
 	 * wird von der GUI

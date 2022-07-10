@@ -3,6 +3,7 @@ package de.jprojekt.view.actions;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import de.jprojekt.controller.interfaces.ISessionController;
 import de.jprojekt.main.ApplicationGui;
@@ -38,10 +39,15 @@ public class ActionLogin extends AbstractActionAdapter{
 			
 		if(data == null) throw new NullPointerException("ActionLogin: expected LoginData is null");
 		
-
-		if(session.login(data.getUsername(), data.getPassword())) {
-			Launcher.getInstance().launchApplication();
+		try {
+			if(session.login(data.getUsername(), data.getPassword())) 
+				Launcher.getInstance().launchApplication();
+			
+		}catch(Exception ex) {
+			JFrameAdapter parent = getFrame();
+			JOptionPane.showMessageDialog(parent, ex.getMessage());
 		}
+		
 	}
 	
 }

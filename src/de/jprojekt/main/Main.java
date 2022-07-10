@@ -24,7 +24,7 @@ public class Main {
     	
     	//Mockup-Login-As-Employee
     	//app.setDBConnector(new MockupDBConnector());
-    	app.setSessionController(new MockupSessionControllerLoginAsEmployee(data));
+    	//app.setSessionController(new MockupSessionControllerLoginAsEmployee(data));
 
     	Launcher l = Launcher.create(gui, app, data);
     	l.launchLogin();
