@@ -71,15 +71,15 @@ public class JDialogNewBankAccount extends JDialog {
 			
 				switch (cboBankAccountType.getSelectedItem().toString()) {
 					case "Girokonto": 
-						controller.create(currentUser, getName(), BankAccountType.GIRO.value());
+						controller.create(currentUser, txtName.getText(), BankAccountType.GIRO.value());
 						this.setVisible(false);
 						break;
 					case "Sparkonto": 
-						controller.create(currentUser, getName(), BankAccountType.SAVING.value());
+						controller.create(currentUser, txtName.getText(), BankAccountType.SAVING.value());
 						this.setVisible(false);
 						break;
 					case "Depot":
-						controller.create(currentUser, getName(), BankAccountType.DEPOSIT.value());
+						controller.create(currentUser, txtName.getText(), BankAccountType.DEPOSIT.value());
 						this.setVisible(false);
 						break;
 					default: 
