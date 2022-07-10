@@ -20,7 +20,6 @@ import de.jprojekt.utils.BankingException;
 
 
 public class JFrameMoneyTransfer extends JDialog{ 
-		private JTextField txtName;
 		private JTextField txtKontoID;
 		private JTextField txtAmount;
 		private JButton btnTransfer;
@@ -96,7 +95,7 @@ public class JFrameMoneyTransfer extends JDialog{
 		}	
 		
 		private void validateData() throws BankingException {
-			if(txtName.getText().isEmpty() || txtKontoID.getText().isEmpty() || txtAmount.getText().isEmpty()){
+			if(txtKontoID.getText().isEmpty() || txtAmount.getText().isEmpty()){
 				throw new BankingException("Bitte füllen Sie alle Felder aus!");
 			}
 		}
