@@ -1,5 +1,9 @@
 package de.jprojekt.view.panels;
 
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -29,7 +33,9 @@ public class JPanelCustomerTable extends JPanel{
 		model = new TableModelCustomer(currentUser.getCustomers());
 		table = new JTable(model);
 		
-		add(new JScrollPane(table));
+		setLayout(new BorderLayout());
+		add(new JLabel("Zugeordnete Kunden:"), BorderLayout.NORTH);
+		add(new JScrollPane(table), BorderLayout.CENTER);
 		
 	}
 	
