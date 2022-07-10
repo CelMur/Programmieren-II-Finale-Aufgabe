@@ -45,14 +45,9 @@ public class JDialogDepositMoney extends JDialog{
 			
 			lp = new JPanel();
 			lp.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-			label2 = new JLabel("Auswahl");
-			add (label2);
+			
 			einzahlen = new JButton("Einzahlen");
 			add(einzahlen);
-			auszahlen = new JButton("Auszahlen");
-			add(auszahlen);
-			
-			
 			
 			einzahlen.addActionListener(handler ->{
 				ApplicationData appData = ApplicationData.getInstance();
@@ -64,7 +59,7 @@ public class JDialogDepositMoney extends JDialog{
 				
 				try {
 					//TODO:
-					controller.depositMoney(null, null, betrag);
+					controller.depositMoney(currentUser, null, betrag);
 				} catch (BankingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
