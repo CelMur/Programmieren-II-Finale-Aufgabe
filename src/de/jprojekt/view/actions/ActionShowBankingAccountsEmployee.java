@@ -46,14 +46,13 @@ public class ActionShowBankingAccountsEmployee extends AbstractActionAdapter{
 		//TODO:
 		JPanel p = new JPanelKontenUebersicht(list);
 		
-		Container c = frame.getContentPane();
+		Container c = dialog.getContentPane();
 		c.setLayout(new BorderLayout());
 		c.add(p, BorderLayout.CENTER);
 		
 		dialog.setTitle("Zugewiesene Konten");
 		dialog.setSize(200, 400);
 		dialog.setLocationRelativeTo(null);
-		dialog.setResizable(false);
 		dialog.setVisible(true);
 		
 	}
