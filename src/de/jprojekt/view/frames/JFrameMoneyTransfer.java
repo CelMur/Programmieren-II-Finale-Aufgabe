@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 
 import de.jprojekt.controller.BankAccountController;
 import de.jprojekt.data.models.BankAccount;
+import de.jprojekt.data.models.Customer;
 import de.jprojekt.main.ApplicationController;
 import de.jprojekt.main.ApplicationData;
 import de.jprojekt.utils.mysql.DBAccount;
@@ -48,8 +49,9 @@ public class JFrameMoneyTransfer extends JFrame{
 			String userid = ApplicationData.getInstance().getCurrentUser().getId();
 			BankAccount[] accounts;
 			try{
-				accounts = new BankAccount[DBCustomer.getCustomer(userid).getBankAccounts().size()];
-				accounts = DBCustomer.getCustomer(userid).getBankAccounts().toArray(accounts);
+				Customer currUser = (Customer) ApplicationData.getInstance().getCurrentUser();
+				accounts = new BankAccount[currUser.getBankAccounts().size()];
+				accounts = currUser.getBankAccounts().toArray(accounts);
 				srcKonto = new JComboBox(new DefaultComboBoxModel(accounts));
 			}catch(Exception e){
 				JOptionPane.showMessageDialog(null, "Keine Konten vorhanden");
