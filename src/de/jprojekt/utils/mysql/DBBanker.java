@@ -3,20 +3,27 @@ package de.jprojekt.utils.mysql;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.jprojekt.data.models.Employee;
+
 public class DBBanker {
 
-    public static int createBanker(String uid) throws SQLException {
+    public static void createBanker(Employee employee) throws Exception {
+        String uid = DBUser.createUser(employee.getLastname(), employee.getFirstname(), employee.getPassword(), employee.getAddress(), employee.getPlz(), employee.getBday(), employee.getType());
+
         Connection con = DriverManager.getConnection(Mysql.url, Mysql.user, Mysql.pass);
         String query = "INSERT INTO banker (bankerid) VALUES (?);";
         PreparedStatement ps = con.prepareStatement(query);
         ps.setString(1, uid);
         int rows = ps.executeUpdate();
+        if (rows == 0) {
+            throw new SQLException("Could not create banker");
+        }
         ps.close();
-        return rows;
     }
 
     public static String getCustomerid(String bankerid) throws Exception {

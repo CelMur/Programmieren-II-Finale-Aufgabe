@@ -66,26 +66,30 @@ public class CustomerController implements ICustomerController {
 
     @Override
     public boolean isPasswordValid(Customer customer, String password) throws BankingException {
-        if(customer == null) {
+        // if(customer == null) {
+        //     return false;
+        // }
+        // int salt;
+        
+        // try {
+        //     salt = DBUser.getSalt(customer.getId());
+        // } catch (SQLException e) {
+        //     throw new BankingException("error while checking password");
+        // }
+        // try {
+        //     if(DBUser.getPassword(customer.getId()).equals(Krypto.getHash(password, Integer.toString(salt)))) {
+        //         return true;
+        //     }else{
+        //         return false;
+        //     }
+        // } catch (Exception e) {
+        //     throw new BankingException("error while checking password");
+        // }
+        try {
+            return DBUser.checkPassword(customer.getId(), password);
+        } catch (Exception e) {
             return false;
         }
-        int salt;
-        
-        try {
-            salt = DBUser.getSalt(customer.getId());
-        } catch (SQLException e) {
-            throw new BankingException("error while checking password");
-        }
-        try {
-            if(DBUser.getPassword(customer.getId()).equals(Krypto.getHash(password, Integer.toString(salt)))) {
-                return true;
-            }else{
-                return false;
-            }
-        } catch (Exception e) {
-            throw new BankingException("error while checking password");
-        }
-        
     }
 
 

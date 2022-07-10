@@ -56,20 +56,19 @@ public class EmployeeController extends UserController implements IEmployeeContr
     @Override
     public void create(Employee employee) throws BankingException {
         try {
-            // int id = DBUser.createUser(employee., lastname, firstname, nonHashedPassword,
-            // address, plz, bday, typ)
-            if (DBBanker.createBanker(employee.getId()) != 1) {
-                throw new BankingException("Could not create employee in DB");
-            }
-
-        } catch (SQLException exception) {
+            DBBanker.createBanker(employee);
+        } catch (Exception exception) {
             throw new BankingException(exception.getMessage());
         }
     }
 
 	@Override
-	public void isPasswordValid(Employee employee, String password) throws BankingException {
-		// TODO Auto-generated method stub
+	public boolean isPasswordValid(Employee employee, String password) throws BankingException {
+		try {
+            return DBUser.checkPassword(employee.getId(), password);
+        } catch (Exception e) {
+            return false;
+        }
 		
 	}
 }

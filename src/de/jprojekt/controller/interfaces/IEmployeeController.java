@@ -11,5 +11,5 @@ public interface IEmployeeController {
 
     public void create(Employee employee) throws BankingException;
     
-    public void isPasswordValid(Employee employee, String password) throws BankingException;
+    public boolean isPasswordValid(Employee employee, String password) throws BankingException;
 }
