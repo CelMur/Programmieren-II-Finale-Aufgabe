@@ -11,9 +11,9 @@ import de.jprojekt.main.ApplicationData;
 import de.jprojekt.view.frames.JFrameAdapter;
 import de.jprojekt.view.frames.JDialogEditEmployee;
 
-public class ActionEditEmployee extends AbstractActionAdapter{
+public class ActionEditProfileEmployee extends AbstractActionAdapter{
 	
-	public ActionEditEmployee(JFrameAdapter frame) {
+	public ActionEditProfileEmployee(JFrameAdapter frame) {
 		super(frame);
 		
 		putValue(NAME, "Profil bearbeiten");

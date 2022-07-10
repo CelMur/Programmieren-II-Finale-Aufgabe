@@ -65,8 +65,8 @@ public class JDialogEditEmployee extends JDialog {
 			
 			try { 
 				validateData();
+				updateData();
 				
-				Employee employee = createEmployee();
 				controller.update(employee);				
 			}catch(BankingException e) {
 				showDialog(e.getMessage());
@@ -83,12 +83,9 @@ public class JDialogEditEmployee extends JDialog {
 		txtNachname.setText(employee.getLastname());
 	}
 	
-	protected Employee createEmployee() {
-		Employee e = new Employee();
-		e.setFirstname(txtVorname.getText());
-		e.setLastname(txtNachname.getText());
-		
-		return e;
+	protected void updateData() {
+		employee.setFirstname(txtVorname.getText());
+		employee.setLastname(txtNachname.getText());
 	}
 	
 	protected void validateData() throws BankingException {

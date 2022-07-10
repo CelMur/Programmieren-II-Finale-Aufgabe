@@ -18,7 +18,7 @@ public class EmployeeMenuBar extends JMenuBar{
 	private final AbstractAction actNewCustomer;
 	private final AbstractAction actNewEmployee;
 	private final AbstractAction actLogout;
-	private final AbstractAction actEditEmployee;
+	private final AbstractAction actEditProfileEmployee;
 	private final AbstractAction actEditCustomer;
 	private final AbstractAction actResetPassword;
 	
@@ -30,7 +30,7 @@ public class EmployeeMenuBar extends JMenuBar{
 		actNewCustomer = new ActionNewCustomer(frame);
 		actEditCustomer = new ActionEditCustomer(frame);
 		actNewEmployee = new ActionNewEmployee(frame);
-		actEditEmployee = new ActionEditEmployee(frame);
+		actEditProfileEmployee = new ActionEditProfileEmployee(frame);
 		actResetPassword = new ActionChangePassword(frame);
 		
 		
@@ -62,7 +62,7 @@ public class EmployeeMenuBar extends JMenuBar{
 	private JMenu createAccountMenu() {
 		JMenu menu = new JMenu("Account");
 		
-		menu.add(createMenuItem(actEditEmployee));
+		menu.add(createMenuItem(actEditProfileEmployee));
 		menu.add(createMenuItem(actResetPassword));
 		menu.add(createMenuItem(actLogout));
 		
