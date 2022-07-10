@@ -213,6 +213,13 @@ public class BankAccountController implements IBankAccountController {
         if (amount < 0) {
             throw new BankingException("Es ist nur ein positiver Betrag erlaubt.");
         }
+
+        if(src instanceof SavingAccount) {
+            if(target.getCustomer() != src.getCustomer()) {
+                throw new BankingException("Tagesgeldkonten können nur an Konten des selben Nutzer überweisen.");
+            }
+        }
+
         try {
             if (DBAccount.setBalance(src.getName(), srcBalance - amount) == 1
                     && DBAccount.setBalance(target.getName(), targetBalance + amount) == 1) {
