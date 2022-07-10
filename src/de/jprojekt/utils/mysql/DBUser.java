@@ -147,20 +147,14 @@ public class DBUser {
     public static User getUser(String uid) throws Exception {
         switch (getTyp(uid)) {
             case 0:
-                Customer cust = new Customer(uid, getPassword(uid), getFirstname(uid), getLastname(uid), getBday(uid), getAddress(uid), getPlz(uid));
-                cust.setAdviser((Employee) getUser(DBCustomer.getBankerid(uid)));
-                String[] accounts = DBCustomer.getAccountid(uid).split(";");
-                for (int i = 0; i < accounts.length; i++){
-                    cust.addBankAccount(DBAccount.getAccount(accounts[i]));
-                }
-                return cust;
+                Customer customer = new Customer(uid, getPassword(uid), getFirstname(uid), getLastname(uid), getBday(uid).toString(), getAddress(uid), getPlz(uid));
+                customer.setAdviser((Employee) getUser(DBCustomer.getBankerid(uid)));
+                customer.setBankAccounts(DBAccount.getBankAccountsForCustomer(customer));
+                return customer;
             case 1:
-                Employee empl = new Employee(uid, getPassword(uid), getFirstname(uid), getLastname(uid), getBday(uid), getAddress(uid), getPlz(uid));
-                String[] customers = DBBanker.getCustomerid(uid).split(";");
-                for (int i = 0; i < customers.length; i++){
-                    empl.addCustomer((de.jprojekt.data.models.Customer) getUser(customers[i]));
-                }
-                return empl;
+                Employee employee = new Employee(uid, getPassword(uid), getFirstname(uid), getLastname(uid), getBday(uid).toString(), getAddress(uid), getPlz(uid));
+                employee.setCustomers(DBCustomer.getCustomersForEmployee(employee));
+                return employee;
             default:
                 throw new BankingException("Fehler");
         }

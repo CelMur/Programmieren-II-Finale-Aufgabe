@@ -29,21 +29,21 @@ public class DBAccount {
     public static BankAccount getAccount(String accountid) throws Exception {
         switch (getTyp(accountid)) {
             case 0:
-                GiroAccount gacc = new GiroAccount(accountid, (Customer) DBUser.getUser(getCustomer(accountid)));
+                GiroAccount gacc = new GiroAccount(accountid, (Customer) DBUser.getUser(getCustomer(accountid)), accountid);
                 gacc.setBalance(getBalance(accountid));
                 gacc.setName(getName(accountid));
                 gacc.setMaxDebt(getMaxdebt(accountid));
                 gacc.setLocked(getLocked(accountid));
                 return gacc;
             case 1:
-                SavingAccount sacc = new SavingAccount(accountid, (Customer) DBUser.getUser(getCustomer(accountid)));
+                SavingAccount sacc = new SavingAccount(accountid, (Customer) DBUser.getUser(getCustomer(accountid)), accountid);
                 sacc.setBalance(getBalance(accountid));
                 sacc.setName(getName(accountid));
                 sacc.setMaxDebt(getMaxdebt(accountid));
                 sacc.setLocked(getLocked(accountid));
                 return sacc;
             case 2:
-                DepositAccount dacc = new DepositAccount(accountid, (Customer) DBUser.getUser(getCustomer(accountid)));
+                DepositAccount dacc = new DepositAccount(accountid, (Customer) DBUser.getUser(getCustomer(accountid)), accountid);
                 dacc.setBalance(getBalance(accountid));
                 dacc.setName(getName(accountid));
                 dacc.setMaxDebt(getMaxdebt(accountid));
@@ -138,18 +138,18 @@ public class DBAccount {
             String name         = rs.getString("name");
             int balance         = rs.getInt("balance");
             int type            = rs.getInt("typ");
-            int maxDebt        = rs.getInt("maxdebt");
+            int maxDebt         = rs.getInt("maxdebt");
             int locked          = rs.getInt("locked");
 
             if(type == BankAccount.TYPE_GIRO) {
-                GiroAccount account = new GiroAccount(name, customer);
+                GiroAccount account = new GiroAccount(name, customer, accountid);
                 account.setId(accountid);
                 account.setBalance(balance);
                 account.setMaxDebt(maxDebt);
                 account.setLocked(locked != 0);
                 accounts.add(account);
             } else {
-                SavingAccount account = new SavingAccount(name, customer);
+                SavingAccount account = new SavingAccount(name, customer, accountid);
                 account.setId(accountid);
                 account.setBalance(balance);
                 account.setLocked(locked != 0);

@@ -25,6 +25,10 @@ public class Employee extends User {
 		c.setAdviser(this);
 	}
 
+	public void setCustomers(ArrayList<Customer> customers) {
+		this.customers = customers;
+	}
+
 	public void removeCustomer(Customer c) throws Exception {
 		if (!this.customers.contains(c) || c.getAdviser() != this) {
 			throw new Exception("Employee is not the adviser of given user");
