@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 
 import de.jprojekt.controller.interfaces.ICustomerController;
 import de.jprojekt.data.models.Customer;
+import de.jprojekt.main.ApplicationData;
 import de.jprojekt.utils.BankingException;
 import de.jprojekt.utils.Checks;
 
@@ -22,11 +23,7 @@ public class JFrameEditCustomer extends JDialog {
 	protected JTextField txtAdresse;
 	protected JTextField txtPlz;
 	
-	
-	
-	protected JButton btnCreateUser;
-	protected JPasswordField txtPassword;
-	protected JPasswordField txtRepeatPassword;
+	protected JButton btnUpdateUser;
 	
 	
 	private ICustomerController controller;
@@ -35,6 +32,7 @@ public class JFrameEditCustomer extends JDialog {
 	public JFrameEditCustomer(JFrameAdapter owner, ICustomerController controller){
 		super(owner);
 		this.controller = controller;
+		
 		initializeComponent();
 	}
 	
@@ -52,8 +50,8 @@ public class JFrameEditCustomer extends JDialog {
 		add (lblNachname);
 		txtNachname = new JTextField(15);
 		add (txtNachname);
-		JLabel lblBDay = new JLabel("*Geburtstag: ");
-		add(lblBDay);
+		//JLabel lblBDay = new JLabel("*Geburtstag: ");
+		//add(lblBDay);
 		
 		
 		
@@ -66,28 +64,17 @@ public class JFrameEditCustomer extends JDialog {
 		txtPlz = new JTextField(15);
 		add (txtPlz);
 		
-		
-		JLabel label2 = new JLabel("*Passwort: ");
-		add (label2);
-		txtPassword = new JPasswordField(15);
-		add (txtPassword);
-		JLabel repasswort = new JLabel("*Passwort wiederholen: ");
-		add (repasswort);
-		txtRepeatPassword = new JPasswordField(15);
-		add (txtRepeatPassword);
-
-		btnCreateUser = new JButton("Nutzer erstellen");
-		add(btnCreateUser);
+		btnUpdateUser = new JButton("Änderungen speichern");
+		add(btnUpdateUser);
 		
 		//NewUserhandler handler = new NewUserhandler();
-		btnCreateUser.addActionListener(handler -> {
+		btnUpdateUser.addActionListener(handler -> {
 			
 			try {
-				validatePassword();
 				validateData();
 				
 				Customer c = createCustomer();
-				controller.create(c);
+				controller.update(c);
 			}catch(BankingException e) {
 				showDialog(e.getMessage());
 			}catch(Exception e) {
@@ -107,38 +94,6 @@ public class JFrameEditCustomer extends JDialog {
 		
 		return c;
 	}
-	
-	
-	protected void validatePassword() throws BankingException{
-		String password = new String(txtPassword.getPassword());
-		String repeatPassword = new String(txtRepeatPassword.getPassword());
-		
-		checkPasswordEquals(password, repeatPassword);
-		checkPasswordIsSet(password);
-		checkReapeatPasswordIsSet(repeatPassword);
-		checkPassword(password);
-	}
-	
-	protected void checkPasswordEquals(String password, String repeatPassword) throws BankingException {
-		if (!password.equals(repeatPassword)) 
-			throw new BankingException("Passwort und Passwort-Wdh. stimmen nicht überein.");
-	}
-	
-	protected void checkPasswordIsSet(String password) throws BankingException {
-		if (password.equals("")) 
-			throw new BankingException("Passwort darf nicht leer sein");
-	}
-	
-	protected void checkReapeatPasswordIsSet(String repeatPassword) throws BankingException {
-		if (repeatPassword.equals("")) 
-			throw new BankingException("Passwort-Wdh. darf nicht leer sein");
-	}	
-	
-	protected void checkPassword(String password) throws BankingException {
-		if(!Checks.isPassword(password)) 
-			throw new BankingException("Passwort ist ungültig");
-	}
-	
 	
 	protected void validateData() throws BankingException {
 		if(isAnyDataEmpty()) {

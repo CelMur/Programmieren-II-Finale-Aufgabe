@@ -49,5 +49,9 @@ public class Employee extends User {
 		return this.user;
 	}
 	
+	public void update(Employee source) {
+		
+	}
+	
 	
 }

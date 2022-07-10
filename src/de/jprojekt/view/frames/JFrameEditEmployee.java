@@ -24,23 +24,24 @@ import de.jprojekt.utils.BankingException;
 import de.jprojekt.utils.Checks;
 
 
-public class JFrameNewEmpolyee extends JDialog {
+public class JFrameEditEmployee extends JDialog {
 	
 	protected JTextField txtVorname;
 	protected JTextField txtNachname;
 	
-	protected JButton btnCreateUser;
-	protected JPasswordField txtPassword;
-	protected JPasswordField txtRepeatPassword;
-	
+	protected JButton btnUpdateUser;
 	
 	private IEmployeeController controller;
+	private Employee employee;
 
 	
-	public JFrameNewEmpolyee(JFrameAdapter owner, IEmployeeController controller){
+	public JFrameEditEmployee(JFrameAdapter owner, IEmployeeController controller, Employee empoyee){
 		super(owner);
 		this.controller = controller;
+		this.employee = employee;
+		
 		initializeComponent();
+		initializeValues();
 	}
 	
 	
@@ -56,27 +57,17 @@ public class JFrameNewEmpolyee extends JDialog {
 		txtNachname = new JTextField(15);
 		add (txtNachname);
 		
-		
-		JLabel label2 = new JLabel("Passwort: ");
-		add (label2);
-		txtPassword = new JPasswordField(15);
-		add (txtPassword);
-		JLabel repasswort = new JLabel("Passwort wiederholen: ");
-		add (repasswort);
-		txtRepeatPassword = new JPasswordField(15);
-		add (txtRepeatPassword);
 
-		btnCreateUser = new JButton("Banker erstellen");
-		add(btnCreateUser);
+		btnUpdateUser = new JButton("Änderungen Speichern");
+		add(btnUpdateUser);
 		
-		btnCreateUser.addActionListener(handler -> {
+		btnUpdateUser.addActionListener(handler -> {
 			
-			try {
-				validatePassword();
+			try { 
 				validateData();
 				
 				Employee employee = createEmployee();
-				controller.create(employee);
+				controller.update(employee);				
 			}catch(BankingException e) {
 				showDialog(e.getMessage());
 			}catch(Exception e) {
@@ -87,6 +78,11 @@ public class JFrameNewEmpolyee extends JDialog {
 		
 	}
 	
+	private void initializeValues() {
+		txtVorname.setText(employee.getFirstname());
+		txtNachname.setText(employee.getLastname());
+	}
+	
 	protected Employee createEmployee() {
 		Employee e = new Employee();
 		e.setFirstname(txtVorname.getText());
@@ -94,38 +90,6 @@ public class JFrameNewEmpolyee extends JDialog {
 		
 		return e;
 	}
-	
-	
-	protected void validatePassword() throws BankingException{
-		String password = new String(txtPassword.getPassword());
-		String repeatPassword = new String(txtRepeatPassword.getPassword());
-		
-		checkPasswordEquals(password, repeatPassword);
-		checkPasswordIsSet(password);
-		checkReapeatPasswordIsSet(repeatPassword);
-		checkPassword(password);
-	}
-	
-	protected void checkPasswordEquals(String password, String repeatPassword) throws BankingException {
-		if (!password.equals(repeatPassword)) 
-			throw new BankingException("Passwort und Passwort-Wdh. stimmen nicht überein.");
-	}
-	
-	protected void checkPasswordIsSet(String password) throws BankingException {
-		if (password.equals("")) 
-			throw new BankingException("Passwort darf nicht leer sein");
-	}
-	
-	protected void checkReapeatPasswordIsSet(String repeatPassword) throws BankingException {
-		if (repeatPassword.equals("")) 
-			throw new BankingException("Passwort-Wdh. darf nicht leer sein");
-	}	
-	
-	protected void checkPassword(String password) throws BankingException {
-		if(!Checks.isPassword(password)) 
-			throw new BankingException("Passwort ist ungültig");
-	}
-	
 	
 	protected void validateData() throws BankingException {
 		if(isAnyDataEmpty()) {

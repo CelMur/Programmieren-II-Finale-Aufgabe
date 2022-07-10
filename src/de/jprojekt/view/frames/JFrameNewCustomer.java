@@ -52,8 +52,8 @@ public class JFrameNewCustomer extends JDialog {
 		add (lblNachname);
 		txtNachname = new JTextField(15);
 		add (txtNachname);
-		JLabel lblBDay = new JLabel("*Geburtstag: ");
-		add(lblBDay);
+		//JLabel lblBDay = new JLabel("*Geburtstag: ");
+		//add(lblBDay);
 		
 		
 		
@@ -79,7 +79,6 @@ public class JFrameNewCustomer extends JDialog {
 		btnCreateUser = new JButton("Nutzer erstellen");
 		add(btnCreateUser);
 		
-		//NewUserhandler handler = new NewUserhandler();
 		btnCreateUser.addActionListener(handler -> {
 			
 			try {
@@ -104,7 +103,8 @@ public class JFrameNewCustomer extends JDialog {
 		c.setLastname(txtNachname.getText());
 		c.setAddress(txtAdresse.getText());
 		c.setPlz(Integer.getInteger(txtPlz.getText()));
-		
+		c.setPassword(new String(txtPassword.getPassword()));
+		c.setBday("2022-07-10");
 		return c;
 	}
 	

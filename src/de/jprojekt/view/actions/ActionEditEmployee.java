@@ -3,12 +3,13 @@ package de.jprojekt.view.actions;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 
-import de.jprojekt.controller.interfaces.ICustomerController;
+import de.jprojekt.controller.interfaces.IEmployeeController;
+import de.jprojekt.data.models.Employee;
 import de.jprojekt.main.ApplicationController;
+import de.jprojekt.main.ApplicationData;
 import de.jprojekt.view.frames.JFrameAdapter;
-import de.jprojekt.view.frames.JFrameNewCustomer;
+import de.jprojekt.view.frames.JFrameEditEmployee;
 
 public class ActionEditEmployee extends AbstractActionAdapter{
 	
@@ -22,13 +23,16 @@ public class ActionEditEmployee extends AbstractActionAdapter{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		ApplicationController appController = ApplicationController.getInstance();
-		ICustomerController controller = appController.getCustomerController();
+		ApplicationData appData = ApplicationData.getInstance();
+		
+		IEmployeeController controller = appController.getEmployeeController();
 		JFrameAdapter frame = getFrame();
 		
-		JDialog dialog = new JDialog();//JFrameNewCustomer(frame, controller);
+		Employee currentUser = (Employee) appData.getCurrentUser();
 		
+		JDialog dialog = new JFrameEditEmployee(frame, controller, currentUser);
 		
-		dialog.setTitle("Neuer Kunde");
+		dialog.setTitle("Eigenes Profil bearbeiten");
 		dialog.setSize(200, 400);
 		dialog.setLocationRelativeTo(null);
 		dialog.setResizable(false);
