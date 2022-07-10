@@ -3,10 +3,13 @@ package de.jprojekt.view.frames;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -29,6 +32,8 @@ public class NewCustomerFrame extends JDialog {
 	protected JTextField txtAdresse;
 	protected JTextField txtPlz;
 	
+	
+	
 	protected JButton btnCreateUser;
 	protected JPasswordField txtPassword;
 	protected JPasswordField txtRepeatPassword;
@@ -47,14 +52,19 @@ public class NewCustomerFrame extends JDialog {
 	private void initializeComponent() {
 		setLayout(new FlowLayout());
 		
-		JLabel vorname = new JLabel("*Vorname: ");
-		add (vorname);
+		
+		
+		JLabel lblVorname = new JLabel("*Vorname: ");
+		add (lblVorname);
 		txtVorname = new JTextField(15);
 		add (txtVorname);
-		JLabel nachname = new JLabel("*Nachname: ");
-		add (nachname);
+		JLabel lblNachname = new JLabel("*Nachname: ");
+		add (lblNachname);
 		txtNachname = new JTextField(15);
 		add (txtNachname);
+		JLabel lblBDay = new JLabel("*Geburtstag: ");
+		add(lblBDay);
+		
 		
 		
 		JLabel adresse = new JLabel("*Adresse: ");
