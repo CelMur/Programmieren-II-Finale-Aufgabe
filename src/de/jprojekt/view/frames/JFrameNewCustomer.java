@@ -11,6 +11,8 @@ import javax.swing.JTextField;
 
 import de.jprojekt.controller.interfaces.ICustomerController;
 import de.jprojekt.data.models.Customer;
+import de.jprojekt.data.models.Employee;
+import de.jprojekt.main.ApplicationData;
 import de.jprojekt.utils.BankingException;
 import de.jprojekt.utils.Checks;
 
@@ -30,12 +32,14 @@ public class JFrameNewCustomer extends JDialog {
 	
 	
 	private ICustomerController controller;
+	private ApplicationData appData;
 
 	
 	public JFrameNewCustomer(JFrameAdapter owner, ICustomerController controller){
 		super(owner);
 		this.controller = controller;
 		initializeComponent();
+		appData = ApplicationData.getInstance();
 	}
 	
 	
@@ -87,6 +91,7 @@ public class JFrameNewCustomer extends JDialog {
 				
 				Customer c = createCustomer();
 				controller.create(c);
+				showDialog("");
 			}catch(BankingException e) {
 				showDialog(e.getMessage());
 			}catch(Exception e) {
@@ -99,10 +104,11 @@ public class JFrameNewCustomer extends JDialog {
 	
 	protected Customer createCustomer() {
 		Customer c = new Customer();
+		c.setAdviser((Employee)appData.getCurrentUser());
 		c.setFirstname(txtVorname.getText());
 		c.setLastname(txtNachname.getText());
 		c.setAddress(txtAdresse.getText());
-		c.setPlz(Integer.getInteger(txtPlz.getText()));
+		c.setPlz(Integer.parseInt(txtPlz.getText()));
 		c.setPassword(new String(txtPassword.getPassword()));
 		c.setBday("2022-07-10");
 		return c;
