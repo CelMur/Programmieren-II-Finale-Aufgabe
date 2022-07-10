@@ -4,9 +4,9 @@ import java.sql.*;
 
 public class Mysql {
 
-    static String url = "jdbc:mysql://sc2.timmeserver.de/c1maw_java";
-    static String user = "c1maw_java";
-    static String pass = "eo3UfIsiGIO#9";
+    static String url = "jdbc:mysql://nuernberg.jkristof.de:6033/sql11496325";
+    static String user = "sql11496325";
+    static String pass = "VGmRxNrWr5";
 
     public static void createDB() throws SQLException {
         Connection con = DriverManager.getConnection(url, user, pass);
