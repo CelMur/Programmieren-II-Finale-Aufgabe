@@ -91,6 +91,8 @@ public class JFrameNewEmpolyee extends JDialog {
 		Employee e = new Employee();
 		e.setFirstname(txtVorname.getText());
 		e.setLastname(txtNachname.getText());
+		e.setPassword(new String(txtPassword.getPassword()));
+		e.setBday("2022-07-10");
 		
 		return e;
 	}

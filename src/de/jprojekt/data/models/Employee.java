@@ -9,7 +9,9 @@ public class Employee extends User {
 	
 	
 	public Employee() {
-		
+		setAddress("");
+		setPlz(0);
+		setBday("2022-01-01");
 	}
 
 	public Employee(String id, String password, String firstname, String lastname, String bday, String address, int plz){
@@ -47,10 +49,6 @@ public class Employee extends User {
 
 	public User getUser() {
 		return this.user;
-	}
-	
-	public void update(Employee source) {
-		
 	}
 	
 	
