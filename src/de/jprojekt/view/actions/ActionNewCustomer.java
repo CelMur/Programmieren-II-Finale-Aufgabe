@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import de.jprojekt.controller.interfaces.ICustomerController;
 import de.jprojekt.main.ApplicationController;
 import de.jprojekt.view.frames.JFrameAdapter;
-import de.jprojekt.view.frames.JFrameNewCustomer;
+import de.jprojekt.view.frames.JDialogNewCustomer;
 
 public class ActionNewCustomer extends AbstractActionAdapter{
 	
@@ -26,7 +26,7 @@ public class ActionNewCustomer extends AbstractActionAdapter{
 		ICustomerController controller = appController.getCustomerController();
 		JFrameAdapter frame = getFrame();
 		
-		JDialog dialog = new JFrameNewCustomer(frame, controller);
+		JDialog dialog = new JDialogNewCustomer(frame, controller);
 		
 		
 		dialog.setTitle("Neuer Kunde");

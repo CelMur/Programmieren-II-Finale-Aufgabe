@@ -9,7 +9,7 @@ import de.jprojekt.data.models.Employee;
 import de.jprojekt.main.ApplicationController;
 import de.jprojekt.main.ApplicationData;
 import de.jprojekt.view.frames.JFrameAdapter;
-import de.jprojekt.view.frames.JFrameEditEmployee;
+import de.jprojekt.view.frames.JDialogEditEmployee;
 
 public class ActionEditEmployee extends AbstractActionAdapter{
 	
@@ -30,7 +30,7 @@ public class ActionEditEmployee extends AbstractActionAdapter{
 		
 		Employee currentUser = (Employee) appData.getCurrentUser();
 		
-		JDialog dialog = new JFrameEditEmployee(frame, controller, currentUser);
+		JDialog dialog = new JDialogEditEmployee(frame, controller, currentUser);
 		
 		dialog.setTitle("Eigenes Profil bearbeiten");
 		dialog.setSize(200, 400);

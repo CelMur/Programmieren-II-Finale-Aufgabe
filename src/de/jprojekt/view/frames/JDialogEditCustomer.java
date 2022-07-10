@@ -16,7 +16,7 @@ import de.jprojekt.utils.BankingException;
 import de.jprojekt.utils.Checks;
 
 
-public class JFrameEditCustomer extends JDialog {
+public class JDialogEditCustomer extends JDialog {
 	
 	protected JTextField txtVorname;
 	protected JTextField txtNachname;
@@ -29,7 +29,7 @@ public class JFrameEditCustomer extends JDialog {
 	private ICustomerController controller;
 
 	
-	public JFrameEditCustomer(JFrameAdapter owner, ICustomerController controller){
+	public JDialogEditCustomer(JFrameAdapter owner, ICustomerController controller){
 		super(owner);
 		this.controller = controller;
 		
