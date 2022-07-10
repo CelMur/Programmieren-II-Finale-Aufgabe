@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
-public class JFrameChangePassword extends JFrame{ 
+public class JDialogChangePassword extends JFrame{ 
 	private JPasswordField OldPW;
 	private JPasswordField newPW;
 	private JPasswordField reNewPW;
@@ -23,7 +23,7 @@ public class JFrameChangePassword extends JFrame{
 	private JPanel up;
 	private JPanel lp;
 
-	public JFrameChangePassword(){
+	public JDialogChangePassword(){
 		super("Passwort ändern");
 		setLayout(new FlowLayout());
 		
