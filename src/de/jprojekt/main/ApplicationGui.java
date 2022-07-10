@@ -10,6 +10,7 @@ import de.jprojekt.view.factories.MenuBarFactory;
 import de.jprojekt.view.frames.JFrameAdapter;
 import de.jprojekt.view.frames.JFrameLogin;
 import de.jprojekt.view.frames.JFrameMain;
+import de.jprojekt.view.panels.JPanelCustomerTable;
 
 public class ApplicationGui {
 	
@@ -86,6 +87,7 @@ public class ApplicationGui {
 	
 	public void initializeEmployeeGui() {
 		currentFrame.setJMenuBar(MenuBarFactory.createEmployeeMenuBar(currentFrame));
+		currentFrame.add(new JPanelCustomerTable());
 	}
 
 	public ApplicationController getApp() {
