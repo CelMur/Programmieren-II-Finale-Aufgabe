@@ -39,23 +39,22 @@ public class JPanelKontenUebersicht extends JPanel{
 		table = new JTable(model);
 		
 		setLayout(new BorderLayout());
-		add(new JLabel("Zugeordnete Kunden:"), BorderLayout.NORTH);
+		add(new JLabel("Konto-Übersicht:"), BorderLayout.NORTH);
 		add(new JScrollPane(table), BorderLayout.CENTER);
 		
 	}
-
+	
+	/*
 	public static void main(String[] args) {
-		/**/
+		
 		JFrame meinDialog = new JFrame();
 		JPanel panel = new JPanelKontenUebersicht();
 		meinDialog.add(panel);
 		meinDialog.setTitle("Tabeltest");
 		meinDialog.setSize(450, 300);
 		meinDialog.setVisible(true);
-		
-		
-		
 	}
+	*/
 	
 	public List<BankAccount> initTestData() {
 		List<BankAccount> konten = new ArrayList<BankAccount>();

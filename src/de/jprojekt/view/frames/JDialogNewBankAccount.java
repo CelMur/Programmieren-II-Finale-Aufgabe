@@ -8,34 +8,46 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class JFrameNewBankingAccount extends JFrame {
+import de.jprojekt.controller.interfaces.IBankAccountController;
 
-	private String[] messageStrings = {"Girokonto", "Sparkonto"};
-	private JComboBox cmbMessageList = new JComboBox(messageStrings);
+public class JDialogNewBankAccount extends JDialog {
+
+	
+	private JComboBox cboBankAccountType;
 	private JLabel lblText = new JLabel();
 	private JTextArea lblArea =  new JTextArea();
-	private JButton btnabschicken;
+	private JButton btnAnlegen;
 	
-
+	private IBankAccountController controller;
 	
-	public JFrameNewBankingAccount() {
-		super("Konto Auswahl");
+	public JDialogNewBankAccount(JFrame owner, IBankAccountController controller) {
+		super(owner);
+		this.controller = controller;
+		
+		initializeComponents();
+	}
+	
+	private void initializeComponents() {
+		setTitle("Neues Konto");
 		setLayout(new FlowLayout());
-	
-	newAccHandler handler = new newAccHandler();
-	cmbMessageList.setSelectedIndex(0);
-	cmbMessageList.addActionListener(new newAccHandler());
-	add(cmbMessageList);
-	add(lblArea);
-	lblArea.setWrapStyleWord(true);
-	btnabschicken = new JButton("Jetzt Konto anfordern");
-	add(btnabschicken);
+		
+		String[] bankAccountTypeNames = {"Giro-Konto", "Sparbuch", "Depot"};
+		cboBankAccountType = new JComboBox(bankAccountTypeNames);
+		
+		newAccHandler handler = new newAccHandler();
+		cboBankAccountType.setSelectedIndex(0);
+		add(cboBankAccountType);
+		add(lblArea);
+		lblArea.setWrapStyleWord(true);
+		btnAnlegen = new JButton("Kontoa anlegen");
+		add(btnAnlegen);
 	}
 	
 	private class newAccHandler implements ActionListener{
@@ -44,7 +56,7 @@ public class JFrameNewBankingAccount extends JFrame {
 	public void actionPerformed(ActionEvent e) {	
 		
 	
-		if(e.getSource() == cmbMessageList) {
+		if(e.getSource() == cboBankAccountType) {
 			JComboBox cb = (JComboBox)e.getSource();
 			String msg = (String)cb.getSelectedItem();
 			switch (msg) {

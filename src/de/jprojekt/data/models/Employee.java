@@ -9,6 +9,7 @@ public class Employee extends User {
 	
 	
 	public Employee() {
+		customers = new ArrayList<Customer>();
 		setAddress("");
 		setPlz(0);
 		setBday("2022-01-01");

@@ -18,7 +18,7 @@ public class Main {
     	
     	//Mockup-Login-As-Customer
     	//app.setDBConnector(new MySqlDbConnector());
-    	//app.setSessionController(new MockupSessionControllerLoginAsCustomer(data));
+    	app.setSessionController(new MockupSessionControllerLoginAsCustomer(data));
     	
     	
     	
