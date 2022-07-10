@@ -271,4 +271,11 @@ public class BankAccountController implements IBankAccountController {
         }
         b.setBalance(balance - amount);
     }
+    public BankAccount getAccount(String name) throws BankingException {
+        try {
+            return DBAccount.getAccount(name);
+        } catch (Exception ex) {
+            throw new BankingException("Fehler bei Kommunikation mit der Datenbank.");
+        }
+    }
 }
