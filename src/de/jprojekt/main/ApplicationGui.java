@@ -82,10 +82,11 @@ public class ApplicationGui {
 	
 	
 	public void initializeCustomerGui() {
+		Customer currentUser = (Customer) data.getCurrentUser();
 		Container content = currentFrame.getContentPane();
 		
 		currentFrame.setJMenuBar(MenuBarFactory.createCustomerMenuBar(currentFrame));
-		content.add(new JPanelKontenUebersicht());
+		content.add(new JPanelKontenUebersicht(currentUser.getBankAccounts()));
 	}
 	
 	public void initializeEmployeeGui() {

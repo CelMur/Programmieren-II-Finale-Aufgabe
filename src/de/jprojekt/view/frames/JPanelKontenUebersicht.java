@@ -27,18 +27,16 @@ public class JPanelKontenUebersicht extends JPanel{
 	private TabelModelKonten model;
 	private JTable table;
 	
-	private ApplicationData appData;
+	private List<BankAccount> bankAccounts;
 	
-
-	public JPanelKontenUebersicht() {
-		appData = ApplicationData.getInstance();
+	public JPanelKontenUebersicht(List<BankAccount> bankAccounts) {
+		this.bankAccounts = bankAccounts; 
 		
 		initializeComponent();
 	}
 	
 	private void initializeComponent() {
-		Customer currentUser = (Customer) appData.getCurrentUser();
-		model = new TabelModelKonten(currentUser.getBankAccounts());
+		model = new TabelModelKonten(bankAccounts);
 		table = new JTable(model);
 		
 		setLayout(new BorderLayout());
