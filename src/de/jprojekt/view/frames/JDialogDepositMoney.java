@@ -6,13 +6,19 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import de.jprojekt.controller.interfaces.IBankAccountController;
+import de.jprojekt.data.models.Customer;
+import de.jprojekt.main.ApplicationData;
+import de.jprojekt.utils.BankingException;
 	
-public class JDialogDepositMoney extends JFrame{ 
+public class JDialogDepositMoney extends JDialog{ 
 		private JTextField money;
 		private JButton einzahlen;
 		private JButton auszahlen;
@@ -21,8 +27,12 @@ public class JDialogDepositMoney extends JFrame{
 		private JPanel up;
 		private JPanel lp;
 
-		public JDialogDepositMoney(){
-			super("Geldautomat");
+		private IBankAccountController controller;
+		
+		public JDialogDepositMoney(JFrameAdapter frame, IBankAccountController controller){
+			super(frame);
+			this.controller = controller;
+			
 			setLayout(new FlowLayout());
 			
 			up = new JPanel();	
@@ -44,33 +54,27 @@ public class JDialogDepositMoney extends JFrame{
 			
 			
 			
-			GeldautomatHandler handler = new GeldautomatHandler();
-			money.addActionListener(handler);
-			einzahlen.addActionListener(handler);
-			auszahlen.addActionListener(handler);
-		}
-		
-		private class GeldautomatHandler implements ActionListener{
-			
-			@Override
-			public void actionPerformed(ActionEvent event) {
-				int intMoney = 0;
+			einzahlen.addActionListener(handler ->{
+				ApplicationData appData = ApplicationData.getInstance();
 				
-
-				if (event.getSource()==auszahlen) {
+				Customer currentUser = (Customer) appData.getCurrentUser();
 				
-					intMoney=Integer.parseInt(money.getText());
-					JOptionPane.showMessageDialog(null, "Sie haben den folgenden Betrag abgehoben: " +  intMoney );
-					// Übergabe an Konto
-					// KtoVariable = KtoVariable - intMoney
-					}
+				
+				long betrag=Integer.parseInt(money.getText());
+				
+				try {
+					//TODO:
+					controller.depositMoney(null, null, betrag);
+				} catch (BankingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}catch(Exception e) {
 					
-				else if (event.getSource()==einzahlen) {
-					intMoney=Integer.parseInt(money.getText());
-					JOptionPane.showMessageDialog(null, "Sie haben den folgenden Betrag eingezahlt: " +  " " + intMoney );
-					// Übergabe an Konto
-					// KtoVariable = KtoVariable + intMoney
-					}
 				}
+				JOptionPane.showMessageDialog(getOwner(), "Sie haben den folgenden Betrag eingezahlt: " +  " " + betrag );
+				// Übergabe an Konto
+				// KtoVariable = KtoVariable + intMoney
+				
+			});
 		}
 }
