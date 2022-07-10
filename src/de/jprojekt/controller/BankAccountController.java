@@ -15,6 +15,9 @@ public class BankAccountController implements IBankAccountController {
 
     @Override
     public void changeMaxDebt(BankAccount b, long amount, Employee e) throws BankingException {
+        if (b instanceof SavingAccount) {
+            throw new BankingException("Tagesgeldkonten können nicht überzogen werden.");
+        }
         if (amount < 0) {
             throw new BankingException("Es ist nur ein positiver Betrag erlaubt.");
         }
