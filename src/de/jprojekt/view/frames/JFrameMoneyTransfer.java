@@ -1,36 +1,23 @@
 package de.jprojekt.view.frames;
 
-import java.awt.Adjustable;
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
-import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
+import java.awt.FlowLayout;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import de.jprojekt.controller.BankAccountController;
 import de.jprojekt.controller.interfaces.IBankAccountController;
 import de.jprojekt.data.models.BankAccount;
 import de.jprojekt.data.models.Customer;
-import de.jprojekt.main.ApplicationController;
 import de.jprojekt.main.ApplicationData;
 import de.jprojekt.utils.BankingException;
-import de.jprojekt.utils.mysql.DBAccount;
-import de.jprojekt.utils.mysql.DBCustomer;
+
 
 public class JFrameMoneyTransfer extends JDialog{ 
 		private JTextField txtName;
@@ -89,29 +76,35 @@ public class JFrameMoneyTransfer extends JDialog{
 			add(btnTransfer);
 			
 			btnTransfer.addActionListener(handler ->{
-				if(txtName.getText().isEmpty() || txtKontoID.getText().isEmpty() || txtAmount.getText().isEmpty()){
-					JOptionPane.showMessageDialog(null, "Bitte füllen Sie alle Felder aus!");
+				
+				try{
+					validateData();
+					
+					BankAccount srcKonto =(BankAccount) cboSrcKonto.getSelectedItem();
+					BankAccount targetKonto = controller.getAccountByID(txtKontoID.getText());
+					
+					long amount = (long) Integer.parseInt(txtAmount.getText()); 
+					
+					controller.transferMoney(srcKonto, targetKonto, amount);
+					
+					JOptionPane.showMessageDialog(this.getOwner(), "Überweisung erfolgreich abgeschlossen!");
 				}
-				else{
-					try{
-						BankAccount srcKonto =(BankAccount) cboSrcKonto.getSelectedItem();
-						BankAccount targetKonto = controller.getAccountByID(txtKontoID.getText());
-						long amount = (long) Integer.parseInt(txtAmount.getText()); 
-						
-						controller.transferMoney(srcKonto, targetKonto, amount);
-						JOptionPane.showMessageDialog(null, "Überweisung erfolgreich abgeschlossen!");
-					}
-					catch(BankingException e) {
-						JOptionPane.showMessageDialog(null, e.getMessage());
-						System.out.println(e.getMessage());
-					}
-					catch(Exception e){
-						JOptionPane.showMessageDialog(null, "Überweisung fehlgeschlagen!");
-						System.out.println(e.getMessage());
-					}
+				catch(BankingException e) {
+					JOptionPane.showMessageDialog(this.getOwner(), e.getMessage());
+					System.out.println(e.getMessage());
+				}
+				catch(Exception e){
+					JOptionPane.showMessageDialog(this.getOwner(), "Überweisung fehlgeschlagen!");
+					System.out.println(e.getMessage());
 				}
 			});
-		}			
+		}	
+		
+		private void validateData() throws BankingException {
+			if(txtName.getText().isEmpty() || txtKontoID.getText().isEmpty() || txtAmount.getText().isEmpty()){
+				throw new BankingException("Bitte füllen Sie alle Felder aus!");
+			}
+		}
 		
 		
 	}
