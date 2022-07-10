@@ -16,20 +16,28 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import de.jprojekt.controller.interfaces.IBankAccountController;
+import de.jprojekt.data.models.BankAccount.BankAccountType;
+import de.jprojekt.data.models.Customer;
+import de.jprojekt.main.ApplicationData;
+import de.jprojekt.utils.BankingException;
 
 public class JDialogNewBankAccount extends JDialog {
 
 	
 	private JComboBox cboBankAccountType;
-	private JLabel lblText = new JLabel();
-	private JTextArea lblArea =  new JTextArea();
+	
+	private JTextField txtName;
 	private JButton btnAnlegen;
 	
 	private IBankAccountController controller;
 	
+	private ApplicationData appData;
+	
 	public JDialogNewBankAccount(JFrame owner, IBankAccountController controller) {
 		super(owner);
 		this.controller = controller;
+		
+		appData = ApplicationData.getInstance();
 		
 		initializeComponents();
 	}
@@ -38,43 +46,55 @@ public class JDialogNewBankAccount extends JDialog {
 		setTitle("Neues Konto");
 		setLayout(new FlowLayout());
 		
-		String[] bankAccountTypeNames = {"Giro-Konto", "Sparbuch", "Depot"};
+		JLabel lblName = new JLabel("Konto-Bezeichnung");
+		add(lblName);
+		
+		txtName = new JTextField(15);
+		add(txtName);
+		
+		JLabel lblBankAccountTypes = new JLabel("Konto-Typ");
+		add(lblBankAccountTypes);
+		
+		String[] bankAccountTypeNames = {"Keine Auswahl", "Girokonto", "Sparkonto", "Depot"};
 		cboBankAccountType = new JComboBox(bankAccountTypeNames);
 		
-		newAccHandler handler = new newAccHandler();
-		cboBankAccountType.setSelectedIndex(0);
+		
+		//cboBankAccountType.setSelectedIndex(0);
 		add(cboBankAccountType);
-		add(lblArea);
-		lblArea.setWrapStyleWord(true);
-		btnAnlegen = new JButton("Kontoa anlegen");
+		
+		btnAnlegen = new JButton("Konto anlegen");
 		add(btnAnlegen);
+		
+		cboBankAccountType.addActionListener(handler -> {
+			try {
+				Customer currentUser = (Customer) appData.getCurrentUser();
+			
+				switch (cboBankAccountType.getSelectedItem().toString()) {
+					case "Girokonto": 
+						controller.create(currentUser, getName(), BankAccountType.GIRO.value());
+						this.setVisible(false);
+						break;
+					case "Sparkonto": 
+						controller.create(currentUser, getName(), BankAccountType.SAVING.value());
+						this.setVisible(false);
+						break;
+					case "Depot":
+						controller.create(currentUser, getName(), BankAccountType.DEPOSIT.value());
+						this.setVisible(false);
+						break;
+					default: 
+						JOptionPane.showMessageDialog(this.getOwner(), "Bitte Konto-Typ ausw�hlen");
+				}
+			}catch(BankingException e) {
+				JOptionPane.showMessageDialog(this.getOwner(), e.getMessage());
+				this.setVisible(false);
+			}catch(Exception e) {
+				JOptionPane.showMessageDialog(this.getOwner(), "Konto konnte nicht angelegt werden");
+				this.setVisible(false);
+			}
+			
+		});
 	}
 	
-	private class newAccHandler implements ActionListener{
-		
-	@Override
-	public void actionPerformed(ActionEvent e) {	
-		
-	
-		if(e.getSource() == cboBankAccountType) {
-			JComboBox cb = (JComboBox)e.getSource();
-			String msg = (String)cb.getSelectedItem();
-			switch (msg) {
-			case "Girokonto": lblArea.setText("Kostenlose Bargeldauszahlung an über 23.000 Geldautomaten in ganz Deutschland\r\n"
-					+ "Kontoservice in jeder Lebenslage: persönlich in der Filiale, per Video-Chat, an unseren SB-Terminals, telefonisch, online oder mobil mit der ausgezeichneten Sparkassen-App\r\n"
-					+ "Bargeldlos und kontaktlos bezahlen mit der Sparkassen-Card (Debitkarte) und optional der Sparkassen-Kreditkarte \r\n"
-					+ "Kontaktlos bezahlen mit Karte oder Smartphone\r\n"
-					+ "");
-					break;
-			case "Sparkonto": lblArea.setText("Unkomplizierte Sparmöglichkeit\r\n"
-					+ "Hohe Sicherheit\r\n"
-					+ "Flexibel einzahlen oder in festen Raten sparen       \r\n"
-					+ "Keine Gebühren\r\n"
-					+ "Bis zu 2.000 Euro monatlich verfügbar");
-				break;
-			default: lblText.setText("Ein Fehler ist aufgetreten");}}
-
-		}
-	}
 }
 
