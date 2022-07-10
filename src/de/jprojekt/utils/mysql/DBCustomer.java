@@ -93,7 +93,7 @@ public class DBCustomer {
             rs.getString("password"),
             rs.getString("firstname"),
             rs.getString("lastname"),
-            rs.getDate("date").toString(),
+            rs.getDate("bday").toString(),
             rs.getString("address"),
             rs.getInt("plz")
         );
