@@ -8,18 +8,20 @@ import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import de.jprojekt.controller.interfaces.IBankAccountController;
 import de.jprojekt.data.models.BankAccount;
 import de.jprojekt.data.models.Customer;
 import de.jprojekt.main.ApplicationController;
 import de.jprojekt.main.ApplicationData;
 	
-public class JDialogWithdrawMoney extends JFrame{ 
+public class JDialogWithdrawMoney extends JDialog{ 
 		private JTextField money;
 		private JButton einzahlen;
 		private JButton auszahlen;
@@ -29,11 +31,15 @@ public class JDialogWithdrawMoney extends JFrame{
 		private JPanel lp;
 		private JLabel Beschreibungsrc;
 		JComboBox srcKonto;
+		
+		private IBankAccountController controller;
 
-		public JDialogWithdrawMoney(){
-			super("Geldautomat");
+		public JDialogWithdrawMoney(JFrameAdapter frame, IBankAccountController controller){
+			super(frame);
 			setLayout(new FlowLayout());
-
+			this.controller = controller;
+			
+			setTitle("Geldabheben");
 			String userid = ApplicationData.getInstance().getCurrentUser().getId();
 			BankAccount[] accounts;
 			try{
@@ -67,43 +73,18 @@ public class JDialogWithdrawMoney extends JFrame{
 			add(auszahlen);
 
 			
-			
-			
-			
-			GeldautomatHandler handler = new GeldautomatHandler();
-			money.addActionListener(handler);
-			einzahlen.addActionListener(handler);
-			auszahlen.addActionListener(handler);
+			auszahlen.addActionListener(handler -> {
+				long betrag=Integer.parseInt(money.getText());
+				Customer currUser = (Customer) ApplicationData.getInstance().getCurrentUser();
+				BankAccount Konto =(BankAccount) srcKonto.getSelectedItem();
+				try{
+					controller.withdrawMoney(currUser, Konto, betrag);
+					JOptionPane.showMessageDialog(null, "Sie haben den folgenden Betrag abgehoben: " +  betrag );
+			    }catch(Exception e){
+			    	JOptionPane.showMessageDialog(null, "Sie haben nicht genug Geld auf Ihrem Konto");
+			    } 
+			});
 		}
 		
-		private class GeldautomatHandler implements ActionListener{
-			
-			@Override
-			public void actionPerformed(ActionEvent event) {
-				int intMoney = 0;
-				
-
-				if (event.getSource()==auszahlen) {
-				
-					intMoney=Integer.parseInt(money.getText());
-					Customer currUser = (Customer) ApplicationData.getInstance().getCurrentUser();
-					BankAccount Konto =(BankAccount) srcKonto.getSelectedItem();
-					try{
-					ApplicationController.getInstance().getBankAccountController().withdrawMoney(currUser, Konto, intMoney);
-					JOptionPane.showMessageDialog(null, "Sie haben den folgenden Betrag abgehoben: " +  intMoney );
-				    }catch(Exception e){
-				    	JOptionPane.showMessageDialog(null, "Sie haben nicht genug Geld auf Ihrem Konto");
-				    } 
-					// Übergabe an Konto
-					// KtoVariable = KtoVariable - intMoney
-					}
-					
-				else if (event.getSource()==einzahlen) {
-					intMoney=Integer.parseInt(money.getText());
-					JOptionPane.showMessageDialog(null, "Sie haben den folgenden Betrag eingezahlt: " +  " " + intMoney );
-					// Übergabe an Konto
-					// KtoVariable = KtoVariable + intMoney
-					}
-				}
-		}
+		
 }
