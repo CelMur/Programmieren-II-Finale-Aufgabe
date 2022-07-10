@@ -73,6 +73,9 @@ public abstract class User {
 	public Date getBday() {
 		return this.bday;
 	}
+	public void setBday(String bday) {
+		this.bday = Date.valueOf(bday);
+	}
 
 	public void setBday(Date bday) {
 		this.bday = bday;
