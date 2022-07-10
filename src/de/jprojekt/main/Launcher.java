@@ -72,8 +72,9 @@ public class Launcher {
 	
 	/**
 	 * Ruft das Login-Fenster
+	 * @throws BankingException 
 	 */
-	public void launchLogin() {
+	public void launchLogin() throws BankingException {
 		controller.onLaunchLogin();
 		gui.onLaunchLogin();
 		

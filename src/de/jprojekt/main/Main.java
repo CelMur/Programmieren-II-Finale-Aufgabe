@@ -5,8 +5,11 @@ import de.jprojekt.controller.interfaces.IDBConnector;
 import de.jprojekt.controller.mockups.MockupDBConnector;
 import de.jprojekt.controller.mockups.MockupSessionControllerLoginAsCustomer;
 import de.jprojekt.controller.mockups.MockupSessionControllerLoginAsEmployee;
+import de.jprojekt.utils.BankingException;
 
 import java.sql.SQLException;
+
+import javax.swing.JOptionPane;
 
 public class Main {
 
@@ -27,7 +30,16 @@ public class Main {
     	//app.setSessionController(new MockupSessionControllerLoginAsEmployee(data));
 
     	Launcher l = Launcher.create(gui, app, data);
-    	l.launchLogin();
+    	try {
+    		l.launchLogin();
+    	}catch(BankingException e) {
+    		JOptionPane.showMessageDialog(null, e.getMessage());
+    	}catch(Exception e) {
+    		JOptionPane.showMessageDialog(null, "Das Programm konnte nicht gestartet werden.");
+    		System.out.println(e.getMessage());
+    		e.printStackTrace();
+    	}
+    	
     	
     }
 

@@ -12,6 +12,7 @@ import de.jprojekt.controller.interfaces.IEmployeeController;
 import de.jprojekt.controller.interfaces.ISessionController;
 import de.jprojekt.controller.interfaces.IUserController;
 import de.jprojekt.controller.mockups.MockupSessionControllerLoginAsCustomer;
+import de.jprojekt.utils.BankingException;
 
 import java.sql.SQLException;
 
@@ -64,8 +65,9 @@ public class ApplicationController {
 	
 	/**
 	 * wird vom Laucher aufgerufen kurz bevor das Login-Fenster angezeigt wird
+	 * @throws BankingException 
 	 */
-	public void onLaunchLogin() {
+	public void onLaunchLogin() throws BankingException {
 
        dbConnector.initConnection();
        throwExeptionIfGuiIsMissing();
